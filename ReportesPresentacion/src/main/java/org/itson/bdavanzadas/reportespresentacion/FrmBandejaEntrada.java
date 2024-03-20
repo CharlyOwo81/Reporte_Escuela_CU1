@@ -154,17 +154,19 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblTitulo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReportes = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        lblTitulo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bandeja de Reportes");
         setMaximumSize(new java.awt.Dimension(1100, 525));
         setResizable(false);
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitulo.setText("Bandeja de Entrada");
+        jPanel1.setBackground(new java.awt.Color(189, 189, 189));
 
         tablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -184,27 +186,48 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaReportes);
 
+        jPanel2.setBackground(new java.awt.Color(250, 248, 245));
+        jPanel2.setForeground(new java.awt.Color(250, 248, 245));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(116, 71, 48));
+        lblTitulo.setText("Proyecto EUI");
+        jPanel2.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, 64));
+
+        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(155, 90, 23));
+        lblTitulo1.setText("Bandeja de Entrada");
+        jPanel2.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, 64));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(lblTitulo)
-                .addGap(271, 715, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
-                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -319,8 +342,11 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JTable tablaReportes;
     // End of variables declaration//GEN-END:variables
 }

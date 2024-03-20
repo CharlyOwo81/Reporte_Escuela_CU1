@@ -68,7 +68,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void setDatos() {
         txtNombre.setText(reporte.getAlumno().getNombre());
-        txtApellidos.setText(reporte.getAlumno().getApellidoP() + " " + reporte.getAlumno().getApellidoM());
+        txtApellidoPaterno.setText(reporte.getAlumno().getApellidoP());
+        txtApellidoMaterno.setText(reporte.getAlumno().getApellidoM());
         txtCURP.setText(reporte.getAlumno().getCURP());
         txtProfesor.setText(reporte.getDocente().getNombre() + " " + reporte.getDocente().getApellidoP() + " " + reporte.getDocente().getApellidoM());
         txtGrupo.setText(reporte.getAlumno().getGradoGrupo());
@@ -101,85 +102,218 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         lblTitulo = new javax.swing.JLabel();
+        lblTitulo1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         fotoAlumno = new javax.swing.JLabel();
-        lblCURP = new javax.swing.JLabel();
         lblNombres = new javax.swing.JLabel();
+        lblCURP = new javax.swing.JLabel();
         lblApellidos = new javax.swing.JLabel();
-        lblGrupo = new javax.swing.JLabel();
-        lblProfesor = new javax.swing.JLabel();
-        checkLeve = new javax.swing.JCheckBox();
         checkSevero = new javax.swing.JCheckBox();
         checkGrave = new javax.swing.JCheckBox();
+        checkLeve = new javax.swing.JCheckBox();
         lblMotivo = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        txtApellidoMaterno = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        txtProfesor = new javax.swing.JTextField();
+        lblFecha = new javax.swing.JLabel();
+        btnCancelar = new javax.swing.JButton();
+        btnValidar = new javax.swing.JButton();
+        toggleModificar = new javax.swing.JToggleButton();
+        txtGrupo = new javax.swing.JTextField();
+        lblGrupo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMotivo = new javax.swing.JTextArea();
-        txtCURP = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtApellidos = new javax.swing.JTextField();
-        txtProfesor = new javax.swing.JTextField();
-        txtGrupo = new javax.swing.JTextField();
+        lblProfesor = new javax.swing.JLabel();
         lblDescripcion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        btnValidar = new javax.swing.JButton();
-        btnCancelar = new javax.swing.JButton();
-        toggleModificar = new javax.swing.JToggleButton();
-        lblFecha = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
+        txtCURP = new javax.swing.JTextField();
+        txtApellidoPaterno = new javax.swing.JTextField();
+        lblApellidos1 = new javax.swing.JLabel();
+        lblGrupo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
+        setMinimumSize(new java.awt.Dimension(1100, 525));
+        setPreferredSize(new java.awt.Dimension(1210, 558));
         setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel2.setBackground(new java.awt.Color(250, 248, 245));
+
+        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(155, 90, 23));
         lblTitulo.setText("Validación y Modificación de Reportes");
 
-        lblCURP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblCURP.setText("CURP:");
+        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        lblTitulo1.setForeground(new java.awt.Color(116, 71, 48));
+        lblTitulo1.setText("Proyecto EUI");
 
-        lblNombres.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(259, 259, 259)
+                .addComponent(lblTitulo)
+                .addContainerGap(259, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblTitulo1)
+                .addGap(438, 438, 438))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(lblTitulo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTitulo1)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 120));
+
+        jPanel3.setBackground(new java.awt.Color(189, 189, 189));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        fotoAlumno.setPreferredSize(new java.awt.Dimension(160, 200));
+        jPanel3.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 200));
+
+        lblNombres.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         lblNombres.setText("Nombres:");
+        jPanel3.add(lblNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
 
-        lblApellidos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblApellidos.setText("Apellidos:");
+        lblCURP.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblCURP.setText("CURP:");
+        jPanel3.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
-        lblGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGrupo.setText("Grupo:");
+        lblApellidos.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblApellidos.setText("Apellido Materno:");
+        jPanel3.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
 
-        lblProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblProfesor.setText("Profesor:");
-
-        checkLeve.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        checkLeve.setText("Leve");
-        checkLeve.setEnabled(false);
-        checkLeve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkLeveActionPerformed(evt);
-            }
-        });
-
-        checkSevero.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        checkSevero.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         checkSevero.setText("Severo");
+        checkSevero.setContentAreaFilled(false);
         checkSevero.setEnabled(false);
         checkSevero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkSeveroActionPerformed(evt);
             }
         });
+        jPanel3.add(checkSevero, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, -1, -1));
 
-        checkGrave.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        checkGrave.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         checkGrave.setText("Grave");
+        checkGrave.setContentAreaFilled(false);
         checkGrave.setEnabled(false);
         checkGrave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkGraveActionPerformed(evt);
             }
         });
+        jPanel3.add(checkGrave, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, 105, -1));
 
-        lblMotivo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        checkLeve.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkLeve.setText("Leve");
+        checkLeve.setContentAreaFilled(false);
+        checkLeve.setEnabled(false);
+        checkLeve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkLeveActionPerformed(evt);
+            }
+        });
+        jPanel3.add(checkLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 85, -1));
+
+        lblMotivo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         lblMotivo.setText("Motivo del Reporte");
+        jPanel3.add(lblMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+
+        txtFecha.setEditable(false);
+        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtFecha.setEnabled(false);
+        jPanel3.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 30));
+
+        txtApellidoMaterno.setEditable(false);
+        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtApellidoMaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtApellidoMaterno.setEnabled(false);
+        txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoMaternoActionPerformed(evt);
+            }
+        });
+        jPanel3.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 295, -1));
+
+        txtNombre.setEditable(false);
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtNombre.setEnabled(false);
+        jPanel3.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 295, -1));
+
+        txtProfesor.setEditable(false);
+        txtProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtProfesor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtProfesor.setEnabled(false);
+        jPanel3.add(txtProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 295, -1));
+
+        lblFecha.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFecha.setText("Fecha:");
+        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 80, -1));
+
+        btnCancelar.setBackground(new java.awt.Color(204, 0, 0));
+        btnCancelar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 120, -1));
+
+        btnValidar.setBackground(new java.awt.Color(51, 204, 0));
+        btnValidar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        btnValidar.setForeground(new java.awt.Color(255, 255, 255));
+        btnValidar.setText("Validar");
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 320, 120, -1));
+
+        toggleModificar.setBackground(new java.awt.Color(255, 204, 0));
+        toggleModificar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        toggleModificar.setForeground(new java.awt.Color(255, 255, 255));
+        toggleModificar.setText("Modificar");
+        toggleModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleModificarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(toggleModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 270, 120, -1));
+
+        txtGrupo.setEditable(false);
+        txtGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtGrupo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtGrupo.setEnabled(false);
+        jPanel3.add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 70, -1));
+
+        lblGrupo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGrupo.setText("Nivel de severidad");
+        jPanel3.add(lblGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 170, -1));
 
         txtMotivo.setEditable(false);
         txtMotivo.setColumns(20);
@@ -188,35 +322,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtMotivo.setEnabled(false);
         jScrollPane1.setViewportView(txtMotivo);
 
-        txtCURP.setEditable(false);
-        txtCURP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtCURP.setCaretColor(new java.awt.Color(0, 0, 0));
-        txtCURP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtCURP.setEnabled(false);
+        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 320, 140));
 
-        txtNombre.setEditable(false);
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtNombre.setEnabled(false);
+        lblProfesor.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblProfesor.setText("Profesor:");
+        jPanel3.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
 
-        txtApellidos.setEditable(false);
-        txtApellidos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtApellidos.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtApellidos.setEnabled(false);
-
-        txtProfesor.setEditable(false);
-        txtProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtProfesor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtProfesor.setEnabled(false);
-
-        txtGrupo.setEditable(false);
-        txtGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtGrupo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtGrupo.setEnabled(false);
-
-        lblDescripcion.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblDescripcion.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         lblDescripcion.setText("Descripción");
+        jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
 
         txtDescripcion.setEditable(false);
         txtDescripcion.setColumns(20);
@@ -225,171 +339,37 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtDescripcion.setEnabled(false);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        btnValidar.setBackground(new java.awt.Color(51, 204, 0));
-        btnValidar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnValidar.setForeground(new java.awt.Color(255, 255, 255));
-        btnValidar.setText("Validar");
-        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 311, 140));
+
+        txtCURP.setEditable(false);
+        txtCURP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCURP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtCURP.setEnabled(false);
+        jPanel3.add(txtCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 295, -1));
+
+        txtApellidoPaterno.setEditable(false);
+        txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtApellidoPaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtApellidoPaterno.setEnabled(false);
+        txtApellidoPaterno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarActionPerformed(evt);
+                txtApellidoPaternoActionPerformed(evt);
             }
         });
+        jPanel3.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 295, -1));
 
-        btnCancelar.setBackground(new java.awt.Color(204, 0, 0));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
+        lblApellidos1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblApellidos1.setText("Apellido Paterno:");
+        jPanel3.add(lblApellidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
-        toggleModificar.setBackground(new java.awt.Color(255, 204, 0));
-        toggleModificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        toggleModificar.setForeground(new java.awt.Color(255, 255, 255));
-        toggleModificar.setText("Modificar");
-        toggleModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleModificarActionPerformed(evt);
-            }
-        });
+        lblGrupo1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblGrupo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblGrupo1.setText("Grupo:");
+        jPanel3.add(lblGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 70, -1));
 
-        lblFecha.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFecha.setText("Fecha:");
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1210, 540));
 
-        txtFecha.setEditable(false);
-        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtFecha.setEnabled(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblTitulo)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(fotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lblNombres)
-                            .addComponent(lblApellidos)
-                            .addComponent(lblCURP)
-                            .addComponent(lblProfesor))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtFecha, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(22, 22, 22))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(checkLeve, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(checkSevero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(checkGrave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(48, 48, 48)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(29, 29, 29)
-                                .addComponent(lblMotivo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblDescripcion)
-                                .addGap(111, 111, 111))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(toggleModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnValidar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(52, 52, 52)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(42, 42, 42))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(lblTitulo)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(fotoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblCURP)
-                                    .addComponent(txtCURP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblNombres)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblGrupo)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblApellidos)
-                            .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblFecha))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblProfesor)
-                                    .addComponent(txtProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(5, 5, 5)
-                                .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(checkLeve)
-                        .addGap(18, 18, 18)
-                        .addComponent(checkSevero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(checkGrave))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMotivo)
-                            .addComponent(lblDescripcion))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCancelar)
-                            .addComponent(btnValidar)
-                            .addComponent(toggleModificar))))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -452,6 +432,14 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnValidarActionPerformed
 
+    private void txtApellidoMaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoMaternoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoMaternoActionPerformed
+
+    private void txtApellidoPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPaternoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoPaternoActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -494,19 +482,26 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkLeve;
     private javax.swing.JCheckBox checkSevero;
     private javax.swing.JLabel fotoAlumno;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblApellidos;
+    private javax.swing.JLabel lblApellidos1;
     private javax.swing.JLabel lblCURP;
     private javax.swing.JLabel lblDescripcion;
     private javax.swing.JLabel lblFecha;
     private javax.swing.JLabel lblGrupo;
+    private javax.swing.JLabel lblGrupo1;
     private javax.swing.JLabel lblMotivo;
     private javax.swing.JLabel lblNombres;
     private javax.swing.JLabel lblProfesor;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JToggleButton toggleModificar;
-    private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtApellidoMaterno;
+    private javax.swing.JTextField txtApellidoPaterno;
     private javax.swing.JTextField txtCURP;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtFecha;
