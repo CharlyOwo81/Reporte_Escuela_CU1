@@ -6,13 +6,15 @@ package org.itson.bdavanzadas.reportesnegocios;
 
 import java.util.List;
 import org.itson.bdavanzadas.reportesdominio.Reporte;
+import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
 
 /**
  *
- * @author Oliver Valle
+ * @author gamaliel
  */
-public interface IFachadaRecuperar {
-    
+public interface IGestionarIncidencias {
+    Reporte validarReporte(ReporteNuevoDTO reporte) ;
+    boolean notificarReporte(ReporteNuevoDTO reporte) ;
     List<Reporte> recuperarReportes() ;
-    
+    Reporte modificarReporte(ReporteNuevoDTO reporte) ;
 }
