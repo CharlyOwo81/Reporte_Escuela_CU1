@@ -292,9 +292,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         });
         jPanel3.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 320, 120, -1));
 
-        toggleModificar.setBackground(new java.awt.Color(255, 204, 0));
+        toggleModificar.setBackground(new java.awt.Color(231, 245, 0));
         toggleModificar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        toggleModificar.setForeground(new java.awt.Color(255, 255, 255));
         toggleModificar.setText("Modificar");
         toggleModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
