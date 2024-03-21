@@ -10,11 +10,12 @@ import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
 
 /**
  *
- * @author gamaliel
+ * @author Oliver Valle
  */
-public interface IGestionarIncidencias {
-    Reporte validarReporte(ReporteNuevoDTO reporte) ;
-    boolean notificarReporte(ReporteNuevoDTO reporte) ;
-    List<Reporte> recuperarReportes() ;
-    Reporte modificarReporte(ReporteNuevoDTO reporte) ;
+public interface IFachadaGestionIncidencias {
+    ReporteNuevoDTO validarReporte(ReporteNuevoDTO reporteNuevo) ;
+    
+    boolean notificarReporte(ReporteNuevoDTO reporteNuevo) ;
+    
+    List<ReporteNuevoDTO> recuperarReportes() ;
 }

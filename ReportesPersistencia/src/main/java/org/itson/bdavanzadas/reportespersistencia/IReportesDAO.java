@@ -6,7 +6,6 @@ package org.itson.bdavanzadas.reportespersistencia;
 
 import java.util.List;
 import org.itson.bdavanzadas.reportesdominio.Reporte;
-import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
 
 /**
  *
@@ -14,11 +13,11 @@ import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
  */
 public interface IReportesDAO {
     
-    Reporte validarReporte(ReporteNuevoDTO reporte) ;
+    Reporte validarReporte(Reporte reporte) ;
     
-    Reporte modificarReporte(ReporteNuevoDTO reporte) ;
+    Reporte modificarReporte(Reporte reporte) ;
     
-    boolean notificarReporte(ReporteNuevoDTO reporte) ;
+    boolean notificarReporte(Reporte reporte) ;
     
     List<Reporte> recuperarReportes() ;
     

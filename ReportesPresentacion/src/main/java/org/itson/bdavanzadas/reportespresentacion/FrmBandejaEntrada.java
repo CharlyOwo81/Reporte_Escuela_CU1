@@ -21,11 +21,9 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import org.itson.bdavanzadas.reportesdominio.Reporte;
-import org.itson.bdavanzadas.reportesnegocios.FachadaModificar;
-import org.itson.bdavanzadas.reportesnegocios.FachadaNotificar;
-import org.itson.bdavanzadas.reportesnegocios.FachadaRecuperar;
-import org.itson.bdavanzadas.reportesnegocios.FachadaValidar;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaRecuperar;
+import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
+import org.itson.bdavanzadas.reportesnegocios.GestionarIncidencias;
+import org.itson.bdavanzadas.reportesnegocios.IFachadaGestionIncidencias;
 import org.itson.bdavanzadas.reportespersistencia.IReportesDAO;
 import org.itson.bdavanzadas.reportespersistencia.ReportesDAO;
 
@@ -35,23 +33,20 @@ import org.itson.bdavanzadas.reportespersistencia.ReportesDAO;
  */
 public class FrmBandejaEntrada extends javax.swing.JFrame {
 
-    private IFachadaRecuperar fRecuperar ;
-    private IReportesDAO reportesDAO ;
+    private IFachadaGestionIncidencias gestionIncidencias ;
     
     /**
      * Creates new form FrmBandejaEntrada
      */
     public FrmBandejaEntrada() {
         initComponents();
-        reportesDAO = new ReportesDAO() ;
-        this.fRecuperar = new FachadaRecuperar(reportesDAO) ;
+        this.gestionIncidencias = new GestionarIncidencias() ;
         refrescarTabla() ;
     }
     
-    public FrmBandejaEntrada(IFachadaRecuperar fRecuperar, IReportesDAO reportesDAO) {
+    public FrmBandejaEntrada(IFachadaGestionIncidencias gestionIncidencias) {
         initComponents();
-        this.fRecuperar = fRecuperar ;
-        this.reportesDAO = reportesDAO ;
+        this.gestionIncidencias = gestionIncidencias ;
         refrescarTabla() ;
     }
 
@@ -60,10 +55,10 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         ActionListener validarListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Reporte reporteSelec = fRecuperar.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
+                ReporteNuevoDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
                 dispose() ;
                 System.out.println((reporteSelec.getAlumno().getNombre())) ;
-                FrmValidarReporte frmValidar = new FrmValidarReporte(reportesDAO, fRecuperar, new FachadaNotificar(reportesDAO), new FachadaValidar(reportesDAO), new FachadaModificar(reportesDAO), reporteSelec) ;
+                FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
                 frmValidar.setVisible(true);
             }
         } ;
@@ -77,7 +72,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     
     public void refrescarTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel() ;
-        List<Reporte> reportes = fRecuperar.recuperarReportes() ;
+        List<ReporteNuevoDTO> reportes = gestionIncidencias.recuperarReportes() ;
         Object[] datosTabla = new Object[9];
         modeloTabla.addColumn("CURP");
         modeloTabla.addColumn("Nombre");

@@ -1,8 +1,5 @@
-org/itson/bdavanzadas/reportesnegocios/IFachadaModificar.class
-org/itson/bdavanzadas/reportesnegocios/FachadaNotificar.class
-org/itson/bdavanzadas/reportesnegocios/FachadaRecuperar.class
-org/itson/bdavanzadas/reportesnegocios/FachadaModificar.class
-org/itson/bdavanzadas/reportesnegocios/IFachadaValidar.class
-org/itson/bdavanzadas/reportesnegocios/IFachadaRecuperar.class
-org/itson/bdavanzadas/reportesnegocios/FachadaValidar.class
-org/itson/bdavanzadas/reportesnegocios/IFachadaNotificar.class
+org\itson\bdavanzadas\reportesdto\DocenteNuevoDTO.class
+org\itson\bdavanzadas\reportesnegocios\IFachadaGestionIncidencias.class
+org\itson\bdavanzadas\reportesdto\AlumnoNuevoDTO.class
+org\itson\bdavanzadas\reportesdto\ReporteNuevoDTO.class
+org\itson\bdavanzadas\reportesnegocios\GestionarIncidencias.class

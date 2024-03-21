@@ -9,10 +9,7 @@ import javax.swing.JOptionPane;
 import org.itson.bdavanzadas.reportesdominio.NivelIncidencia;
 import org.itson.bdavanzadas.reportesdominio.Reporte;
 import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaModificar;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaNotificar;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaRecuperar;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaValidar;
+import org.itson.bdavanzadas.reportesnegocios.IFachadaGestionIncidencias;
 import org.itson.bdavanzadas.reportespersistencia.IReportesDAO;
 
 /**
@@ -21,26 +18,19 @@ import org.itson.bdavanzadas.reportespersistencia.IReportesDAO;
  */
 public class FrmValidarReporte extends javax.swing.JFrame {
 
-    private IFachadaRecuperar fRecuperar ;
-    private IFachadaNotificar fNotificar ;
-    private IFachadaValidar fValidar ;
-    private IFachadaModificar fModificar ;
-    private Reporte reporte ;
+    
+    private IFachadaGestionIncidencias gestionIncidencias ;
+    private ReporteNuevoDTO reporte ;
     private FotosManager fotosManager;
-    private IReportesDAO reportesDAO ;
     
     /**
      * Creates new form FrmValidarReporte
      */
-    public FrmValidarReporte(IReportesDAO reportesDAO, IFachadaRecuperar fRecuperar, IFachadaNotificar fNotificar, IFachadaValidar fValidar, IFachadaModificar fModificar, Reporte reporte) {
+    public FrmValidarReporte(IFachadaGestionIncidencias gestionIncidencias, ReporteNuevoDTO reporte) {
         initComponents();
-        this.fRecuperar = fRecuperar ;
-        this.fModificar = fModificar ;
-        this.fValidar = fValidar ;
-        this.fNotificar = fNotificar ;
+        this.gestionIncidencias = gestionIncidencias ;
         this.reporte = reporte ;
         this.fotosManager = new FotosManager() ;
-        this.reportesDAO = reportesDAO ;
         fotoAlumno.setIcon(fotosManager.getFoto(reporte.getAlumno().getUrlFoto()));
         setDatos() ;
     }
@@ -138,8 +128,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
-        setMinimumSize(new java.awt.Dimension(1100, 525));
-        setPreferredSize(new java.awt.Dimension(1210, 558));
+        setMinimumSize(new java.awt.Dimension(1210, 600));
+        setPreferredSize(new java.awt.Dimension(1210, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -162,7 +152,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(259, 259, 259)
                 .addComponent(lblTitulo)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addContainerGap(374, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitulo1)
@@ -175,7 +165,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTitulo1)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 120));
@@ -184,21 +174,26 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fotoAlumno.setPreferredSize(new java.awt.Dimension(160, 200));
-        jPanel3.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 160, 200));
+        jPanel3.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 160, 200));
 
         lblNombres.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblNombres.setForeground(new java.awt.Color(0, 0, 0));
         lblNombres.setText("Nombres:");
-        jPanel3.add(lblNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, -1, -1));
+        jPanel3.add(lblNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
 
         lblCURP.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblCURP.setForeground(new java.awt.Color(0, 0, 0));
         lblCURP.setText("CURP:");
-        jPanel3.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
+        jPanel3.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
         lblApellidos.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblApellidos.setForeground(new java.awt.Color(0, 0, 0));
         lblApellidos.setText("Apellido Materno:");
-        jPanel3.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 150, -1, -1));
+        jPanel3.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
 
+        checkSevero.setBackground(new java.awt.Color(255, 255, 255));
         checkSevero.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkSevero.setForeground(new java.awt.Color(0, 0, 0));
         checkSevero.setText("Severo");
         checkSevero.setContentAreaFilled(false);
         checkSevero.setEnabled(false);
@@ -209,7 +204,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         });
         jPanel3.add(checkSevero, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, -1, -1));
 
+        checkGrave.setBackground(new java.awt.Color(255, 255, 255));
         checkGrave.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkGrave.setForeground(new java.awt.Color(0, 0, 0));
         checkGrave.setText("Grave");
         checkGrave.setContentAreaFilled(false);
         checkGrave.setEnabled(false);
@@ -220,7 +217,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         });
         jPanel3.add(checkGrave, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, 105, -1));
 
+        checkLeve.setBackground(new java.awt.Color(255, 255, 255));
         checkLeve.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkLeve.setForeground(new java.awt.Color(255, 255, 255));
         checkLeve.setText("Leve");
         checkLeve.setContentAreaFilled(false);
         checkLeve.setEnabled(false);
@@ -232,10 +231,12 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(checkLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 85, -1));
 
         lblMotivo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblMotivo.setForeground(new java.awt.Color(0, 0, 0));
         lblMotivo.setText("Motivo del Reporte");
-        jPanel3.add(lblMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 250, -1, -1));
+        jPanel3.add(lblMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
         txtFecha.setEditable(false);
+        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
         txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -243,7 +244,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 30));
 
         txtApellidoMaterno.setEditable(false);
+        txtApellidoMaterno.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtApellidoMaterno.setForeground(new java.awt.Color(0, 0, 0));
         txtApellidoMaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtApellidoMaterno.setEnabled(false);
         txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
@@ -254,21 +257,26 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 295, -1));
 
         txtNombre.setEditable(false);
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
         txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
         txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtNombre.setEnabled(false);
         jPanel3.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 295, -1));
 
         txtProfesor.setEditable(false);
+        txtProfesor.setBackground(new java.awt.Color(255, 255, 255));
         txtProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtProfesor.setForeground(new java.awt.Color(0, 0, 0));
         txtProfesor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtProfesor.setEnabled(false);
         jPanel3.add(txtProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 295, -1));
 
         lblFecha.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblFecha.setForeground(new java.awt.Color(0, 0, 0));
         lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblFecha.setText("Fecha:");
-        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 130, 80, -1));
+        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 121, 80, 40));
 
         btnCancelar.setBackground(new java.awt.Color(204, 0, 0));
         btnCancelar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
@@ -279,7 +287,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 120, -1));
+        jPanel3.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 120, 40));
 
         btnValidar.setBackground(new java.awt.Color(51, 204, 0));
         btnValidar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
@@ -290,19 +298,21 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 btnValidarActionPerformed(evt);
             }
         });
-        jPanel3.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 320, 120, -1));
+        jPanel3.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 120, 40));
 
-        toggleModificar.setBackground(new java.awt.Color(231, 245, 0));
+        toggleModificar.setBackground(new java.awt.Color(255, 204, 51));
         toggleModificar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        toggleModificar.setForeground(new java.awt.Color(0, 0, 0));
         toggleModificar.setText("Modificar");
         toggleModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 toggleModificarActionPerformed(evt);
             }
         });
-        jPanel3.add(toggleModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 270, 120, -1));
+        jPanel3.add(toggleModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 290, 120, 40));
 
         txtGrupo.setEditable(false);
+        txtGrupo.setBackground(new java.awt.Color(255, 255, 255));
         txtGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtGrupo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
@@ -310,12 +320,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 70, -1));
 
         lblGrupo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblGrupo.setForeground(new java.awt.Color(0, 0, 0));
         lblGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupo.setText("Nivel de severidad");
         jPanel3.add(lblGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 170, -1));
 
         txtMotivo.setEditable(false);
+        txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
         txtMotivo.setColumns(20);
+        txtMotivo.setForeground(new java.awt.Color(0, 0, 0));
         txtMotivo.setRows(5);
         txtMotivo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtMotivo.setEnabled(false);
@@ -324,15 +337,19 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 320, 140));
 
         lblProfesor.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblProfesor.setForeground(new java.awt.Color(0, 0, 0));
         lblProfesor.setText("Profesor:");
-        jPanel3.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 190, -1, -1));
+        jPanel3.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
 
         lblDescripcion.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion.setText("Descripción");
-        jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, -1, -1));
+        jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
 
         txtDescripcion.setEditable(false);
+        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setColumns(20);
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
         txtDescripcion.setRows(5);
         txtDescripcion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDescripcion.setEnabled(false);
@@ -341,12 +358,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 311, 140));
 
         txtCURP.setEditable(false);
+        txtCURP.setBackground(new java.awt.Color(255, 255, 255));
         txtCURP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtCURP.setForeground(new java.awt.Color(0, 0, 0));
         txtCURP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCURP.setEnabled(false);
         jPanel3.add(txtCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 295, -1));
 
         txtApellidoPaterno.setEditable(false);
+        txtApellidoPaterno.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtApellidoPaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtApellidoPaterno.setEnabled(false);
@@ -358,13 +378,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         jPanel3.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 295, -1));
 
         lblApellidos1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblApellidos1.setForeground(new java.awt.Color(0, 0, 0));
         lblApellidos1.setText("Apellido Paterno:");
-        jPanel3.add(lblApellidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        jPanel3.add(lblApellidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
 
         lblGrupo1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        lblGrupo1.setForeground(new java.awt.Color(0, 0, 0));
         lblGrupo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblGrupo1.setText("Grupo:");
-        jPanel3.add(lblGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 30, 70, -1));
+        jPanel3.add(lblGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 70, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1210, 540));
 
@@ -376,7 +398,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose() ;
-        FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(fRecuperar, reportesDAO) ;
+        FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(gestionIncidencias) ;
         bandejaEntrada.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -387,27 +409,6 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             disableCampos() ;
         }
     }//GEN-LAST:event_toggleModificarActionPerformed
-
-    private void checkLeveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLeveActionPerformed
-        if(checkLeve.isSelected()) {
-            checkSevero.setSelected(false);
-            checkGrave.setSelected(false);
-        }
-    }//GEN-LAST:event_checkLeveActionPerformed
-
-    private void checkSeveroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSeveroActionPerformed
-        if(checkSevero.isSelected()) {
-            checkLeve.setSelected(false);
-            checkGrave.setSelected(false);
-        }
-    }//GEN-LAST:event_checkSeveroActionPerformed
-
-    private void checkGraveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkGraveActionPerformed
-        if(checkGrave.isSelected()) {
-            checkSevero.setSelected(false);
-            checkLeve.setSelected(false);
-        }
-    }//GEN-LAST:event_checkGraveActionPerformed
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int resp = JOptionPane.showConfirmDialog(this, "¿Estás seguro de validar este reporte?. Los cambios que hayan realizados se verán reflejados en el sistema.", "Validar Reporte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
@@ -421,12 +422,12 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 nivelIncidencia = NivelIncidencia.GRAVE ;
             }
             
-            ReporteNuevoDTO reporteNuevo = new ReporteNuevoDTO(reporte.getAlumno(), reporte.getDocente(), nivelIncidencia, txtDescripcion.getText(), txtMotivo.getText(), reporte.getFechaHora(), false) ;
-            fNotificar.notificarReporte(reporteNuevo) ;
-            fValidar.validarReporte(reporteNuevo) ;
+            ReporteNuevoDTO reporteNuevo = new ReporteNuevoDTO(reporte.getAlumno(), reporte.getDocente(), nivelIncidencia, txtDescripcion.getText(), txtMotivo.getText(), reporte.getFechaHora(), false, false) ;
+            gestionIncidencias.notificarReporte(reporteNuevo) ;
+            gestionIncidencias.validarReporte(reporteNuevo) ;
             JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
             dispose() ;
-            FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(fRecuperar, reportesDAO) ;
+            FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(gestionIncidencias) ;
             bandejaEntrada.setVisible(true);
         }
     }//GEN-LAST:event_btnValidarActionPerformed
@@ -438,6 +439,27 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private void txtApellidoPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPaternoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtApellidoPaternoActionPerformed
+
+    private void checkGraveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkGraveActionPerformed
+        if(checkGrave.isSelected()) {
+            checkSevero.setSelected(false);
+            checkLeve.setSelected(false);
+        }
+    }//GEN-LAST:event_checkGraveActionPerformed
+
+    private void checkSeveroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkSeveroActionPerformed
+        if(checkSevero.isSelected()) {
+            checkLeve.setSelected(false);
+            checkGrave.setSelected(false);
+        }
+    }//GEN-LAST:event_checkSeveroActionPerformed
+
+    private void checkLeveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLeveActionPerformed
+        if(checkLeve.isSelected()) {
+            checkSevero.setSelected(false);
+            checkGrave.setSelected(false);
+        }
+    }//GEN-LAST:event_checkLeveActionPerformed
 
 //    /**
 //     * @param args the command line arguments

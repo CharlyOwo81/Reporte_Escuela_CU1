@@ -1,8 +1,5 @@
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/IFachadaNotificar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/FachadaNotificar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/FachadaValidar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/IFachadaRecuperar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/FachadaModificar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/IFachadaValidar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/IFachadaModificar.java
-/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesNegocios/src/main/java/org/itson/bdavanzadas/reportesnegocios/FachadaRecuperar.java
+C:\Users\omari\Desktop\ITSON S4\Diseño de Software\Reporte_Escuela_CU1\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\org\itson\bdavanzadas\reportesnegocios\IFachadaGestionIncidencias.java
+C:\Users\omari\Desktop\ITSON S4\Diseño de Software\Reporte_Escuela_CU1\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\org\itson\bdavanzadas\reportesdto\DocenteNuevoDTO.java
+C:\Users\omari\Desktop\ITSON S4\Diseño de Software\Reporte_Escuela_CU1\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\org\itson\bdavanzadas\reportesnegocios\GestionarIncidencias.java
+C:\Users\omari\Desktop\ITSON S4\Diseño de Software\Reporte_Escuela_CU1\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\org\itson\bdavanzadas\reportesdto\ReporteNuevoDTO.java
+C:\Users\omari\Desktop\ITSON S4\Diseño de Software\Reporte_Escuela_CU1\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\org\itson\bdavanzadas\reportesdto\AlumnoNuevoDTO.java
