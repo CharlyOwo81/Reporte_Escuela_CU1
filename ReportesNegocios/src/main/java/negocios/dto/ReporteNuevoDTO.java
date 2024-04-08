@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.bdavanzadas.reportesdto;
+package negocios.dto;
 
 import java.util.Calendar;
-import org.itson.bdavanzadas.reportesdominio.Alumno;
-import org.itson.bdavanzadas.reportesdominio.Docente;
-import org.itson.bdavanzadas.reportesdominio.NivelIncidencia;
+import persistencia.dominio.Alumno;
+import persistencia.dominio.Docente;
+import persistencia.dominio.NivelIncidencia;
 
 /**
  *

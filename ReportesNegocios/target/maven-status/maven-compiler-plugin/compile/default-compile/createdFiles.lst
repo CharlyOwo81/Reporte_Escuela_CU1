@@ -1,5 +1,5 @@
-org\itson\bdavanzadas\reportesdto\DocenteNuevoDTO.class
-org\itson\bdavanzadas\reportesnegocios\IFachadaGestionIncidencias.class
-org\itson\bdavanzadas\reportesdto\AlumnoNuevoDTO.class
-org\itson\bdavanzadas\reportesdto\ReporteNuevoDTO.class
-org\itson\bdavanzadas\reportesnegocios\GestionarIncidencias.class
+negocios\dto\ReporteNuevoDTO.class
+negocios\negocios\IFachadaGestionIncidencias.class
+negocios\dto\DocenteNuevoDTO.class
+negocios\negocios\GestionarIncidencias.class
+negocios\dto\AlumnoNuevoDTO.class

@@ -2,31 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.bdavanzadas.reportesdominio;
+package negocios.dto;
 
 /**
  *
  * @author Oliver Valle
  */
-public class Docente {
-    
-    private Long id ;
+public class DocenteNuevoDTO {
     private String CURP, nombre, apellidoP, apellidoM ;
 
-    public Docente(Long id, String CURP, String nombre, String apellidoP, String apellidoM) {
-        this.id = id;
+    public DocenteNuevoDTO(String CURP, String nombre, String apellidoP, String apellidoM) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getCURP() {
@@ -60,7 +49,4 @@ public class Docente {
     public void setApellidoM(String apellidoM) {
         this.apellidoM = apellidoM;
     }
-    
-    
-    
 }

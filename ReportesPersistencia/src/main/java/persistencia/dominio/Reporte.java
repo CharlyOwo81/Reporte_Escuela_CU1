@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.bdavanzadas.reportesdominio;
+package persistencia.dominio;
 
 import java.util.Calendar;
 
@@ -30,6 +30,17 @@ public class Reporte {
         this.fechaHora = fechaHora;
         this.notificado = notificado;
         this.validado = validado ;
+    }
+
+    public Reporte(Alumno alumno, Docente docente, NivelIncidencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+        this.alumno = alumno;
+        this.docente = docente;
+        this.nivelIncidencia = nivelIncidencia;
+        this.descripcion = descripcion;
+        this.motivo = motivo;
+        this.fechaHora = fechaHora;
+        this.notificado = notificado;
+        this.validado = validado;
     }
 
     public Long getId() {

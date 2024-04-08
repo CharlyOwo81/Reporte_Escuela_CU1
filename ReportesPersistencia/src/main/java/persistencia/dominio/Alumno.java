@@ -2,17 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.bdavanzadas.reportesdto;
+package persistencia.dominio;
+
+import java.util.Calendar;
 
 /**
  *
  * @author Oliver Valle
  */
-public class AlumnoNuevoDTO {
+public class Alumno {
+    
+    private Long id ;
     private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
     private Long telefonoTutor ;
 
-    public AlumnoNuevoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public Alumno(Long id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+        this.id = id;
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
@@ -22,14 +27,24 @@ public class AlumnoNuevoDTO {
         this.urlFoto = urlFoto ;
     }
 
+    public Alumno(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+        this.CURP = CURP;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.gradoGrupo = gradoGrupo;
+        this.telefonoTutor = telefonoTutor;
+        this.urlFoto = urlFoto ;
+    }
+    
+    public Long getId() {
+        return id;
+    }
+
     public String getCURP() {
         return CURP;
     }
 
-    public void setCURP(String CURP) {
-        this.CURP = CURP;
-    }
-    
     public String getNombre() {
         return nombre;
     }
@@ -53,4 +68,5 @@ public class AlumnoNuevoDTO {
     public String getUrlFoto() {
         return urlFoto;
     }
+    
 }

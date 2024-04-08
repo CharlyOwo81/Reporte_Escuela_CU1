@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package org.itson.bdavanzadas.reportespersistencia;
+package persistencia.persistencia;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import org.itson.bdavanzadas.reportesdominio.Alumno;
-import org.itson.bdavanzadas.reportesdominio.Docente;
-import org.itson.bdavanzadas.reportesdominio.NivelIncidencia;
-import org.itson.bdavanzadas.reportesdominio.Reporte;
+import persistencia.dominio.Alumno;
+import persistencia.dominio.Docente;
+import persistencia.dominio.NivelIncidencia;
+import persistencia.dominio.Reporte;
 
 /**
  *
@@ -28,7 +28,7 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public Reporte validarReporte(Reporte reporte) {
         for (int i = 0; i < reportes.size(); i++) {
-            if(reportes.get(i).getAlumno().equals(reporte.getAlumno())) {
+            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
                 reportes.get(i).setValidado(true);
                 reportes.get(i).setDescripcion(reporte.getDescripcion());
                 reportes.get(i).setMotivo(reporte.getMotivo());
@@ -42,7 +42,7 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public Reporte modificarReporte(Reporte reporte) {
         for (int i = 0; i < reportes.size(); i++) {
-            if(reportes.get(i).getAlumno().equals(reporte.getAlumno())) {
+            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
                 reportes.get(i).setDescripcion(reporte.getDescripcion());
                 reportes.get(i).setMotivo(reporte.getMotivo());
                 reportes.get(i).setNivelIncidencia(reporte.getNivelIncidencia());
@@ -55,7 +55,7 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public boolean notificarReporte(Reporte reporte) {
         for (int i = 0; i < reportes.size(); i++) {
-            if(reportes.get(i).getAlumno().equals(reporte.getAlumno())) {
+            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
                 reportes.get(i).setNotificado(true);
                 return true ;
             }

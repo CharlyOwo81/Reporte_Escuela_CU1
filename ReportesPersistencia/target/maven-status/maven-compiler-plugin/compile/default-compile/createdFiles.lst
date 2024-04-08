@@ -1,2 +1,6 @@
-org\itson\bdavanzadas\reportespersistencia\IReportesDAO.class
-org\itson\bdavanzadas\reportespersistencia\ReportesDAO.class
+persistencia\dominio\Alumno.class
+persistencia\dominio\Reporte.class
+persistencia\persistencia\ReportesDAO.class
+persistencia\dominio\Docente.class
+persistencia\dominio\NivelIncidencia.class
+persistencia\persistencia\IReportesDAO.class
