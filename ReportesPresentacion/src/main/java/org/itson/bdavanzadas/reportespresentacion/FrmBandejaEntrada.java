@@ -4,28 +4,20 @@
  */
 package org.itson.bdavanzadas.reportespresentacion;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EventObject;
 import java.util.List;
-import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JTable;
-import javax.swing.UIManager;
 import javax.swing.event.CellEditorListener;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import org.itson.bdavanzadas.reportesdominio.Reporte;
 import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
 import org.itson.bdavanzadas.reportesnegocios.GestionarIncidencias;
 import org.itson.bdavanzadas.reportesnegocios.IFachadaGestionIncidencias;
-import org.itson.bdavanzadas.reportespersistencia.IReportesDAO;
-import org.itson.bdavanzadas.reportespersistencia.ReportesDAO;
 
 /**
  *
@@ -152,16 +144,13 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReportes = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        lblTitulo1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bandeja de Reportes");
-        setMaximumSize(new java.awt.Dimension(1100, 525));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(189, 189, 189));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,44 +170,16 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaReportes);
 
-        jPanel2.setBackground(new java.awt.Color(250, 248, 245));
-        jPanel2.setForeground(new java.awt.Color(250, 248, 245));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1130, -1));
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(116, 71, 48));
-        lblTitulo.setText("Proyecto EUI");
-        jPanel2.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, 64));
-
-        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(155, 90, 23));
-        lblTitulo1.setText("Bandeja de Entrada");
-        jPanel2.add(lblTitulo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, -1, 64));
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(26, Short.MAX_VALUE))
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesPresentacion/src/resources/bandejaEntrada.png")); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1207, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,11 +298,9 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
     private javax.swing.JTable tablaReportes;
     // End of variables declaration//GEN-END:variables
 }

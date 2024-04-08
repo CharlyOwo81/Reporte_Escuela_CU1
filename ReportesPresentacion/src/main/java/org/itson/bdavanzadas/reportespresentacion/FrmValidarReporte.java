@@ -5,6 +5,7 @@
 package org.itson.bdavanzadas.reportespresentacion;
 
 import java.util.Calendar;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 import org.itson.bdavanzadas.reportesdominio.NivelIncidencia;
 import org.itson.bdavanzadas.reportesdominio.Reporte;
@@ -32,6 +33,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         this.reporte = reporte ;
         this.fotosManager = new FotosManager() ;
         fotoAlumno.setIcon(fotosManager.getFoto(reporte.getAlumno().getUrlFoto()));
+        txtCURP.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtApellidoPaterno.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtApellidoMaterno.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtProfesor.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtFecha.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtGrupo.setBackground(new java.awt.Color(0, 0, 0, 1));
+        btnValidar.setBackground(new java.awt.Color(0, 0, 0, 1));
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 1));
         setDatos() ;
     }
 
@@ -93,134 +103,65 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblTitulo = new javax.swing.JLabel();
-        lblTitulo1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         fotoAlumno = new javax.swing.JLabel();
-        lblNombres = new javax.swing.JLabel();
-        lblCURP = new javax.swing.JLabel();
-        lblApellidos = new javax.swing.JLabel();
-        checkSevero = new javax.swing.JCheckBox();
-        checkGrave = new javax.swing.JCheckBox();
-        checkLeve = new javax.swing.JCheckBox();
-        lblMotivo = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
-        txtApellidoMaterno = new javax.swing.JTextField();
-        txtNombre = new javax.swing.JTextField();
-        txtProfesor = new javax.swing.JTextField();
-        lblFecha = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
-        btnValidar = new javax.swing.JButton();
-        toggleModificar = new javax.swing.JToggleButton();
-        txtGrupo = new javax.swing.JTextField();
-        lblGrupo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtMotivo = new javax.swing.JTextArea();
-        lblProfesor = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMotivo = new javax.swing.JTextArea();
+        checkLeve = new javax.swing.JCheckBox();
+        checkSevero = new javax.swing.JCheckBox();
+        checkGrave = new javax.swing.JCheckBox();
         txtCURP = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         txtApellidoPaterno = new javax.swing.JTextField();
-        lblApellidos1 = new javax.swing.JLabel();
-        lblGrupo1 = new javax.swing.JLabel();
+        txtApellidoMaterno = new javax.swing.JTextField();
+        txtProfesor = new javax.swing.JTextField();
+        txtFecha = new javax.swing.JTextField();
+        txtGrupo = new javax.swing.JTextField();
+        toggleModificar = new javax.swing.JToggleButton();
+        btnValidar = new javax.swing.JButton();
+        btnCancelar = new javax.swing.JButton();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
-        setMinimumSize(new java.awt.Dimension(1210, 600));
-        setPreferredSize(new java.awt.Dimension(1210, 600));
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 660));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel2.setBackground(new java.awt.Color(250, 248, 245));
-
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 1, 32)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(155, 90, 23));
-        lblTitulo.setText("Validación y Modificación de Reportes");
-
-        lblTitulo1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        lblTitulo1.setForeground(new java.awt.Color(116, 71, 48));
-        lblTitulo1.setText("Proyecto EUI");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(259, 259, 259)
-                .addComponent(lblTitulo)
-                .addContainerGap(374, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblTitulo1)
-                .addGap(438, 438, 438))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(lblTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTitulo1)
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 120));
-
-        jPanel3.setBackground(new java.awt.Color(189, 189, 189));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         fotoAlumno.setPreferredSize(new java.awt.Dimension(160, 200));
-        jPanel3.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 160, 200));
+        jPanel1.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
 
-        lblNombres.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblNombres.setForeground(new java.awt.Color(0, 0, 0));
-        lblNombres.setText("Nombres:");
-        jPanel3.add(lblNombres, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 60, -1, -1));
+        txtDescripcion.setEditable(false);
+        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
+        txtDescripcion.setColumns(20);
+        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        txtDescripcion.setRows(5);
+        txtDescripcion.setBorder(null);
+        txtDescripcion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtDescripcion.setEnabled(false);
+        jScrollPane2.setViewportView(txtDescripcion);
 
-        lblCURP.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblCURP.setForeground(new java.awt.Color(0, 0, 0));
-        lblCURP.setText("CURP:");
-        jPanel3.add(lblCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 320, 160));
 
-        lblApellidos.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblApellidos.setForeground(new java.awt.Color(0, 0, 0));
-        lblApellidos.setText("Apellido Materno:");
-        jPanel3.add(lblApellidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+        txtMotivo.setEditable(false);
+        txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
+        txtMotivo.setColumns(20);
+        txtMotivo.setForeground(new java.awt.Color(0, 0, 0));
+        txtMotivo.setRows(5);
+        txtMotivo.setBorder(null);
+        txtMotivo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtMotivo.setEnabled(false);
+        jScrollPane1.setViewportView(txtMotivo);
 
-        checkSevero.setBackground(new java.awt.Color(255, 255, 255));
-        checkSevero.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        checkSevero.setForeground(new java.awt.Color(0, 0, 0));
-        checkSevero.setText("Severo");
-        checkSevero.setContentAreaFilled(false);
-        checkSevero.setEnabled(false);
-        checkSevero.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkSeveroActionPerformed(evt);
-            }
-        });
-        jPanel3.add(checkSevero, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 110, -1, -1));
-
-        checkGrave.setBackground(new java.awt.Color(255, 255, 255));
-        checkGrave.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        checkGrave.setForeground(new java.awt.Color(0, 0, 0));
-        checkGrave.setText("Grave");
-        checkGrave.setContentAreaFilled(false);
-        checkGrave.setEnabled(false);
-        checkGrave.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkGraveActionPerformed(evt);
-            }
-        });
-        jPanel3.add(checkGrave, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 150, 105, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 320, 160));
 
         checkLeve.setBackground(new java.awt.Color(255, 255, 255));
         checkLeve.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
         checkLeve.setForeground(new java.awt.Color(255, 255, 255));
-        checkLeve.setText("Leve");
         checkLeve.setContentAreaFilled(false);
         checkLeve.setEnabled(false);
         checkLeve.addActionListener(new java.awt.event.ActionListener() {
@@ -228,146 +169,54 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 checkLeveActionPerformed(evt);
             }
         });
-        jPanel3.add(checkLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 70, 85, -1));
+        jPanel1.add(checkLeve, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 460, 85, -1));
 
-        lblMotivo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblMotivo.setForeground(new java.awt.Color(0, 0, 0));
-        lblMotivo.setText("Motivo del Reporte");
-        jPanel3.add(lblMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
-
-        txtFecha.setEditable(false);
-        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
-        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtFecha.setEnabled(false);
-        jPanel3.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, 110, 30));
-
-        txtApellidoMaterno.setEditable(false);
-        txtApellidoMaterno.setBackground(new java.awt.Color(255, 255, 255));
-        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtApellidoMaterno.setForeground(new java.awt.Color(0, 0, 0));
-        txtApellidoMaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtApellidoMaterno.setEnabled(false);
-        txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
+        checkSevero.setBackground(new java.awt.Color(255, 255, 255));
+        checkSevero.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkSevero.setForeground(new java.awt.Color(0, 0, 0));
+        checkSevero.setContentAreaFilled(false);
+        checkSevero.setEnabled(false);
+        checkSevero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtApellidoMaternoActionPerformed(evt);
+                checkSeveroActionPerformed(evt);
             }
         });
-        jPanel3.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 295, -1));
+        jPanel1.add(checkSevero, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 510, -1, -1));
 
-        txtNombre.setEditable(false);
-        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
-        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
-        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtNombre.setEnabled(false);
-        jPanel3.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 70, 295, -1));
-
-        txtProfesor.setEditable(false);
-        txtProfesor.setBackground(new java.awt.Color(255, 255, 255));
-        txtProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtProfesor.setForeground(new java.awt.Color(0, 0, 0));
-        txtProfesor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtProfesor.setEnabled(false);
-        jPanel3.add(txtProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 295, -1));
-
-        lblFecha.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblFecha.setForeground(new java.awt.Color(0, 0, 0));
-        lblFecha.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblFecha.setText("Fecha:");
-        jPanel3.add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 121, 80, 40));
-
-        btnCancelar.setBackground(new java.awt.Color(204, 0, 0));
-        btnCancelar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+        checkGrave.setBackground(new java.awt.Color(255, 255, 255));
+        checkGrave.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        checkGrave.setForeground(new java.awt.Color(0, 0, 0));
+        checkGrave.setContentAreaFilled(false);
+        checkGrave.setEnabled(false);
+        checkGrave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
+                checkGraveActionPerformed(evt);
             }
         });
-        jPanel3.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 370, 120, 40));
-
-        btnValidar.setBackground(new java.awt.Color(51, 204, 0));
-        btnValidar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        btnValidar.setForeground(new java.awt.Color(255, 255, 255));
-        btnValidar.setText("Validar");
-        btnValidar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnValidarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 330, 120, 40));
-
-        toggleModificar.setBackground(new java.awt.Color(255, 204, 51));
-        toggleModificar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        toggleModificar.setForeground(new java.awt.Color(0, 0, 0));
-        toggleModificar.setText("Modificar");
-        toggleModificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                toggleModificarActionPerformed(evt);
-            }
-        });
-        jPanel3.add(toggleModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 290, 120, 40));
-
-        txtGrupo.setEditable(false);
-        txtGrupo.setBackground(new java.awt.Color(255, 255, 255));
-        txtGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtGrupo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtGrupo.setEnabled(false);
-        jPanel3.add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 60, 70, -1));
-
-        lblGrupo.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblGrupo.setForeground(new java.awt.Color(0, 0, 0));
-        lblGrupo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGrupo.setText("Nivel de severidad");
-        jPanel3.add(lblGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 30, 170, -1));
-
-        txtMotivo.setEditable(false);
-        txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
-        txtMotivo.setColumns(20);
-        txtMotivo.setForeground(new java.awt.Color(0, 0, 0));
-        txtMotivo.setRows(5);
-        txtMotivo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtMotivo.setEnabled(false);
-        jScrollPane1.setViewportView(txtMotivo);
-
-        jPanel3.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 320, 140));
-
-        lblProfesor.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblProfesor.setForeground(new java.awt.Color(0, 0, 0));
-        lblProfesor.setText("Profesor:");
-        jPanel3.add(lblProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, -1, -1));
-
-        lblDescripcion.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescripcion.setText("Descripción");
-        jPanel3.add(lblDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 240, -1, -1));
-
-        txtDescripcion.setEditable(false);
-        txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
-        txtDescripcion.setColumns(20);
-        txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
-        txtDescripcion.setRows(5);
-        txtDescripcion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtDescripcion.setEnabled(false);
-        jScrollPane2.setViewportView(txtDescripcion);
-
-        jPanel3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 280, 311, 140));
+        jPanel1.add(checkGrave, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 20, -1));
 
         txtCURP.setEditable(false);
         txtCURP.setBackground(new java.awt.Color(255, 255, 255));
         txtCURP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtCURP.setForeground(new java.awt.Color(0, 0, 0));
+        txtCURP.setBorder(null);
         txtCURP.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtCURP.setEnabled(false);
-        jPanel3.add(txtCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 30, 295, -1));
+        jPanel1.add(txtCURP, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 142, 360, 40));
+
+        txtNombre.setEditable(false);
+        txtNombre.setBackground(new java.awt.Color(255, 255, 255));
+        txtNombre.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(0, 0, 0));
+        txtNombre.setBorder(null);
+        txtNombre.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtNombre.setEnabled(false);
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 190, 360, 40));
 
         txtApellidoPaterno.setEditable(false);
         txtApellidoPaterno.setBackground(new java.awt.Color(255, 255, 255));
         txtApellidoPaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtApellidoPaterno.setBorder(null);
         txtApellidoPaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtApellidoPaterno.setEnabled(false);
         txtApellidoPaterno.addActionListener(new java.awt.event.ActionListener() {
@@ -375,20 +224,110 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 txtApellidoPaternoActionPerformed(evt);
             }
         });
-        jPanel3.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, 295, -1));
+        jPanel1.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 240, 360, 30));
 
-        lblApellidos1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblApellidos1.setForeground(new java.awt.Color(0, 0, 0));
-        lblApellidos1.setText("Apellido Paterno:");
-        jPanel3.add(lblApellidos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 100, -1, -1));
+        txtApellidoMaterno.setEditable(false);
+        txtApellidoMaterno.setBackground(new java.awt.Color(255, 255, 255));
+        txtApellidoMaterno.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtApellidoMaterno.setForeground(new java.awt.Color(0, 0, 0));
+        txtApellidoMaterno.setBorder(null);
+        txtApellidoMaterno.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtApellidoMaterno.setEnabled(false);
+        txtApellidoMaterno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoMaternoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 280, 360, 40));
 
-        lblGrupo1.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
-        lblGrupo1.setForeground(new java.awt.Color(0, 0, 0));
-        lblGrupo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblGrupo1.setText("Grupo:");
-        jPanel3.add(lblGrupo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 20, 70, 40));
+        txtProfesor.setEditable(false);
+        txtProfesor.setBackground(new java.awt.Color(255, 255, 255));
+        txtProfesor.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtProfesor.setForeground(new java.awt.Color(0, 0, 0));
+        txtProfesor.setBorder(null);
+        txtProfesor.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtProfesor.setEnabled(false);
+        jPanel1.add(txtProfesor, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, 360, 40));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 1210, 540));
+        txtFecha.setEditable(false);
+        txtFecha.setBackground(new java.awt.Color(255, 255, 255));
+        txtFecha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFecha.setBorder(null);
+        txtFecha.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtFecha.setEnabled(false);
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 330, 70, 40));
+
+        txtGrupo.setEditable(false);
+        txtGrupo.setBackground(new java.awt.Color(255, 255, 255));
+        txtGrupo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtGrupo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtGrupo.setBorder(null);
+        txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        txtGrupo.setEnabled(false);
+        jPanel1.add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 190, 90, 40));
+
+        toggleModificar.setBackground(new java.awt.Color(243, 222, 44));
+        toggleModificar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        toggleModificar.setForeground(new java.awt.Color(0, 0, 0));
+        toggleModificar.setBorder(null);
+        toggleModificar.setBorderPainted(false);
+
+        toggleModificar.setContentAreaFilled(false);
+
+        toggleModificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        toggleModificar.setOpaque(false);
+        toggleModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                toggleModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(toggleModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 450, 170, 50));
+
+        btnValidar.setBackground(new java.awt.Color(0, 111, 22));
+        btnValidar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        btnValidar.setForeground(new java.awt.Color(255, 255, 255));
+        btnValidar.setBorder(null);
+        btnValidar.setBorderPainted(false);
+
+        btnValidar.setContentAreaFilled(false);
+
+        btnValidar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnValidar.setOpaque(false);
+        btnValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnValidar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 510, 170, 50));
+
+        btnCancelar.setBackground(new java.awt.Color(197, 40, 61));
+        btnCancelar.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setBorder(null);
+        btnCancelar.setBorderPainted(false);
+
+        btnCancelar.setContentAreaFilled(false);
+
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnCancelar.setOpaque(false);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 570, 170, 50));
+
+        lblFondo.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesPresentacion/src/resources/validacionModificacionReporte.png")); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, -1));
 
@@ -461,6 +400,10 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_checkLeveActionPerformed
 
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -504,22 +447,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkSevero;
     private javax.swing.JLabel fotoAlumno;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JLabel lblApellidos;
-    private javax.swing.JLabel lblApellidos1;
-    private javax.swing.JLabel lblCURP;
-    private javax.swing.JLabel lblDescripcion;
-    private javax.swing.JLabel lblFecha;
-    private javax.swing.JLabel lblGrupo;
-    private javax.swing.JLabel lblGrupo1;
-    private javax.swing.JLabel lblMotivo;
-    private javax.swing.JLabel lblNombres;
-    private javax.swing.JLabel lblProfesor;
-    private javax.swing.JLabel lblTitulo;
-    private javax.swing.JLabel lblTitulo1;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JToggleButton toggleModificar;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;

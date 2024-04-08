@@ -8,11 +8,6 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ReportesDominio</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>ReportesPersistencia</artifactId>
             <version>${project.version}</version>
         </dependency>
