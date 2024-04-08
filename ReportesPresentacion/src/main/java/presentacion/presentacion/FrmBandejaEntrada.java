@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.itson.bdavanzadas.reportespresentacion;
+package presentacion.presentacion;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -15,9 +15,11 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
-import org.itson.bdavanzadas.reportesnegocios.GestionarIncidencias;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaGestionIncidencias;
+import negocios.dto.ReporteNuevoDTO;
+import negocios.negocios.GestionarIncidencias;
+import negocios.negocios.IFachadaGestionIncidencias;
+import persistencia.persistencia.IReportesDAO;
+import persistencia.persistencia.ReportesDAO;
 
 /**
  *
@@ -144,7 +146,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReportes = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Bandeja de Reportes");
@@ -172,8 +174,8 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1130, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesPresentacion/src/resources/bandejaEntrada.png")); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1250, -1));
+        lblFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\omari\\Documents\\GitHub\\Reporte_Escuela_CU1\\ReportesPresentacion\\src\\resources\\bandejaEntrada.png")); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,9 +300,9 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblFondo;
     private javax.swing.JTable tablaReportes;
     // End of variables declaration//GEN-END:variables
 }

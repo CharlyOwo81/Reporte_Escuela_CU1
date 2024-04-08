@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package org.itson.bdavanzadas.reportespresentacion;
+package presentacion.presentacion;
 
 import java.util.Calendar;
 import java.util.HashSet;
 import javax.swing.JOptionPane;
-import org.itson.bdavanzadas.reportesdominio.NivelIncidencia;
-import org.itson.bdavanzadas.reportesdominio.Reporte;
-import org.itson.bdavanzadas.reportesdto.ReporteNuevoDTO;
-import org.itson.bdavanzadas.reportesnegocios.IFachadaGestionIncidencias;
-import org.itson.bdavanzadas.reportespersistencia.IReportesDAO;
+import persistencia.dominio.NivelIncidencia;
+import persistencia.dominio.Reporte;
+import negocios.dto.ReporteNuevoDTO;
+import negocios.negocios.IFachadaGestionIncidencias;
+import persistencia.persistencia.IReportesDAO;
 
 /**
  *
@@ -126,14 +126,13 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1200, 660));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         fotoAlumno.setPreferredSize(new java.awt.Dimension(160, 200));
-        jPanel1.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+        jPanel1.add(fotoAlumno, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 160, 190));
 
         txtDescripcion.setEditable(false);
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
@@ -145,7 +144,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtDescripcion.setEnabled(false);
         jScrollPane2.setViewportView(txtDescripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 320, 160));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, 330, 170));
 
         txtMotivo.setEditable(false);
         txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
@@ -157,7 +156,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtMotivo.setEnabled(false);
         jScrollPane1.setViewportView(txtMotivo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 320, 160));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 330, 170));
 
         checkLeve.setBackground(new java.awt.Color(255, 255, 255));
         checkLeve.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
@@ -261,7 +260,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 txtFechaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 330, 70, 40));
+        jPanel1.add(txtFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 330, 90, 40));
 
         txtGrupo.setEditable(false);
         txtGrupo.setBackground(new java.awt.Color(255, 255, 255));
@@ -326,8 +325,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 570, 170, 50));
 
-        lblFondo.setIcon(new javax.swing.ImageIcon("/home/gamaliel/Documentos/Reporte_Escuela_CU1/ReportesPresentacion/src/resources/validacionModificacionReporte.png")); // NOI18N
-        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        lblFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\omari\\Documents\\GitHub\\Reporte_Escuela_CU1\\ReportesPresentacion\\src\\resources\\validacionModificacionReporte.png")); // NOI18N
+        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 660));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, -1));
 
