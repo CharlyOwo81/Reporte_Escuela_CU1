@@ -15,9 +15,11 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import negocios.dto.ReporteDTO;
-import negocios.subsistemas.gestionarincidencias.GestionarIncidencias;
-import negocios.subsistemas.gestionarincidencias.IGestionarIncidencias;
+import dto.ReporteDTO;
+import fachada.FachadaGestionarIncidencias;
+import fachada.IFachadaGestionarIncidencias;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,18 +27,18 @@ import negocios.subsistemas.gestionarincidencias.IGestionarIncidencias;
  */
 public class FrmBandejaEntrada extends javax.swing.JFrame {
 
-    private IGestionarIncidencias gestionIncidencias ;
+    private IFachadaGestionarIncidencias gestionIncidencias ;
     
     /**
      * Creates new form FrmBandejaEntrada
      */
     public FrmBandejaEntrada() {
         initComponents();
-        this.gestionIncidencias = new GestionarIncidencias() ;
+        this.gestionIncidencias = new FachadaGestionarIncidencias() ;
         refrescarTabla() ;
     }
     
-    public FrmBandejaEntrada(IGestionarIncidencias gestionIncidencias) {
+    public FrmBandejaEntrada(IFachadaGestionarIncidencias gestionIncidencias) {
         initComponents();
         this.gestionIncidencias = gestionIncidencias ;
         refrescarTabla() ;
@@ -48,10 +50,15 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
-                dispose() ;
-                System.out.println((reporteSelec.getAlumno().getNombre())) ;
-                FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
-                frmValidar.setVisible(true);
+                if (!reporteSelec.isValidado()) {
+                    dispose() ;
+                    System.out.println((reporteSelec.getAlumno().getNombre())) ;
+                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
+                    frmValidar.setVisible(true);
+                } else {
+                    JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+                }
+                
             }
         } ;
         

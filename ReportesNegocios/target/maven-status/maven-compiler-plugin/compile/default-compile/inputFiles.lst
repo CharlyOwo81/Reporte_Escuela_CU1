@@ -1,9 +1,2 @@
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\bo\IGestionarIncidenciasBO.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\fachadas\IFachadaGestionarIncidencias.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\dto\DocenteDTO.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\dto\ReporteDTO.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\subsistemas\gestionarincidencias\GestionarIncidencias.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\fachadas\FachadaGestionarIncidencias.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\subsistemas\gestionarincidencias\IGestionarIncidencias.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\bo\GestionarIncidenciasBO.java
-C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\dto\AlumnoDTO.java
+C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\bo\IncidenciasBO.java
+C:\Users\omari\Documents\GitHub\Reporte_Escuela_CU1\ReportesNegocios\src\main\java\negocios\bo\IIncidenciasBO.java

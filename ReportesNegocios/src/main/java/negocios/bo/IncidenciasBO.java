@@ -7,20 +7,20 @@ package negocios.bo;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import negocios.dto.AlumnoDTO;
-import negocios.dto.DocenteDTO;
-import negocios.dto.ReporteDTO;
+import dto.AlumnoDTO;
+import dto.DocenteDTO;
+import dto.ReporteDTO;
 import persistencia.dominio.NivelIncidencia;
 
 /**
  *
  * @author Oliver Valle
  */
-public class GestionarIncidenciasBO implements IGestionarIncidenciasBO{
+public class IncidenciasBO implements IIncidenciasBO{
 
     List<ReporteDTO> reportes ;
     
-    public GestionarIncidenciasBO() {
+    public IncidenciasBO() {
         cargarDatos() ;
     }
     
@@ -28,10 +28,7 @@ public class GestionarIncidenciasBO implements IGestionarIncidenciasBO{
     public ReporteDTO validarReporte(ReporteDTO reporteNuevo) {
         for (int i = 0; i < reportes.size(); i++) {
             if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporteNuevo.getAlumno().getCURP())) {
-                reportes.get(i).setValidado(true);
-                reportes.get(i).setDescripcion(reporteNuevo.getDescripcion());
-                reportes.get(i).setMotivo(reporteNuevo.getMotivo());
-                reportes.get(i).setNivelIncidencia(reporteNuevo.getNivelIncidencia());
+                reportes.set(i, reporteNuevo) ;
                 return reportes.get(i) ;
             }
         }
@@ -42,7 +39,7 @@ public class GestionarIncidenciasBO implements IGestionarIncidenciasBO{
     public boolean notificarReporte(ReporteDTO reporteNuevo) {
         for (int i = 0; i < reportes.size(); i++) {
             if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporteNuevo.getAlumno().getCURP())) {
-                reportes.get(i).setNotificado(true);
+                reportes.set(i, reporteNuevo) ;
                 return true ;
             }
         }

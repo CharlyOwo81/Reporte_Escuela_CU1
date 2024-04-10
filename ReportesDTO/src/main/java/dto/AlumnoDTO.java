@@ -2,20 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package negocios.dto;
+package dto;
 
 /**
  *
  * @author Oliver Valle
  */
-public class DocenteDTO {
-    private String CURP, nombre, apellidoP, apellidoM ;
+public class AlumnoDTO {
+    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
+    private Long telefonoTutor ;
 
-    public DocenteDTO(String CURP, String nombre, String apellidoP, String apellidoM) {
+    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
+        this.gradoGrupo = gradoGrupo;
+        this.telefonoTutor = telefonoTutor;
+        this.urlFoto = urlFoto ;
     }
 
     public String getCURP() {
@@ -25,28 +29,28 @@ public class DocenteDTO {
     public void setCURP(String CURP) {
         this.CURP = CURP;
     }
-
+    
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getApellidoP() {
         return apellidoP;
     }
 
-    public void setApellidoP(String apellidoP) {
-        this.apellidoP = apellidoP;
-    }
-
     public String getApellidoM() {
         return apellidoM;
     }
 
-    public void setApellidoM(String apellidoM) {
-        this.apellidoM = apellidoM;
+    public String getGradoGrupo() {
+        return gradoGrupo;
+    }
+
+    public Long getTelefonoTutor() {
+        return telefonoTutor;
+    }
+
+    public String getUrlFoto() {
+        return urlFoto;
     }
 }

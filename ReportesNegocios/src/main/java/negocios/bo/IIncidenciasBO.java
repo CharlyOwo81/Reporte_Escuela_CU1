@@ -2,16 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
  */
-package negocios.subsistemas.gestionarincidencias;
+package negocios.bo;
 
 import java.util.List;
-import negocios.dto.ReporteDTO;
+import dto.ReporteDTO;
 
 /**
  *
  * @author Oliver Valle
  */
-public interface IGestionarIncidencias {
+public interface IIncidenciasBO {
     ReporteDTO validarReporte(ReporteDTO reporteNuevo);
     
     boolean notificarReporte(ReporteDTO reporteNuevo);

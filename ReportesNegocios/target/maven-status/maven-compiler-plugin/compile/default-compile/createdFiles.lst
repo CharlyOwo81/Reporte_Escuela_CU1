@@ -1,9 +1,2 @@
-negocios\subsistemas\gestionarincidencias\IGestionarIncidencias.class
-negocios\dto\DocenteDTO.class
-negocios\dto\AlumnoDTO.class
-negocios\subsistemas\gestionarincidencias\GestionarIncidencias.class
-negocios\fachadas\IFachadaGestionarIncidencias.class
-negocios\bo\GestionarIncidenciasBO.class
-negocios\bo\IGestionarIncidenciasBO.class
-negocios\dto\ReporteDTO.class
-negocios\fachadas\FachadaGestionarIncidencias.class
+negocios\bo\IIncidenciasBO.class
+negocios\bo\IncidenciasBO.class

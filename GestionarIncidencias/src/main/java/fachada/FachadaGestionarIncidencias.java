@@ -2,12 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package negocios.fachadas;
+package fachada;
 
 import java.util.List;
-import negocios.bo.GestionarIncidenciasBO;
-import negocios.bo.IGestionarIncidenciasBO;
-import negocios.dto.ReporteDTO;
+import control.GestionarIncidencias;
+import dto.ReporteDTO;
 
 /**
  *
@@ -15,10 +14,10 @@ import negocios.dto.ReporteDTO;
  */
 public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias{
 
-    private IGestionarIncidenciasBO boIncidencias ;
+    private GestionarIncidencias boIncidencias ;
     
     public FachadaGestionarIncidencias() {
-        boIncidencias = new GestionarIncidenciasBO() ;
+        boIncidencias = new GestionarIncidencias() ;
     }
     
     @Override

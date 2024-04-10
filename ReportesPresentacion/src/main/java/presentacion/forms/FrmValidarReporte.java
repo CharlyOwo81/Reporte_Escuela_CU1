@@ -7,8 +7,8 @@ package presentacion.forms;
 import java.util.Calendar;
 import javax.swing.JOptionPane;
 import persistencia.dominio.NivelIncidencia;
-import negocios.dto.ReporteDTO;
-import negocios.subsistemas.gestionarincidencias.IGestionarIncidencias;
+import dto.ReporteDTO;
+import fachada.IFachadaGestionarIncidencias;
 
 /**
  *
@@ -17,14 +17,14 @@ import negocios.subsistemas.gestionarincidencias.IGestionarIncidencias;
 public class FrmValidarReporte extends javax.swing.JFrame {
 
     
-    private IGestionarIncidencias gestionIncidencias ;
+    private IFachadaGestionarIncidencias gestionIncidencias ;
     private ReporteDTO reporte ;
     private FotosManager fotosManager;
     
     /**
      * Creates new form FrmValidarReporte
      */
-    public FrmValidarReporte(IGestionarIncidencias gestionIncidencias, ReporteDTO reporte) {
+    public FrmValidarReporte(IFachadaGestionarIncidencias gestionIncidencias, ReporteDTO reporte) {
         initComponents();
         this.gestionIncidencias = gestionIncidencias ;
         this.reporte = reporte ;
