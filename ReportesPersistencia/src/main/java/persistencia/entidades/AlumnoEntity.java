@@ -10,13 +10,13 @@ import java.util.Calendar;
  *
  * @author Oliver Valle
  */
-public class Alumno {
+public class AlumnoEntity {
     
     private Long id ;
     private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
     private Long telefonoTutor ;
 
-    public Alumno(Long id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public AlumnoEntity(Long id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
         this.id = id;
         this.CURP = CURP;
         this.nombre = nombre;
@@ -27,7 +27,7 @@ public class Alumno {
         this.urlFoto = urlFoto ;
     }
 
-    public Alumno(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public AlumnoEntity(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;

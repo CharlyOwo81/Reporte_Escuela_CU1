@@ -8,7 +8,7 @@ package persistencia.entidades;
  *
  * @author Oliver Valle
  */
-public enum NivelIncidencia {
+public enum NivelIncidenciaPersistencia {
     LEVE,
     SEVERO,
     GRAVE

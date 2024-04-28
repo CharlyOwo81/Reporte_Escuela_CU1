@@ -8,12 +8,12 @@ package persistencia.entidades;
  *
  * @author Oliver Valle
  */
-public class Docente {
+public class DocenteEntity {
     
     private Long id ;
     private String CURP, nombre, apellidoP, apellidoM ;
 
-    public Docente(Long id, String CURP, String nombre, String apellidoP, String apellidoM) {
+    public DocenteEntity(Long id, String CURP, String nombre, String apellidoP, String apellidoM) {
         this.id = id;
         this.CURP = CURP;
         this.nombre = nombre;
@@ -21,7 +21,7 @@ public class Docente {
         this.apellidoM = apellidoM;
     }
     
-    public Docente(String CURP, String nombre, String apellidoP, String apellidoM) {
+    public DocenteEntity(String CURP, String nombre, String apellidoP, String apellidoM) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;

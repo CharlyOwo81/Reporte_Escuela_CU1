@@ -5,7 +5,7 @@
 package dto;
 
 import java.util.Calendar;
-import persistencia.entidades.NivelIncidencia;
+import persistencia.entidades.NivelIncidenciaPersistencia;
 
 /**
  *
@@ -16,7 +16,7 @@ public class ReporteDTO {
     //Por ahora es asi, pero luego hay que cambiar Alumno y Docente por DTOs para trabajar con JPA
     private AlumnoDTO alumno ;
     private DocenteDTO docente ;
-    private NivelIncidencia nivelIncidencia ;
+    private NivelIncidenciaPersistencia nivelIncidencia ;
     String descripcion ;
     String motivo ;
     Calendar fechaHora ;
@@ -27,7 +27,7 @@ public class ReporteDTO {
         
     }
     
-    public ReporteDTO(AlumnoDTO alumno, DocenteDTO docente, NivelIncidencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public ReporteDTO(AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -54,11 +54,11 @@ public class ReporteDTO {
         this.docente = docente;
     }
 
-    public NivelIncidencia getNivelIncidencia() {
+    public NivelIncidenciaPersistencia getNivelIncidencia() {
         return nivelIncidencia;
     }
 
-    public void setNivelIncidencia(NivelIncidencia nivelIncidencia) {
+    public void setNivelIncidencia(NivelIncidenciaPersistencia nivelIncidencia) {
         this.nivelIncidencia = nivelIncidencia;
     }
 

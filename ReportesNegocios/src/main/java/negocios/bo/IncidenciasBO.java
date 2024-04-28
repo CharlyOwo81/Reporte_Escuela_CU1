@@ -10,7 +10,7 @@ import java.util.List;
 import dto.AlumnoDTO;
 import dto.DocenteDTO;
 import dto.ReporteDTO;
-import persistencia.entidades.NivelIncidencia;
+import persistencia.entidades.NivelIncidenciaPersistencia;
 
 /**
  *
@@ -65,22 +65,22 @@ public class IncidenciasBO implements IIncidenciasBO{
         DocenteDTO docente3 = new DocenteDTO("PEMC010224HDFRRL00", "Carlos", "Pérez", "Martínez") ;
 
         ReporteDTO reporte1 = new ReporteDTO(alumno4, docente1,
-                NivelIncidencia.GRAVE, "Se encontró al alumno fumando un tabaco en la entrada de los baños de hombres",
+                NivelIncidenciaPersistencia.GRAVE, "Se encontró al alumno fumando un tabaco en la entrada de los baños de hombres",
                 "Fumar Tabaco dentro de la Escuela", new GregorianCalendar(), false, false) ;
         ReporteDTO reporte2 = new ReporteDTO(alumno1, docente1,
-                NivelIncidencia.LEVE, "El alumno alzó la voz y ofendió con groserías a su compañero en el Aula",
+                NivelIncidenciaPersistencia.LEVE, "El alumno alzó la voz y ofendió con groserías a su compañero en el Aula",
                 "Hablar con Lenguaje Inapropiado", new GregorianCalendar(), false, false) ;
         ReporteDTO reporte3 = new ReporteDTO(alumno3, docente2,
-                NivelIncidencia.SEVERO, "Este alumno inició una pelea y su compañero al que agredió no pudo defenderse, fué leve y no pasó a mayores",
+                NivelIncidenciaPersistencia.SEVERO, "Este alumno inició una pelea y su compañero al que agredió no pudo defenderse, fué leve y no pasó a mayores",
                 "Iniciar Pelea", new GregorianCalendar(), false, false) ;
         ReporteDTO reporte4 = new ReporteDTO(alumno5, docente2,
-                NivelIncidencia.LEVE, "El alumno lleva 1 semana entera faltando a mi clase de Matemáticas, no ha presentado justificante y diario se le puede ver como se va de otras clases",
+                NivelIncidenciaPersistencia.LEVE, "El alumno lleva 1 semana entera faltando a mi clase de Matemáticas, no ha presentado justificante y diario se le puede ver como se va de otras clases",
                 "Inasistencia frecuente", new GregorianCalendar(), false, false) ;
         ReporteDTO reporte5 = new ReporteDTO(alumno6, docente3,
-                NivelIncidencia.LEVE, "Este alumno estuvo tirando basura dentro de la institución sin importarle las constantes llamadas de atención que le hice",
+                NivelIncidenciaPersistencia.LEVE, "Este alumno estuvo tirando basura dentro de la institución sin importarle las constantes llamadas de atención que le hice",
                 "Contaminación ambiental en la institución", new GregorianCalendar(), false, false) ;
         ReporteDTO reporte6 = new ReporteDTO(alumno2, docente3,
-                NivelIncidencia.GRAVE, "El alumno estuvo ingiriendo bebidas alcoholicas a media clase desde su termo",
+                NivelIncidenciaPersistencia.GRAVE, "El alumno estuvo ingiriendo bebidas alcoholicas a media clase desde su termo",
                 "Consumo de bebidas alcoholicas dentro del salón", new GregorianCalendar(), false, false) ;
 
         reportes.add(reporte1) ;

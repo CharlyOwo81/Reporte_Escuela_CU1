@@ -12,15 +12,15 @@ import java.util.Calendar;
  */
 public class Reporte {
     private Long id ;
-    private Alumno alumno ;
-    private Docente docente ;
-    private NivelIncidencia nivelIncidencia ;
+    private AlumnoEntity alumno ;
+    private DocenteEntity docente ;
+    private NivelIncidenciaPersistencia nivelIncidencia ;
     String descripcion ;
     String motivo ;
     Calendar fechaHora ;
     boolean notificado, validado ;
 
-    public Reporte(Long id, Alumno alumno, Docente docente, NivelIncidencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public Reporte(Long id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
         this.id = id ;
         this.alumno = alumno;
         this.docente = docente;
@@ -32,7 +32,7 @@ public class Reporte {
         this.validado = validado ;
     }
 
-    public Reporte(Alumno alumno, Docente docente, NivelIncidencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public Reporte(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -47,15 +47,15 @@ public class Reporte {
         return id;
     }
 
-    public Alumno getAlumno() {
+    public AlumnoEntity getAlumno() {
         return alumno;
     }
 
-    public Docente getDocente() {
+    public DocenteEntity getDocente() {
         return docente;
     }
 
-    public NivelIncidencia getNivelIncidencia() {
+    public NivelIncidenciaPersistencia getNivelIncidencia() {
         return nivelIncidencia;
     }
 
@@ -83,15 +83,15 @@ public class Reporte {
         this.id = id;
     }
 
-    public void setAlumno(Alumno alumno) {
+    public void setAlumno(AlumnoEntity alumno) {
         this.alumno = alumno;
     }
 
-    public void setDocente(Docente docente) {
+    public void setDocente(DocenteEntity docente) {
         this.docente = docente;
     }
 
-    public void setNivelIncidencia(NivelIncidencia nivelIncidencia) {
+    public void setNivelIncidencia(NivelIncidenciaPersistencia nivelIncidencia) {
         this.nivelIncidencia = nivelIncidencia;
     }
 

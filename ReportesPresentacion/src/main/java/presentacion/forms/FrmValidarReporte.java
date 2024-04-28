@@ -6,7 +6,7 @@ package presentacion.forms;
 
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import persistencia.entidades.NivelIncidencia;
+import persistencia.entidades.NivelIncidenciaPersistencia;
 import dto.ReporteDTO;
 import fachada.IFachadaGestionarIncidencias;
 
@@ -81,9 +81,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtFecha.setText(fechaFormato);
 
         
-        if (reporte.getNivelIncidencia() == NivelIncidencia.LEVE) {
+        if (reporte.getNivelIncidencia() == NivelIncidenciaPersistencia.LEVE) {
             checkLeve.setSelected(true);
-        } else if(reporte.getNivelIncidencia() == NivelIncidencia.SEVERO) {
+        } else if(reporte.getNivelIncidencia() == NivelIncidenciaPersistencia.SEVERO) {
             checkSevero.setSelected(true);
         } else {
             checkGrave.setSelected(true) ;
@@ -347,14 +347,14 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int resp = JOptionPane.showConfirmDialog(this, "¿Estás seguro de validar este reporte?. Los cambios que hayan realizados se verán reflejados en el sistema.", "Validar Reporte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
-        NivelIncidencia nivelIncidencia ;
+        NivelIncidenciaPersistencia nivelIncidencia ;
         if (resp == JOptionPane.YES_OPTION) {
             if (checkLeve.isSelected()) {
-                nivelIncidencia = NivelIncidencia.LEVE ;
+                nivelIncidencia = NivelIncidenciaPersistencia.LEVE ;
             } else if(checkSevero.isSelected()) {
-                nivelIncidencia = NivelIncidencia.SEVERO ;
+                nivelIncidencia = NivelIncidenciaPersistencia.SEVERO ;
             } else {
-                nivelIncidencia = NivelIncidencia.GRAVE ;
+                nivelIncidencia = NivelIncidenciaPersistencia.GRAVE ;
             }
             
             ReporteDTO reporteNuevo = new ReporteDTO(reporte.getAlumno(), reporte.getDocente(), nivelIncidencia, txtDescripcion.getText(), txtMotivo.getText(), reporte.getFechaHora(), false, false) ;
