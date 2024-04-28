@@ -5,7 +5,7 @@
 package dto;
 
 import java.util.Calendar;
-import persistencia.dominio.NivelIncidencia;
+import persistencia.entidades.NivelIncidencia;
 
 /**
  *

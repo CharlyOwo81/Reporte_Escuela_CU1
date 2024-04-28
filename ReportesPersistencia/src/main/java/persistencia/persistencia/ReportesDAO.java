@@ -8,10 +8,10 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import persistencia.dominio.Alumno;
-import persistencia.dominio.Docente;
-import persistencia.dominio.NivelIncidencia;
-import persistencia.dominio.Reporte;
+import persistencia.entidades.Alumno;
+import persistencia.entidades.Docente;
+import persistencia.entidades.NivelIncidencia;
+import persistencia.entidades.Reporte;
 
 /**
  *

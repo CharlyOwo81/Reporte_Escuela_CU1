@@ -6,7 +6,7 @@ package presentacion.forms;
 
 import java.util.Calendar;
 import javax.swing.JOptionPane;
-import persistencia.dominio.NivelIncidencia;
+import persistencia.entidades.NivelIncidencia;
 import dto.ReporteDTO;
 import fachada.IFachadaGestionarIncidencias;
 

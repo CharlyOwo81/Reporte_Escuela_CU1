@@ -10,7 +10,7 @@ import java.util.List;
 import dto.AlumnoDTO;
 import dto.DocenteDTO;
 import dto.ReporteDTO;
-import persistencia.dominio.NivelIncidencia;
+import persistencia.entidades.NivelIncidencia;
 
 /**
  *

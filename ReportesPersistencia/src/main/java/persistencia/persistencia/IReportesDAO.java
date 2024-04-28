@@ -5,7 +5,7 @@
 package persistencia.persistencia;
 
 import java.util.List;
-import persistencia.dominio.Reporte;
+import persistencia.entidades.Reporte;
 
 /**
  *
