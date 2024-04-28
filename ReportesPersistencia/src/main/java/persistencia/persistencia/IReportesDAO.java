@@ -5,7 +5,7 @@
 package persistencia.persistencia;
 
 import java.util.List;
-import persistencia.entidades.Reporte;
+import persistencia.entidades.ReporteEntity;
 
 /**
  *
@@ -13,12 +13,12 @@ import persistencia.entidades.Reporte;
  */
 public interface IReportesDAO {
     
-    Reporte validarReporte(Reporte reporte) ;
+    ReporteEntity validarReporte(ReporteEntity reporte);
     
-    Reporte modificarReporte(Reporte reporte) ;
+    ReporteEntity modificarReporte(ReporteEntity reporte);
     
-    boolean notificarReporte(Reporte reporte) ;
+    boolean notificarReporte(ReporteEntity reporte);
     
-    List<Reporte> recuperarReportes() ;
+    List<ReporteEntity> recuperarReportes();
     
 }

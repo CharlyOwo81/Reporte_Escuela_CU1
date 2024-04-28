@@ -10,7 +10,7 @@ import java.util.Calendar;
  *
  * @author Oliver Valle
  */
-public class Reporte {
+public class ReporteEntity {
     private Long id ;
     private AlumnoEntity alumno ;
     private DocenteEntity docente ;
@@ -20,7 +20,7 @@ public class Reporte {
     Calendar fechaHora ;
     boolean notificado, validado ;
 
-    public Reporte(Long id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public ReporteEntity(Long id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
         this.id = id ;
         this.alumno = alumno;
         this.docente = docente;
@@ -32,7 +32,7 @@ public class Reporte {
         this.validado = validado ;
     }
 
-    public Reporte(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public ReporteEntity(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
