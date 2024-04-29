@@ -5,7 +5,6 @@
 package dto;
 
 import java.util.Date;
-import java.util.Date;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 
 /**

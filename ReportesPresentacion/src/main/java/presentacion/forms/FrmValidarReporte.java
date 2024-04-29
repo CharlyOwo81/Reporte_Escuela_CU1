@@ -358,7 +358,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
                 nivelIncidencia = NivelIncidenciaPersistencia.GRAVE ;
             }
             
-            ReporteDTO reporteNuevo = new ReporteDTO(reporte.getAlumno(), reporte.getDocente(), nivelIncidencia, txtDescripcion.getText(), txtMotivo.getText(), reporte.getFechaHora(), false, false) ;
+            ReporteDTO reporteNuevo = new ReporteDTO() ;
+            reporteNuevo.setId(reporte.getId());
+            reporteNuevo.setValidado(reporte.isValidado());
             gestionIncidencias.notificarReporte(reporteNuevo) ;
             gestionIncidencias.validarReporte(reporteNuevo) ;
             JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;

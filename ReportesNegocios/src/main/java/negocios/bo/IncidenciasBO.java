@@ -30,6 +30,8 @@ public class IncidenciasBO implements IIncidenciasBO{
     public ReporteDTO validarReporte(ReporteDTO reporteDto) {
         ReporteEntity reporteObtenido = new ReporteEntity();
         
+        System.out.println("HOLA WE; " + reporteDto.getId());
+        
         reporteObtenido.setId(new ObjectId(reporteDto.getId()));
         reporteObtenido.setValidado(reporteDto.isValidado());
         
@@ -54,7 +56,7 @@ public class IncidenciasBO implements IIncidenciasBO{
         );
 
         return new ReporteDTO(
-                reporteObtenido.getId().toString(),
+                reporteObtenido.getId().toHexString(),
                 alumnoObtenido,
                 docenteObtenido,
                 reporteObtenido.getNivelIncidencia(),
@@ -106,8 +108,10 @@ public class IncidenciasBO implements IIncidenciasBO{
                     reporteObtenido.getDocente().getApellidoM()
             );
 
+            System.out.println("Id reporte: " + reporteObtenido.getId().toHexString());
+            
             ReporteDTO reporteDTO = new ReporteDTO(
-                    reporteObtenido.getId().toString(),
+                    reporteObtenido.getId().toHexString(),
                     alumnoDto,
                     docenteDto,
                     reporteObtenido.getNivelIncidencia(),

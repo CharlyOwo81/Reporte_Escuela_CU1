@@ -21,7 +21,7 @@ public class Pruebas {
         
         //r.insertarReportesSimulados();
         
-        System.out.println(r.recuperarReportes().getFirst().getId());
+        System.out.println(r.recuperarReportes().getFirst().getId().toHexString());
     }
 
 }
