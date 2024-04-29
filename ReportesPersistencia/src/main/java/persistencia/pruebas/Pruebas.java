@@ -19,7 +19,7 @@ public class Pruebas {
     public static void main(String[] args) {
         ReportesDAO r = new ReportesDAO();
         
-        r.insertarReportes(r.listaReportesSimulado());
+        r.insertarReportesSimulados();
     }
 
 }

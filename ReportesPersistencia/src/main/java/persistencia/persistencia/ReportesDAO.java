@@ -5,6 +5,8 @@
 package persistencia.persistencia;
 
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.model.Filters;
+import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,54 +44,59 @@ public class ReportesDAO implements IReportesDAO {
         }
     }
     
+    public void insertarReportesSimulados() {
+        try {
+            coleccion.insertMany(listaReportesSimulado());
+        } catch (Exception e) {
+            LOG.log(Level.WARNING, "Ocurri\u00f3 algo al insertar reportes: {0}", e.getMessage());
+        }
+    }
+    
     @Override
     public ReporteEntity validarReporte(ReporteEntity reporte) {
-        
-        
-//        for (int i = 0; i < reportes.size(); i++) {
-//            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
-//                reportes.get(i).setValidado(true);
-//                reportes.get(i).setDescripcion(reporte.getDescripcion());
-//                reportes.get(i).setMotivo(reporte.getMotivo());
-//                reportes.get(i).setNivelIncidencia(reporte.getNivelIncidencia());
-//                return reportes.get(i) ;
-//            }
-//        }
-        return null ;
+        ReporteEntity reporteBuscado = coleccion.find(Filters.eq("_id", reporte.getId())).first();
+        if(reporteBuscado == null) return null;
+        try {
+            coleccion.updateOne(Filters.eq("_id", reporteBuscado.getId()), Updates.set("validado", true));
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "No se pudo actualizar el estado de validado: {0}", e.getMessage());
+            return null;
+        }
+        return coleccion.find(Filters.eq("_id", reporteBuscado.getId())).first();
     }
 
     @Override
     public ReporteEntity modificarReporte(ReporteEntity reporte) {
-//        for (int i = 0; i < reportes.size(); i++) {
-//            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
-//                reportes.get(i).setDescripcion(reporte.getDescripcion());
-//                reportes.get(i).setMotivo(reporte.getMotivo());
-//                reportes.get(i).setNivelIncidencia(reporte.getNivelIncidencia());
-//                return reportes.get(i) ;
-//            }
-//        }
-        return null ;
+        try {
+            coleccion.replaceOne(Filters.eq("_id", reporte.getId()), reporte);
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "No se pudo modificar el reporte", e.getMessage());
+            return null;
+        }
+        
+        return coleccion.find(Filters.eq("_id", reporte.getId())).first();
     }
 
     @Override
     public boolean notificarReporte(ReporteEntity reporte) {
-//        for (int i = 0; i < reportes.size(); i++) {
-//            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporte.getAlumno().getCURP())) {
-//                reportes.get(i).setNotificado(true);
-//                return true ;
-//            }
-//        }
-        return false ;
+        try {
+            coleccion.updateOne(Filters.eq("_id", reporte.getId()), Updates.set("notificado", true));
+        } catch (Exception e) {
+            LOG.log(Level.SEVERE, "Hubo un error al cambiar estado de notificado: ", e.getMessage());
+            return false;
+        }
+        
+        return true;
     }
 
     @Override
     public List<ReporteEntity> recuperarReportes() {
-        return null ;
+        return coleccion.find().into(new ArrayList<>());
     }
     
     
     // Para pruebas
-    public List<ReporteEntity> listaReportesSimulado() {
+    private List<ReporteEntity> listaReportesSimulado() {
         AlumnoEntity alumno1 = new AlumnoEntity ("IUVO040706HSLNLLA2", "Oliver", "Inzunza", "Valle", "3B", 6878767707L, "src/main/java/fotos/foto_oliver.jpeg") ;
         AlumnoEntity alumno2 = new AlumnoEntity ("CAMG040802HSRSLLA5", "Gael Rafael", "Castro", "Molina", "2A", 6448750493L, "src/main/java/fotos/foto_gael.jpeg") ;
         AlumnoEntity alumno3 = new AlumnoEntity ("AOMA040301HSRPNSA3", "Asiel", "Apodaca", "Monge", "1C", 6448094837L, "src/main/java/fotos/foto_asiel.jpeg") ;
