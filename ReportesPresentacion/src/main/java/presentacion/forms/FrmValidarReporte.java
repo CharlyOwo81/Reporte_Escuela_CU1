@@ -361,9 +361,15 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             ReporteDTO reporteNuevo = new ReporteDTO() ;
             reporteNuevo.setId(reporte.getId());
             reporteNuevo.setValidado(reporte.isValidado());
-            gestionIncidencias.notificarReporte(reporteNuevo) ;
-            gestionIncidencias.validarReporte(reporteNuevo) ;
-            JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+            if(gestionIncidencias.notificarReporte(reporteNuevo)) {
+                reporteNuevo.setNotificado(true);
+                gestionIncidencias.validarReporte(reporteNuevo) ;
+                JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+                
+            } else {
+                JOptionPane.showConfirmDialog(this, "Hubo un error al validar el reporte", "Reporte no validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+            }
+            
             dispose() ;
             FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(gestionIncidencias) ;
             bandejaEntrada.setVisible(true);

@@ -74,13 +74,14 @@ public class IncidenciasBO implements IIncidenciasBO{
 
     @Override
     public boolean notificarReporte(ReporteDTO reporteDto) {
-//        for (int i = 0; i < reportes.size(); i++) {
-//            if(reportes.get(i).getAlumno().getCURP().equalsIgnoreCase(reporteNuevo.getAlumno().getCURP())) {
-//                reportes.set(i, reporteNuevo) ;
-//                return true ;
-//            }
-//        }
-        return false ;
+        // Lógica para hacer notificación 
+        
+        
+        
+        // Lógica para cambiar estádo a notificado
+        ReporteEntity reporteEntity = new ReporteEntity();
+        reporteEntity.setId(new ObjectId(reporteDto.getId()));
+        return reportesDAO.notificarReporte(reporteEntity);
     }
 
     @Override
