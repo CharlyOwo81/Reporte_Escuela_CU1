@@ -26,7 +26,7 @@ public class AlumnoDTO {
         this.telefonoTutor = telefonoTutor;
     }
     
-    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, Long telefonoTutor) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
