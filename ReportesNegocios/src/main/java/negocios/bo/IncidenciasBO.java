@@ -37,7 +37,6 @@ public class IncidenciasBO implements IIncidenciasBO{
         
         if(reporteObtenido == null) return null;
         AlumnoDTO alumnoObtenido = new AlumnoDTO(
-                reporteObtenido.getAlumno().getId().toString(),
                 reporteObtenido.getAlumno().getCURP(),
                 reporteObtenido.getAlumno().getNombre(),
                 reporteObtenido.getAlumno().getApellidoP(),
@@ -48,7 +47,6 @@ public class IncidenciasBO implements IIncidenciasBO{
         );
 
         DocenteDTO docenteObtenido = new DocenteDTO(
-                reporteObtenido.getDocente().getId().toString(),
                 reporteObtenido.getDocente().getCURP(),
                 reporteObtenido.getDocente().getNombre(),
                 reporteObtenido.getDocente().getApellidoP(),
@@ -92,7 +90,6 @@ public class IncidenciasBO implements IIncidenciasBO{
         for (ReporteEntity reporteObtenido : reportesEntity) {
 
             AlumnoDTO alumnoDto = new AlumnoDTO(
-                    reporteObtenido.getAlumno().getId().toString(),
                     reporteObtenido.getAlumno().getCURP(),
                     reporteObtenido.getAlumno().getNombre(),
                     reporteObtenido.getAlumno().getApellidoP(),
@@ -103,7 +100,6 @@ public class IncidenciasBO implements IIncidenciasBO{
             );
 
             DocenteDTO docenteDto = new DocenteDTO(
-                    reporteObtenido.getDocente().getId().toString(),
                     reporteObtenido.getDocente().getCURP(),
                     reporteObtenido.getDocente().getNombre(),
                     reporteObtenido.getDocente().getApellidoP(),

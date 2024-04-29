@@ -9,14 +9,13 @@ package dto;
  * @author Oliver Valle
  */
 public class AlumnoDTO {
-    private String _id, CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
+    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
     private Long telefonoTutor ;
 
     public AlumnoDTO() {
     }
 
-    public AlumnoDTO(String _id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, Long telefonoTutor) {
-        this._id = _id;
+    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, Long telefonoTutor) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
@@ -24,24 +23,6 @@ public class AlumnoDTO {
         this.gradoGrupo = gradoGrupo;
         this.urlFoto = urlFoto;
         this.telefonoTutor = telefonoTutor;
-    }
-    
-    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, Long telefonoTutor) {
-        this.CURP = CURP;
-        this.nombre = nombre;
-        this.apellidoP = apellidoP;
-        this.apellidoM = apellidoM;
-        this.gradoGrupo = gradoGrupo;
-        this.telefonoTutor = telefonoTutor;
-        this.urlFoto = urlFoto ;
-    }
-
-    public String getId() {
-        return _id;
-    }
-
-    public void setId(String _id) {
-        this._id = _id;
     }
 
     public String getCURP() {
