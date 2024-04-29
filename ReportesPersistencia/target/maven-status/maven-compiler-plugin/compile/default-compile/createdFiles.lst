@@ -1,6 +1,6 @@
-persistencia\dominio\Alumno.class
-persistencia\dominio\Reporte.class
-persistencia\persistencia\ReportesDAO.class
-persistencia\dominio\Docente.class
-persistencia\dominio\NivelIncidencia.class
-persistencia\persistencia\IReportesDAO.class
+persistencia/entidades/AlumnoEntity.class
+persistencia/entidades/ReporteEntity.class
+persistencia/conexionBD/ConexionMongo.class
+persistencia/entidades/DocenteEntity.class
+persistencia/entidades/NivelIncidenciaPersistencia.class
+persistencia/pruebas/Pruebas.class
