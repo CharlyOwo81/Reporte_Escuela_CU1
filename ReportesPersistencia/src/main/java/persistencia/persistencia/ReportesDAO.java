@@ -8,14 +8,10 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.bson.Document;
 import persistencia.conexionBD.ConexionMongo;
 import persistencia.entidades.AlumnoEntity;
 import persistencia.entidades.DocenteEntity;
@@ -57,7 +53,7 @@ public class ReportesDAO implements IReportesDAO {
         ReporteEntity reporteBuscado = coleccion.find(Filters.eq("_id", reporte.getId())).first();
         if(reporteBuscado == null) return null;
         try {
-            coleccion.updateOne(Filters.eq("_id", reporteBuscado.getId()), Updates.set("validado", true));
+            coleccion.updateOne(Filters.eq("_id", reporteBuscado.getId()), Updates.set("validado", reporte.isValidado()));
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "No se pudo actualizar el estado de validado: {0}", e.getMessage());
             return null;
