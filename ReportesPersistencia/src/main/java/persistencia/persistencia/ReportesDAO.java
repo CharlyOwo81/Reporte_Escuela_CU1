@@ -40,11 +40,14 @@ public class ReportesDAO implements IReportesDAO {
         }
     }
     
+    @Override
     public void insertarReportesSimulados() {
         try {
-            coleccion.insertMany(listaReportesSimulado());
+            if(coleccion.countDocuments() == 0) {
+                coleccion.insertMany(listaReportesSimulado());
+            }
         } catch (Exception e) {
-            LOG.log(Level.WARNING, "Ocurri\u00f3 algo al insertar reportes: {0}", e.getMessage());
+            LOG.log(Level.WARNING, "Ya hay reportes insertados", e.getMessage());
         }
     }
     

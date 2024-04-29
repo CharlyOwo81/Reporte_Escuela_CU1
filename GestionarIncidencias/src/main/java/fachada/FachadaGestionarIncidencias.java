@@ -35,4 +35,9 @@ public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias
         return boIncidencias.recuperarReportes() ;
     }
     
+    
+    public void insertReportesSimulados() {
+        boIncidencias.insertReportesSimulados();
+    }
+    
 }

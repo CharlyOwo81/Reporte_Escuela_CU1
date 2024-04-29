@@ -36,6 +36,10 @@ public class GestionarIncidencias {
     public List<ReporteDTO> recuperarReportes() {
         return incidenciasBO.recuperarReportes() ;
     }
+    
+    public void insertReportesSimulados() {
+        incidenciasBO.insertReportesSimulados();
+    }
 
     
     

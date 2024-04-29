@@ -21,4 +21,6 @@ public interface IReportesDAO {
     
     List<ReporteEntity> recuperarReportes();
     
+    public void insertarReportesSimulados();
+    
 }

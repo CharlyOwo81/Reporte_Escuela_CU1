@@ -18,8 +18,11 @@ import javax.swing.table.TableCellRenderer;
 import dto.ReporteDTO;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import persistencia.conexionBD.ConexionMongo;
 
 /**
  *
@@ -35,7 +38,20 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     public FrmBandejaEntrada() {
         initComponents();
         this.gestionIncidencias = new FachadaGestionarIncidencias() ;
+        insertReportesSimulados(); // reportes de ejemplo, dado que aún no hay un caso de uso para registrar nuevos reportes.
         refrescarTabla() ;
+        
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Método que se ejecutará al cerrar el formulario
+                ConexionMongo.cerrarConexion();
+            }
+        });
+    }
+    
+    public void insertReportesSimulados() {
+        gestionIncidencias.insertReportesSimulados();
     }
     
     public FrmBandejaEntrada(IFachadaGestionarIncidencias gestionIncidencias) {

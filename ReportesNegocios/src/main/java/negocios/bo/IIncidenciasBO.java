@@ -17,4 +17,6 @@ public interface IIncidenciasBO {
     boolean notificarReporte(ReporteDTO reporteNuevo);
     
     List<ReporteDTO> recuperarReportes();
+    
+    public void insertReportesSimulados();
 }

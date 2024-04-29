@@ -27,10 +27,13 @@ public class IncidenciasBO implements IIncidenciasBO{
     }
     
     @Override
+    public void insertReportesSimulados() {
+        reportesDAO.insertarReportesSimulados();
+    }
+    
+    @Override
     public ReporteDTO validarReporte(ReporteDTO reporteDto) {
         ReporteEntity reporteObtenido = new ReporteEntity();
-        
-        System.out.println("HOLA WE; " + reporteDto.getId());
         
         reporteObtenido.setId(new ObjectId(reporteDto.getId()));
         reporteObtenido.setValidado(reporteDto.isValidado());
@@ -107,8 +110,6 @@ public class IncidenciasBO implements IIncidenciasBO{
                     reporteObtenido.getDocente().getApellidoP(),
                     reporteObtenido.getDocente().getApellidoM()
             );
-
-            System.out.println("Id reporte: " + reporteObtenido.getId().toHexString());
             
             ReporteDTO reporteDTO = new ReporteDTO(
                     reporteObtenido.getId().toHexString(),
