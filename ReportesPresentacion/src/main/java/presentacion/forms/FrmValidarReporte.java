@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 import dto.ReporteDTO;
 import fachada.IFachadaGestionarIncidencias;
+import java.util.Date;
 
 /**
  *
@@ -72,10 +73,10 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtGrupo.setText(reporte.getAlumno().getGradoGrupo());
         txtMotivo.setText(reporte.getMotivo());
         txtDescripcion.setText(reporte.getDescripcion());
-        Calendar fecha = reporte.getFechaHora() ;
-        int año = fecha.get(Calendar.YEAR);
-        int mes = fecha.get(Calendar.MONTH) + 1;
-        int dia = fecha.get(Calendar.DAY_OF_MONTH);
+        Date fecha = reporte.getFechaHora() ;
+        int año = fecha.getYear();
+        int mes = fecha.getMonth() + 1;
+        int dia = fecha.getYear();
         
         String fechaFormato = año + "/" + mes + "/" + dia;
         txtFecha.setText(fechaFormato);
