@@ -4,17 +4,19 @@
  */
 package persistencia.entidades;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Oliver Valle
  */
 public class DocenteEntity {
     
-    private Long id ;
+    private ObjectId _id ;
     private String CURP, nombre, apellidoP, apellidoM ;
 
-    public DocenteEntity(Long id, String CURP, String nombre, String apellidoP, String apellidoM) {
-        this.id = id;
+    public DocenteEntity(ObjectId _id, String CURP, String nombre, String apellidoP, String apellidoM) {
+        this._id = _id;
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
@@ -28,12 +30,12 @@ public class DocenteEntity {
         this.apellidoM = apellidoM;
     }
 
-    public Long getId() {
-        return id;
+    public ObjectId getId() {
+        return _id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
     public String getCURP() {

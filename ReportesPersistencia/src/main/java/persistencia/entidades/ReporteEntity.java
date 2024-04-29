@@ -5,23 +5,29 @@
 package persistencia.entidades;
 
 import java.util.Calendar;
+import java.util.Date;
+import org.bson.types.ObjectId;
 
 /**
  *
  * @author Oliver Valle
  */
 public class ReporteEntity {
-    private Long id ;
+    private ObjectId _id ;
     private AlumnoEntity alumno ;
     private DocenteEntity docente ;
     private NivelIncidenciaPersistencia nivelIncidencia ;
-    String descripcion ;
-    String motivo ;
-    Calendar fechaHora ;
+    private String descripcion ;
+    private String motivo ;
+    private Date fechaHora ;
     boolean notificado, validado ;
+    
+    public ReporteEntity() {
+        
+    }
 
-    public ReporteEntity(Long id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
-        this.id = id ;
+    public ReporteEntity(ObjectId _id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+        this._id = _id ;
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -32,7 +38,7 @@ public class ReporteEntity {
         this.validado = validado ;
     }
 
-    public ReporteEntity(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    public ReporteEntity(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -43,8 +49,8 @@ public class ReporteEntity {
         this.validado = validado;
     }
 
-    public Long getId() {
-        return id;
+    public ObjectId getId() {
+        return _id;
     }
 
     public AlumnoEntity getAlumno() {
@@ -67,7 +73,7 @@ public class ReporteEntity {
         return motivo;
     }
 
-    public Calendar getFechaHora() {
+    public Date getFechaHora() {
         return fechaHora;
     }
 
@@ -79,8 +85,8 @@ public class ReporteEntity {
         return validado;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(ObjectId _id) {
+        this._id = _id;
     }
 
     public void setAlumno(AlumnoEntity alumno) {
@@ -103,7 +109,7 @@ public class ReporteEntity {
         this.motivo = motivo;
     }
 
-    public void setFechaHora(Calendar fechaHora) {
+    public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
     }
 

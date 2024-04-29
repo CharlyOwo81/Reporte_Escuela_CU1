@@ -4,7 +4,7 @@
  */
 package persistencia.entidades;
 
-import java.util.Calendar;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -12,12 +12,16 @@ import java.util.Calendar;
  */
 public class AlumnoEntity {
     
-    private Long id ;
+    private ObjectId _id ;
     private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
     private Long telefonoTutor ;
 
-    public AlumnoEntity(Long id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
-        this.id = id;
+    public AlumnoEntity(){
+        
+    }
+    
+    public AlumnoEntity(ObjectId _id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+        this._id = _id;
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
@@ -37,8 +41,8 @@ public class AlumnoEntity {
         this.urlFoto = urlFoto ;
     }
     
-    public Long getId() {
-        return id;
+    public ObjectId getId() {
+        return _id;
     }
 
     public String getCURP() {
