@@ -15,6 +15,9 @@ public class DocenteEntity {
     private ObjectId _id ;
     private String CURP, nombre, apellidoP, apellidoM ;
 
+    public DocenteEntity() {
+    }
+    
     public DocenteEntity(ObjectId _id, String CURP, String nombre, String apellidoP, String apellidoM) {
         this._id = _id;
         this.CURP = CURP;
@@ -36,10 +39,6 @@ public class DocenteEntity {
 
     public void setId(ObjectId _id) {
         this._id = _id;
-    }
-    
-    public void setId(String _id) {
-        this._id = new ObjectId(_id);
     }
 
     public String getCURP() {
