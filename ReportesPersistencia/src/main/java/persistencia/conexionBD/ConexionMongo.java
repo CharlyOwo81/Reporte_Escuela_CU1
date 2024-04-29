@@ -1,9 +1,16 @@
 package persistencia.conexionBD;
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.codecs.pojo.PojoCodecProvider;
+import persistencia.entidades.ReporteEntity;
 
 /**
  * Clase que gestiona la conexión a la base de datos MongoDB y proporciona métodos para abrir y cerrar la conexión, así como para obtener la colección de películas.
@@ -25,15 +32,19 @@ public class ConexionMongo {
     // Base de datos MongoDB
     private static MongoDatabase baseDeDatos;
     // Colección MongoDB para películas
-    private static MongoCollection<Document> coleccion;
+    private static MongoCollection<ReporteEntity> coleccion;
     
     /**
      * Abre una conexión a la base de datos MongoDB y obtiene la colección de películas.
      */
     public static void abrirConexion() {
-        mongoClient = MongoClients.create(cadenaConexion);
+        
+        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(), fromProviders(PojoCodecProvider.builder().automatic(true).build()));
+        MongoClientSettings configuracion = MongoClientSettings.builder().applyConnectionString(new ConnectionString(cadenaConexion)).codecRegistry(pojoCodecRegistry).build();
+        
+        mongoClient = MongoClients.create(configuracion);
         baseDeDatos = mongoClient.getDatabase(nombreBd);
-        coleccion = baseDeDatos.getCollection(nombreCol);
+        coleccion = baseDeDatos.getCollection(nombreCol, ReporteEntity.class);
     }
     
     /**
@@ -41,7 +52,7 @@ public class ConexionMongo {
      * 
      * @return La colección de películas.
      */
-    public static MongoCollection<Document> obtenerColeccion() {
+    public static MongoCollection<ReporteEntity> obtenerColeccion() {
         if(coleccion == null) {
             abrirConexion();
         }
