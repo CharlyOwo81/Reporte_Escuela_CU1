@@ -1,3 +1,5 @@
+persistencia/persistencia/ReportesDAO.class
+persistencia/persistencia/IReportesDAO.class
 persistencia/entidades/AlumnoEntity.class
 persistencia/entidades/ReporteEntity.class
 persistencia/conexionBD/ConexionMongo.class
