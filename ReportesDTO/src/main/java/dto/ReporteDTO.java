@@ -4,7 +4,8 @@
  */
 package dto;
 
-import java.util.Calendar;
+import java.util.Date;
+import java.util.Date;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 
 /**
@@ -14,20 +15,35 @@ import persistencia.entidades.NivelIncidenciaPersistencia;
 public class ReporteDTO {
     
     //Por ahora es asi, pero luego hay que cambiar Alumno y Docente por DTOs para trabajar con JPA
+    private String _id;
     private AlumnoDTO alumno ;
     private DocenteDTO docente ;
     private NivelIncidenciaPersistencia nivelIncidencia ;
     String descripcion ;
     String motivo ;
-    Calendar fechaHora ;
+    Date fechaHora ;
     boolean notificado ;
     boolean validado ;
 
     public ReporteDTO() {
         
     }
+
+    public ReporteDTO(String _id, AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+        this._id = _id;
+        this.alumno = alumno;
+        this.docente = docente;
+        this.nivelIncidencia = nivelIncidencia;
+        this.descripcion = descripcion;
+        this.motivo = motivo;
+        this.fechaHora = fechaHora;
+        this.notificado = notificado;
+        this.validado = validado;
+    }
     
-    public ReporteDTO(AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Calendar fechaHora, boolean notificado, boolean validado) {
+    
+    
+    public ReporteDTO(AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -38,6 +54,14 @@ public class ReporteDTO {
         this.validado = validado ;
     }
 
+    public String getId() {
+        return _id;
+    }
+
+    public void setId(String _id) {
+        this._id = _id;
+    }
+    
     public AlumnoDTO getAlumno() {
         return alumno;
     }
@@ -78,11 +102,11 @@ public class ReporteDTO {
         this.motivo = motivo;
     }
 
-    public Calendar getFechaHora() {
+    public Date getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(Calendar fechaHora) {
+    public void setFechaHora(Date fechaHora) {
         this.fechaHora = fechaHora;
     }
 
