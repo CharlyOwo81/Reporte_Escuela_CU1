@@ -41,6 +41,7 @@ public class AlumnoEntity {
         this.urlFoto = urlFoto ;
     }
     
+    
     public ObjectId getId() {
         return _id;
     }
@@ -72,5 +73,43 @@ public class AlumnoEntity {
     public String getUrlFoto() {
         return urlFoto;
     }
+
+    public void setId(ObjectId _id) {
+        this._id = _id;
+    }
+    
+    public void setId(String _id) {
+        this._id = new ObjectId(_id);
+    }
+
+    public void setCURP(String CURP) {
+        this.CURP = CURP;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setApellidoP(String apellidoP) {
+        this.apellidoP = apellidoP;
+    }
+
+    public void setApellidoM(String apellidoM) {
+        this.apellidoM = apellidoM;
+    }
+
+    public void setGradoGrupo(String gradoGrupo) {
+        this.gradoGrupo = gradoGrupo;
+    }
+
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
+    }
+
+    public void setTelefonoTutor(Long telefonoTutor) {
+        this.telefonoTutor = telefonoTutor;
+    }
+    
+    
     
 }

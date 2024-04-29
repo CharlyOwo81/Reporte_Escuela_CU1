@@ -88,6 +88,10 @@ public class ReporteEntity {
     public void setId(ObjectId _id) {
         this._id = _id;
     }
+    
+    public void setId(String _id) {
+        this._id = new ObjectId(_id);
+    }
 
     public void setAlumno(AlumnoEntity alumno) {
         this.alumno = alumno;

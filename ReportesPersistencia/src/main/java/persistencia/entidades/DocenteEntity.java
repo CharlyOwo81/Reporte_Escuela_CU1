@@ -37,6 +37,10 @@ public class DocenteEntity {
     public void setId(ObjectId _id) {
         this._id = _id;
     }
+    
+    public void setId(String _id) {
+        this._id = new ObjectId(_id);
+    }
 
     public String getCURP() {
         return CURP;
