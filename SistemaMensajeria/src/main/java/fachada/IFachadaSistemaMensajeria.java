@@ -4,10 +4,12 @@
  */
 package fachada;
 
+import dto.ReporteDTO;
+
 /**
  *
  * @author gamaliel
  */
 public interface IFachadaSistemaMensajeria {
-    public boolean enviarMensaje();
+    public boolean enviarMensaje(ReporteDTO reporteDto);
 }

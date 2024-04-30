@@ -79,7 +79,7 @@ public class IncidenciasBO implements IIncidenciasBO{
     @Override
     public boolean notificarReporte(ReporteDTO reporteDto) {
         // Lógica para hacer notificación 
-        if(sistemaMensajeria.enviarMensaje()) { // Si se pudo enviar el mensaje, se cambia el estado de notificación del reporte
+        if(sistemaMensajeria.enviarMensaje(reporteDto)) { // Si se pudo enviar el mensaje, se cambia el estado de notificación del reporte
             // Lógica para cambiar estádo a notificado
             ReporteEntity reporteEntity = new ReporteEntity();
             reporteEntity.setId(new ObjectId(reporteDto.getId()));

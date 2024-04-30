@@ -5,6 +5,7 @@
 package fachada;
 
 import control.SistemaMensajeria;
+import dto.ReporteDTO;
 
 /**
  *
@@ -18,8 +19,8 @@ public class FachadaSistemaMensajeria implements IFachadaSistemaMensajeria{
     }
 
     @Override
-    public boolean enviarMensaje() {
-        return boSistemaMensajeria.enviarMensaje();
+    public boolean enviarMensaje(ReporteDTO reporteDto) {
+        return boSistemaMensajeria.enviarMensaje(reporteDto);
     }
     
     

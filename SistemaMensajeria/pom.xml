@@ -14,10 +14,14 @@
             <version>1.6.2</version>
         </dependency>
         <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mailapi</artifactId>
-            <version>1.4.3</version>
-            <type>jar</type>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>ReportesDTO</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <properties>

@@ -4,6 +4,7 @@
  */
 package control;
 
+import dto.ReporteDTO;
 import java.time.LocalDate;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -25,7 +26,7 @@ public class SistemaMensajeria {
     private static final Logger LOG = Logger.getLogger(SistemaMensajeria.class.getName());
     
     
-    public boolean enviarMensaje(){
+    public boolean enviarMensaje(ReporteDTO reporteDto){
         // Configuración de las propiedades del correo
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -57,8 +58,9 @@ public class SistemaMensajeria {
                 message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(destinatario));
                 message.setSubject("Notificación de Incidencia" + LocalDate.now());
                 message.setText("Buen día. Se notifica por este medio que el alumno" + 
-                                                "nombreAlumno" + "presenta el siguiente reporte: " + 
-                                                "motivoReporte" + ". El reporte cuenta con el estatus de : " + "gravedadIncidencia");
+                        reporteDto.getAlumno().getNombre() + " " + reporteDto.getAlumno().getApellidoP() + " " + reporteDto.getAlumno().getApellidoM() + 
+                        "presenta el siguiente reporte: " + 
+                        reporteDto.getMotivo() + ". El reporte cuenta con el estatus de : " + reporteDto.getNivelIncidencia().toString());
 
                 // Enviar el correo
                 Transport transport = session.getTransport("smtp");
