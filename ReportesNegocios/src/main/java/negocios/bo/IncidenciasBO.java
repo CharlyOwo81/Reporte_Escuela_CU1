@@ -8,6 +8,8 @@ import java.util.List;
 import dto.AlumnoDTO;
 import dto.DocenteDTO;
 import dto.ReporteDTO;
+import fachada.FachadaSistemaMensajeria;
+import fachada.IFachadaSistemaMensajeria;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import persistencia.entidades.ReporteEntity;
@@ -21,9 +23,11 @@ import persistencia.persistencia.ReportesDAO;
 public class IncidenciasBO implements IIncidenciasBO{
 
     private IReportesDAO reportesDAO;
+    private IFachadaSistemaMensajeria sistemaMensajeria;
     
     public IncidenciasBO() {
         this.reportesDAO  = new ReportesDAO();
+        this.sistemaMensajeria = new FachadaSistemaMensajeria();
     }
     
     @Override
@@ -75,13 +79,13 @@ public class IncidenciasBO implements IIncidenciasBO{
     @Override
     public boolean notificarReporte(ReporteDTO reporteDto) {
         // Lógica para hacer notificación 
-        
-        
-        
-        // Lógica para cambiar estádo a notificado
-        ReporteEntity reporteEntity = new ReporteEntity();
-        reporteEntity.setId(new ObjectId(reporteDto.getId()));
-        return reportesDAO.notificarReporte(reporteEntity);
+        if(sistemaMensajeria.enviarMensaje()) { // Si se pudo enviar el mensaje, se cambia el estado de notificación del reporte
+            // Lógica para cambiar estádo a notificado
+            ReporteEntity reporteEntity = new ReporteEntity();
+            reporteEntity.setId(new ObjectId(reporteDto.getId()));
+            return reportesDAO.notificarReporte(reporteEntity); // Retorna verdadero si se pudo cambiar el estado de notificación del reporte
+        }
+        return false; // No se pudo enviar el mensaje
     }
 
     @Override

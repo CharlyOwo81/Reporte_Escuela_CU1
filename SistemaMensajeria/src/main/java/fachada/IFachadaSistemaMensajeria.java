@@ -9,5 +9,5 @@ package fachada;
  * @author gamaliel
  */
 public interface IFachadaSistemaMensajeria {
-    public void enviarMensaje();
+    public boolean enviarMensaje();
 }

@@ -18,7 +18,7 @@ public class FachadaSistemaMensajeria implements IFachadaSistemaMensajeria{
     }
 
     @Override
-    public void enviarMensaje() {
+    public boolean enviarMensaje() {
         return boSistemaMensajeria.enviarMensaje();
     }
     

@@ -6,6 +6,8 @@ package control;
 
 import java.time.LocalDate;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -19,7 +21,11 @@ import javax.mail.internet.MimeMessage;
  * @author gamaliel
  */
 public class SistemaMensajeria {
-    public void enviarMensaje(){
+
+    private static final Logger LOG = Logger.getLogger(SistemaMensajeria.class.getName());
+    
+    
+    public boolean enviarMensaje(){
         // Configuración de las propiedades del correo
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
@@ -65,7 +71,9 @@ public class SistemaMensajeria {
 
             System.out.println("Todos los correos enviados exitosamente.");
         } catch (MessagingException e) {
-            throw new RuntimeException(e);
+            LOG.log(Level.SEVERE, "Hubo un error al enviar la notificaci\u00f3n: {0}", e.getMessage());
+            return false;
         }
+        return true;
     }
 }
