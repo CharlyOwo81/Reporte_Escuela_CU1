@@ -13,31 +13,30 @@ import org.bson.types.ObjectId;
 public class AlumnoEntity {
     
     private ObjectId _id ;
-    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
-    private Long telefonoTutor ;
+    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, emailTutor, urlFoto ;
 
     public AlumnoEntity(){
         
     }
     
-    public AlumnoEntity(ObjectId _id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public AlumnoEntity(ObjectId _id, String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String emailTutor, String urlFoto) {
         this._id = _id;
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.gradoGrupo = gradoGrupo;
-        this.telefonoTutor = telefonoTutor;
+        this.emailTutor = emailTutor;
         this.urlFoto = urlFoto ;
     }
 
-    public AlumnoEntity(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, Long telefonoTutor, String urlFoto) {
+    public AlumnoEntity(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String emailTutor, String urlFoto) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.gradoGrupo = gradoGrupo;
-        this.telefonoTutor = telefonoTutor;
+        this.emailTutor = emailTutor;
         this.urlFoto = urlFoto ;
     }
     
@@ -66,8 +65,8 @@ public class AlumnoEntity {
         return gradoGrupo;
     }
 
-    public Long getTelefonoTutor() {
-        return telefonoTutor;
+    public String getEmailTutor() {
+        return emailTutor;
     }
 
     public String getUrlFoto() {
@@ -102,10 +101,10 @@ public class AlumnoEntity {
         this.urlFoto = urlFoto;
     }
 
-    public void setTelefonoTutor(Long telefonoTutor) {
-        this.telefonoTutor = telefonoTutor;
+    public void setEmailTutor(String emailTutor) {
+        this.emailTutor = emailTutor;
     }
-    
+
     
     
 }

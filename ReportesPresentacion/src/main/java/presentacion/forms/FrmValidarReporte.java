@@ -361,7 +361,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             ReporteDTO reporteNuevo = new ReporteDTO() ;
             reporteNuevo.setId(reporte.getId());
             reporteNuevo.setValidado(reporte.isValidado());
-            if(gestionIncidencias.notificarReporte(reporteNuevo)) {
+            if(gestionIncidencias.notificarReporte(reporte)) {
                 reporteNuevo.setNotificado(true);
                 gestionIncidencias.validarReporte(reporteNuevo) ;
                 JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;

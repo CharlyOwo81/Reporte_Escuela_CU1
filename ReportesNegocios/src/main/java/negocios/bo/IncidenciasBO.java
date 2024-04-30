@@ -52,7 +52,7 @@ public class IncidenciasBO implements IIncidenciasBO{
                 reporteObtenido.getAlumno().getApellidoM(),
                 reporteObtenido.getAlumno().getGradoGrupo(),
                 reporteObtenido.getAlumno().getUrlFoto(),
-                reporteObtenido.getAlumno().getTelefonoTutor()
+                reporteObtenido.getAlumno().getEmailTutor()
         );
 
         DocenteDTO docenteObtenido = new DocenteDTO(
@@ -106,7 +106,7 @@ public class IncidenciasBO implements IIncidenciasBO{
                     reporteObtenido.getAlumno().getApellidoM(),
                     reporteObtenido.getAlumno().getGradoGrupo(),
                     reporteObtenido.getAlumno().getUrlFoto(),
-                    reporteObtenido.getAlumno().getTelefonoTutor()
+                    reporteObtenido.getAlumno().getEmailTutor()
             );
 
             DocenteDTO docenteDto = new DocenteDTO(

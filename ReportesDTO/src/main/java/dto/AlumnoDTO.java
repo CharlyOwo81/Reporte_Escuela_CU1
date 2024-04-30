@@ -9,20 +9,19 @@ package dto;
  * @author Oliver Valle
  */
 public class AlumnoDTO {
-    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto ;
-    private Long telefonoTutor ;
+    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto, emailTutor ;
 
     public AlumnoDTO() {
     }
 
-    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, Long telefonoTutor) {
+    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, String emailTutor) {
         this.CURP = CURP;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.gradoGrupo = gradoGrupo;
         this.urlFoto = urlFoto;
-        this.telefonoTutor = telefonoTutor;
+        this.emailTutor = emailTutor;
     }
 
     public String getCURP() {
@@ -49,8 +48,8 @@ public class AlumnoDTO {
         return gradoGrupo;
     }
 
-    public Long getTelefonoTutor() {
-        return telefonoTutor;
+    public String getEmailTutor() {
+        return emailTutor;
     }
 
     public String getUrlFoto() {
