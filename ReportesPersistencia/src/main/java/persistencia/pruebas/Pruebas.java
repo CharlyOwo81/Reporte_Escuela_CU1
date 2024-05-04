@@ -5,7 +5,7 @@
 
 package persistencia.pruebas;
 
-import persistencia.persistencia.ReportesDAO;
+import persistencia.persistenciaSistema.ReportesDAO;
 
 /**
  *
