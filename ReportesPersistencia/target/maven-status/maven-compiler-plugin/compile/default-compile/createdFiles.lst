@@ -3,6 +3,8 @@ persistencia/persistencia/IReportesDAO.class
 persistencia/entidades/AlumnoEntity.class
 persistencia/entidades/ReporteEntity.class
 persistencia/conexionBD/ConexionMongo.class
+persistencia/conexionBD/ConexionEscuela.class
+persistencia/persistencia/IDocenteDAO.class
 persistencia/entidades/DocenteEntity.class
 persistencia/entidades/NivelIncidenciaPersistencia.class
 persistencia/pruebas/Pruebas.class
