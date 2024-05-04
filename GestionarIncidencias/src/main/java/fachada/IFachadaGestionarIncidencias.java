@@ -18,5 +18,5 @@ public interface IFachadaGestionarIncidencias {
     
     List<ReporteDTO> recuperarReportes();
     
-    public void insertReportesSimulados();
+    public void insertDatosSimulados();
 }

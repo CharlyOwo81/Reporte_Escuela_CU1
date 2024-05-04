@@ -13,8 +13,12 @@ import fachada.IFachadaSistemaMensajeria;
 import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import persistencia.entidades.ReporteEntity;
-import persistencia.persistencia.IReportesDAO;
-import persistencia.persistencia.ReportesDAO;
+import persistencia.persistenciaEscuela.AlumnoDAO;
+import persistencia.persistenciaEscuela.DocenteDAO;
+import persistencia.persistenciaSistema.IReportesDAO;
+import persistencia.persistenciaSistema.ReportesDAO;
+import persistencia.persistenciaEscuela.IAlumnoDAO;
+import persistencia.persistenciaEscuela.IDocenteDAO;
 
 /**
  *
@@ -23,15 +27,19 @@ import persistencia.persistencia.ReportesDAO;
 public class IncidenciasBO implements IIncidenciasBO{
 
     private IReportesDAO reportesDAO;
+    private IAlumnoDAO alumnoDAO;
+    private IDocenteDAO docenteDAO;
     private IFachadaSistemaMensajeria sistemaMensajeria;
     
     public IncidenciasBO() {
         this.reportesDAO  = new ReportesDAO();
+        this.alumnoDAO = new AlumnoDAO();
+        this.docenteDAO = new DocenteDAO();
         this.sistemaMensajeria = new FachadaSistemaMensajeria();
     }
     
     @Override
-    public void insertReportesSimulados() {
+    public void insertDatosSimulados() {
         reportesDAO.insertarReportesSimulados();
     }
     

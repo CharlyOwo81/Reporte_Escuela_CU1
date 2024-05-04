@@ -37,8 +37,8 @@ public class GestionarIncidencias {
         return incidenciasBO.recuperarReportes() ;
     }
     
-    public void insertReportesSimulados() {
-        incidenciasBO.insertReportesSimulados();
+    public void insertDatosSimulados() {
+        incidenciasBO.insertDatosSimulados();
     }
 
     

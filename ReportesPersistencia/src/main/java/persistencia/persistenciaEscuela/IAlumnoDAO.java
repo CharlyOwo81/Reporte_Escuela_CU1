@@ -12,6 +12,7 @@ import persistencia.entidades.AlumnoEntity;
  * @author Asiel Apodaca Monge
  */
 public interface IAlumnoDAO {
+    public void insertarAlumnosSimulados();
     public AlumnoEntity obtenerAlumno(AlumnoEntity ae);
     public AlumnoEntity obtenerAlumnoPorCurp(AlumnoEntity ae);
 }

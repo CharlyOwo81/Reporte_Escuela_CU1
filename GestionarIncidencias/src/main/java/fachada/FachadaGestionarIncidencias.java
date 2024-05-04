@@ -36,8 +36,8 @@ public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias
     }
     
     
-    public void insertReportesSimulados() {
-        boIncidencias.insertReportesSimulados();
+    public void insertDatosSimulados() {
+        boIncidencias.insertDatosSimulados();
     }
     
 }

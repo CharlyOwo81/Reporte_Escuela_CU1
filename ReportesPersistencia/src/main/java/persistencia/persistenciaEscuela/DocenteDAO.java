@@ -2,6 +2,8 @@ package persistencia.persistenciaEscuela;
 
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.conexionBD.ConexionEscuela;
@@ -21,6 +23,16 @@ public class DocenteDAO implements IDocenteDAO{
         this.coleccion = ConexionEscuela.obtenerBaseDeDatos().getCollection("Docentes", DocenteEntity.class);;
     }
     
+    @Override
+    public void insertarDocentesSimulados() {
+        try {
+            if(coleccion.countDocuments() == 0) {
+                coleccion.insertMany(listaDocentesSimulado());
+            }
+        } catch (Exception e) {
+            LOG.log(Level.WARNING, "Ya hay docentes insertados", e.getMessage());
+        }
+    }
     
     @Override
     public DocenteEntity obtenerDocente(DocenteEntity de) {
@@ -43,5 +55,21 @@ public class DocenteDAO implements IDocenteDAO{
             return null;
         }
     }
+    
+    // Para pruebas
+    private List<DocenteEntity> listaDocentesSimulado() {
+        DocenteEntity docente1 = new DocenteEntity("GALJ940519HDFLRN05", "Juan", "García", "López", "1234") ;
+        DocenteEntity docente2 = new DocenteEntity("ROHM000712MDFDRR07", "María", "Rodríguez", "Hernández", "1234") ;
+        DocenteEntity docente3 = new DocenteEntity("PEMC010224HDFRRL00", "Carlos", "Pérez", "Martínez", "1234") ;
+        
+        List<DocenteEntity> docentes = new ArrayList<>();
+        docentes.add(docente1);
+        docentes.add(docente2);
+        docentes.add(docente3);
+        
+        return docentes;
+    }
+
+    
 
 }
