@@ -13,6 +13,8 @@ import persistencia.entidades.ReporteEntity;
  */
 public interface IReportesDAO {
     
+    ReporteEntity insertarReporte(ReporteEntity reporte);
+    
     ReporteEntity validarReporte(ReporteEntity reporte);
     
     ReporteEntity modificarReporte(ReporteEntity reporte);
