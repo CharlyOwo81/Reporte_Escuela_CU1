@@ -39,7 +39,7 @@ public class ConexionMongo {
     }
     
     /**
-     * Obtiene la colección de películas. Si la conexión no está abierta, la abre antes de obtener la colección.
+     * Obtiene la base de datos de Expediente. Si la conexión no está abierta, la abre antes de obtener la base de datos.
      * 
      * @return La base de datos de Expediente.
      */
