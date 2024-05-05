@@ -38,7 +38,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     public FrmBandejaEntrada() {
         initComponents();
         this.gestionIncidencias = new FachadaGestionarIncidencias() ;
-        insertReportesSimulados(); // reportes de ejemplo, dado que aún no hay un caso de uso para registrar nuevos reportes.
+        insertDatosSimulados(); // reportes de ejemplo, dado que aún no hay un caso de uso para registrar nuevos reportes.
         refrescarTabla() ;
         
         addWindowListener(new WindowAdapter() {
@@ -50,8 +50,8 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         });
     }
     
-    public void insertReportesSimulados() {
-        gestionIncidencias.insertReportesSimulados();
+    public void insertDatosSimulados() {
+        gestionIncidencias.insertDatosSimulados();
     }
     
     public FrmBandejaEntrada(IFachadaGestionarIncidencias gestionIncidencias) {
