@@ -6,7 +6,7 @@ package negocios.bo;
 
 import java.util.List;
 import dto.AlumnoDTO;
-import dto.DocenteDTO;
+import dto.UsuarioDTO;
 import dto.ReporteDTO;
 import fachada.FachadaSistemaMensajeria;
 import fachada.IFachadaSistemaMensajeria;
@@ -14,11 +14,11 @@ import java.util.ArrayList;
 import org.bson.types.ObjectId;
 import persistencia.entidades.ReporteEntity;
 import persistencia.persistenciaEscuela.AlumnoDAO;
-import persistencia.persistenciaEscuela.DocenteDAO;
+import persistencia.persistenciaEscuela.UsuarioDAO;
 import persistencia.persistenciaSistema.IReportesDAO;
 import persistencia.persistenciaSistema.ReportesDAO;
 import persistencia.persistenciaEscuela.IAlumnoDAO;
-import persistencia.persistenciaEscuela.IDocenteDAO;
+import persistencia.persistenciaEscuela.IUsuarioDAO;
 
 /**
  *
@@ -26,21 +26,23 @@ import persistencia.persistenciaEscuela.IDocenteDAO;
  */
 public class IncidenciasBO implements IIncidenciasBO{
 
-    private IReportesDAO reportesDAO;
-    private IAlumnoDAO alumnoDAO;
-    private IDocenteDAO docenteDAO;
-    private IFachadaSistemaMensajeria sistemaMensajeria;
+    private final IReportesDAO reportesDAO;
+    private final IAlumnoDAO alumnoDAO;
+    private final IUsuarioDAO usuarioDAO;
+    private final IFachadaSistemaMensajeria sistemaMensajeria;
     
     public IncidenciasBO() {
         this.reportesDAO  = new ReportesDAO();
         this.alumnoDAO = new AlumnoDAO();
-        this.docenteDAO = new DocenteDAO();
+        this.usuarioDAO = new UsuarioDAO();
         this.sistemaMensajeria = new FachadaSistemaMensajeria();
     }
     
     @Override
     public void insertDatosSimulados() {
         reportesDAO.insertarReportesSimulados();
+        alumnoDAO.insertarAlumnosSimulados();
+        usuarioDAO.insertarDocentesSimulados();
     }
     
     @Override
@@ -54,6 +56,7 @@ public class IncidenciasBO implements IIncidenciasBO{
         
         if(reporteObtenido == null) return null;
         AlumnoDTO alumnoObtenido = new AlumnoDTO(
+                reporteObtenido.getAlumno().getId(),
                 reporteObtenido.getAlumno().getCURP(),
                 reporteObtenido.getAlumno().getNombre(),
                 reporteObtenido.getAlumno().getApellidoP(),
@@ -63,17 +66,21 @@ public class IncidenciasBO implements IIncidenciasBO{
                 reporteObtenido.getAlumno().getEmailTutor()
         );
 
-        DocenteDTO docenteObtenido = new DocenteDTO(
-                reporteObtenido.getDocente().getCURP(),
-                reporteObtenido.getDocente().getNombre(),
-                reporteObtenido.getDocente().getApellidoP(),
-                reporteObtenido.getDocente().getApellidoM()
+        UsuarioDTO usuarioObtenido = new UsuarioDTO(
+                reporteObtenido.getUsuario().getId(),
+                reporteObtenido.getUsuario().getCurp(),
+                reporteObtenido.getUsuario().getNombre(),
+                reporteObtenido.getUsuario().getApellidoP(),
+                reporteObtenido.getUsuario().getApellidoM(),
+                reporteObtenido.getUsuario().getRol(),
+                reporteObtenido.getUsuario().getPin()
+                
         );
 
         return new ReporteDTO(
                 reporteObtenido.getId().toHexString(),
                 alumnoObtenido,
-                docenteObtenido,
+                usuarioObtenido,
                 reporteObtenido.getNivelIncidencia(),
                 reporteObtenido.getDescripcion(),
                 reporteObtenido.getMotivo(),
@@ -108,6 +115,7 @@ public class IncidenciasBO implements IIncidenciasBO{
         for (ReporteEntity reporteObtenido : reportesEntity) {
 
             AlumnoDTO alumnoDto = new AlumnoDTO(
+                    reporteObtenido.getAlumno().getId(),
                     reporteObtenido.getAlumno().getCURP(),
                     reporteObtenido.getAlumno().getNombre(),
                     reporteObtenido.getAlumno().getApellidoP(),
@@ -117,17 +125,20 @@ public class IncidenciasBO implements IIncidenciasBO{
                     reporteObtenido.getAlumno().getEmailTutor()
             );
 
-            DocenteDTO docenteDto = new DocenteDTO(
-                    reporteObtenido.getDocente().getCURP(),
-                    reporteObtenido.getDocente().getNombre(),
-                    reporteObtenido.getDocente().getApellidoP(),
-                    reporteObtenido.getDocente().getApellidoM()
+            UsuarioDTO usuarioDto = new UsuarioDTO(
+                    reporteObtenido.getUsuario().getId(),
+                    reporteObtenido.getUsuario().getCurp(),
+                    reporteObtenido.getUsuario().getNombre(),
+                    reporteObtenido.getUsuario().getApellidoP(),
+                    reporteObtenido.getUsuario().getApellidoM(),
+                    reporteObtenido.getUsuario().getRol(),
+                    reporteObtenido.getUsuario().getPin()
             );
             
             ReporteDTO reporteDTO = new ReporteDTO(
                     reporteObtenido.getId().toHexString(),
                     alumnoDto,
-                    docenteDto,
+                    usuarioDto,
                     reporteObtenido.getNivelIncidencia(),
                     reporteObtenido.getDescripcion(),
                     reporteObtenido.getMotivo(),
@@ -140,143 +151,4 @@ public class IncidenciasBO implements IIncidenciasBO{
         }
         return reportesDto;
     }
-    
-    
-    
-    
-    //EN TEORIA ESTE DEBERÍA DE SER EL CÓDIGO EN EL FUTURO
-//    private IReportesDAO reportesDAO ;
-//    
-//    public GestionarIncidencias() {
-//        reportesDAO = new ReportesDAO() ;
-//    }
-//    
-//    @Override
-//    public ReporteNuevoDTO validarReporte(ReporteNuevoDTO reporte) {
-//        Alumno alumnoEnviar = new Alumno(
-//                reporte.getAlumno().getCURP(),
-//                reporte.getAlumno().getNombre(), 
-//                reporte.getAlumno().getApellidoP(), 
-//                reporte.getAlumno().getApellidoM(), 
-//                reporte.getAlumno().getGradoGrupo(), 
-//                reporte.getAlumno().getTelefonoTutor(), 
-//                reporte.getAlumno().getUrlFoto()
-//        ) ;
-//        
-//        Docente docenteEnviar = new Docente(
-//                reporte.getDocente().getCURP(),
-//                reporte.getDocente().getNombre(),
-//                reporte.getDocente().getApellidoP(), 
-//        reporte.getDocente().getApellidoM()) ;
-//        
-//        Reporte reporteEnviar = new Reporte(
-//                alumnoEnviar,
-//                docenteEnviar,
-//                reporte.getNivelIncidencia(),
-//                reporte.getDescripcion(), 
-//                reporte.getMotivo(), 
-//                reporte.getFechaHora(), 
-//                reporte.isNotificado(), 
-//                reporte.isValidado()
-//        ) ;
-//        
-//        Reporte reporteObtenido = reportesDAO.validarReporte(reporteEnviar) ;
-//
-//        AlumnoNuevoDTO alumnoObtenido = new AlumnoNuevoDTO(
-//                reporteObtenido.getAlumno().getCURP(),
-//                reporteObtenido.getAlumno().getNombre(),
-//                reporteObtenido.getAlumno().getApellidoP(),
-//                reporteObtenido.getAlumno().getApellidoM(),
-//                reporteObtenido.getAlumno().getGradoGrupo(),
-//                reporteObtenido.getAlumno().getTelefonoTutor(),
-//                reporteObtenido.getAlumno().getUrlFoto()
-//        );
-//
-//        DocenteNuevoDTO docenteObtenido = new DocenteNuevoDTO(
-//                reporteObtenido.getDocente().getCURP(),
-//                reporteObtenido.getDocente().getNombre(),
-//                reporteObtenido.getDocente().getApellidoP(),
-//                reporteObtenido.getDocente().getApellidoM()
-//        );
-//
-//        return new ReporteNuevoDTO(
-//                alumnoObtenido,
-//                docenteObtenido,
-//                reporteObtenido.getNivelIncidencia(),
-//                reporteObtenido.getDescripcion(),
-//                reporteObtenido.getMotivo(),
-//                reporteObtenido.getFechaHora(),
-//                reporteObtenido.isNotificado(),
-//                reporteObtenido.isValidado()
-//        );
-//        
-//    }
-//
-//
-//    @Override
-//    public boolean notificarReporte(ReporteNuevoDTO reporte) {
-//        Alumno alumnoEnviar = new Alumno(
-//                reporte.getAlumno().getCURP(),
-//                reporte.getAlumno().getNombre(), 
-//                reporte.getAlumno().getApellidoP(), 
-//                reporte.getAlumno().getApellidoM(), 
-//                reporte.getAlumno().getGradoGrupo(), 
-//                reporte.getAlumno().getTelefonoTutor(), 
-//                reporte.getAlumno().getUrlFoto()
-//        ) ;
-//        
-//        Docente docenteEnviar = new Docente(
-//                reporte.getDocente().getCURP(),
-//                reporte.getDocente().getNombre(),
-//                reporte.getDocente().getApellidoP(), 
-//        reporte.getDocente().getApellidoM()) ;
-//        
-//        Reporte reporteEnviar = new Reporte(
-//                alumnoEnviar,
-//                docenteEnviar,
-//                reporte.getNivelIncidencia(),
-//                reporte.getDescripcion(), 
-//                reporte.getMotivo(), 
-//                reporte.getFechaHora(), 
-//                reporte.isNotificado(), 
-//                reporte.isValidado()
-//        ) ;
-//        
-//        return reportesDAO.notificarReporte(reporteEnviar) ;
-//    }
-//
-//    @Override
-//    public List<ReporteNuevoDTO> recuperarReportes() {
-//        List<ReporteNuevoDTO> reportes = new LinkedList() ;
-//        reportesDAO.recuperarReportes().forEach(reporte -> {
-//            AlumnoNuevoDTO alumnoObtenido = new AlumnoNuevoDTO(
-//                    reporte.getAlumno().getCURP(),
-//                    reporte.getAlumno().getNombre(),
-//                    reporte.getAlumno().getApellidoP(),
-//                    reporte.getAlumno().getApellidoM(),
-//                    reporte.getAlumno().getGradoGrupo(),
-//                    reporte.getAlumno().getTelefonoTutor(),
-//                    reporte.getAlumno().getUrlFoto()
-//            );
-//
-//            DocenteNuevoDTO docenteObtenido = new DocenteNuevoDTO(
-//                    reporte.getDocente().getCURP(),
-//                    reporte.getDocente().getNombre(),
-//                    reporte.getDocente().getApellidoP(),
-//                    reporte.getDocente().getApellidoM()
-//            );
-//            reportes.add(new ReporteNuevoDTO(
-//                    alumnoObtenido,
-//                    docenteObtenido,
-//                    reporte.getNivelIncidencia(),
-//                    reporte.getDescripcion(),
-//                    reporte.getMotivo(),
-//                    reporte.getFechaHora(),
-//                    reporte.isNotificado(),
-//                    reporte.isValidado()
-//            )) ;
-//        });
-//        
-//        return reportes ;
-//    }
 }

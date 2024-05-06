@@ -13,10 +13,9 @@ import persistencia.entidades.NivelIncidenciaPersistencia;
  */
 public class ReporteDTO {
     
-    //Por ahora es asi, pero luego hay que cambiar Alumno y Docente por DTOs para trabajar con JPA
     private String _id;
     private AlumnoDTO alumno ;
-    private DocenteDTO docente ;
+    private UsuarioDTO docente ;
     private NivelIncidenciaPersistencia nivelIncidencia ;
     String descripcion ;
     String motivo ;
@@ -28,7 +27,7 @@ public class ReporteDTO {
         
     }
 
-    public ReporteDTO(String _id, AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+    public ReporteDTO(String _id, AlumnoDTO alumno, UsuarioDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this._id = _id;
         this.alumno = alumno;
         this.docente = docente;
@@ -42,7 +41,7 @@ public class ReporteDTO {
     
     
     
-    public ReporteDTO(AlumnoDTO alumno, DocenteDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+    public ReporteDTO(AlumnoDTO alumno, UsuarioDTO docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
         this.docente = docente;
         this.nivelIncidencia = nivelIncidencia;
@@ -69,11 +68,11 @@ public class ReporteDTO {
         this.alumno = alumno;
     }
 
-    public DocenteDTO getDocente() {
+    public UsuarioDTO getDocente() {
         return docente;
     }
 
-    public void setDocente(DocenteDTO docente) {
+    public void setDocente(UsuarioDTO docente) {
         this.docente = docente;
     }
 

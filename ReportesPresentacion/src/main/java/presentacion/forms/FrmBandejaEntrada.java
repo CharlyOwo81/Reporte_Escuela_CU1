@@ -102,7 +102,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         
         
         for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCURP() ;
+            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
             datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
             datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
             datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;

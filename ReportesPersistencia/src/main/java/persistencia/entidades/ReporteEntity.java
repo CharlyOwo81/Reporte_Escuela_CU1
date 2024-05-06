@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
 public class ReporteEntity {
     private ObjectId _id ;
     private AlumnoEntity alumno ;
-    private DocenteEntity docente ;
+    private UsuarioEntity usuario ;
     private NivelIncidenciaPersistencia nivelIncidencia ;
     private String descripcion ;
     private String motivo ;
@@ -27,10 +27,10 @@ public class ReporteEntity {
         
     }
 
-    public ReporteEntity(ObjectId _id, AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+    public ReporteEntity(ObjectId _id, AlumnoEntity alumno, UsuarioEntity usuario, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this._id = _id ;
         this.alumno = alumno;
-        this.docente = docente;
+        this.usuario = usuario;
         this.nivelIncidencia = nivelIncidencia;
         this.descripcion = descripcion;
         this.motivo = motivo;
@@ -39,9 +39,9 @@ public class ReporteEntity {
         this.validado = validado ;
     }
 
-    public ReporteEntity(AlumnoEntity alumno, DocenteEntity docente, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
+    public ReporteEntity(AlumnoEntity alumno, UsuarioEntity usuario, NivelIncidenciaPersistencia nivelIncidencia, String descripcion, String motivo, Date fechaHora, boolean notificado, boolean validado) {
         this.alumno = alumno;
-        this.docente = docente;
+        this.usuario = usuario;
         this.nivelIncidencia = nivelIncidencia;
         this.descripcion = descripcion;
         this.motivo = motivo;
@@ -58,8 +58,8 @@ public class ReporteEntity {
         return alumno;
     }
 
-    public DocenteEntity getDocente() {
-        return docente;
+    public UsuarioEntity getUsuario() {
+        return usuario;
     }
 
     public NivelIncidenciaPersistencia getNivelIncidencia() {
@@ -94,8 +94,8 @@ public class ReporteEntity {
         this.alumno = alumno;
     }
 
-    public void setDocente(DocenteEntity docente) {
-        this.docente = docente;
+    public void setUsuario(UsuarioEntity usuario) {
+        this.usuario = usuario;
     }
 
     public void setNivelIncidencia(NivelIncidenciaPersistencia nivelIncidencia) {

@@ -68,7 +68,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtNombre.setText(reporte.getAlumno().getNombre());
         txtApellidoPaterno.setText(reporte.getAlumno().getApellidoP());
         txtApellidoMaterno.setText(reporte.getAlumno().getApellidoM());
-        txtCURP.setText(reporte.getAlumno().getCURP());
+        txtCURP.setText(reporte.getAlumno().getCurp());
         txtProfesor.setText(reporte.getDocente().getNombre() + " " + reporte.getDocente().getApellidoP() + " " + reporte.getDocente().getApellidoM());
         txtGrupo.setText(reporte.getAlumno().getGradoGrupo());
         txtMotivo.setText(reporte.getMotivo());

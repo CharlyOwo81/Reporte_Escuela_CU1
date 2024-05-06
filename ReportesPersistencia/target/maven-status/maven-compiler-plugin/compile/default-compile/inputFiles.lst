@@ -2,12 +2,12 @@
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/AlumnoDAO.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/entidades/AlumnoEntity.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaSistema/ReportesDAO.java
-/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/IDocenteDAO.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaSistema/IReportesDAO.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/entidades/NivelIncidenciaPersistencia.java
+/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/entidades/UsuarioEntity.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/IAlumnoDAO.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/conexionBD/ConexionEscuela.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/entidades/ReporteEntity.java
-/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/DocenteDAO.java
 /Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/pruebas/Pruebas.java
-/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/entidades/DocenteEntity.java
+/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/UsuarioDAO.java
+/Users/asielapodaca/NetBeansProjects/DiseñoSoftware/Reporte_Escuela_CU1/ReportesPersistencia/src/main/java/persistencia/persistenciaEscuela/IUsuarioDAO.java

@@ -4,18 +4,22 @@
  */
 package dto;
 
+import org.bson.types.ObjectId;
+
 /**
  *
  * @author Oliver Valle
  */
 public class AlumnoDTO {
-    private String CURP, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto, emailTutor ;
+    private ObjectId _id;
+    private String curp, nombre, apellidoP, apellidoM, gradoGrupo, urlFoto, emailTutor ;
 
     public AlumnoDTO() {
     }
-
-    public AlumnoDTO(String CURP, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, String emailTutor) {
-        this.CURP = CURP;
+    
+    public AlumnoDTO(ObjectId _id, String curp, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, String emailTutor) {
+        this._id = _id;
+        this.curp = curp;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -24,12 +28,20 @@ public class AlumnoDTO {
         this.emailTutor = emailTutor;
     }
 
-    public String getCURP() {
-        return CURP;
+    public ObjectId getId() {
+        return _id;
     }
 
-    public void setCURP(String CURP) {
-        this.CURP = CURP;
+    public void setId(ObjectId _id) {
+        this._id = _id;
+    }
+
+    public String getCurp() {
+        return curp;
+    }
+
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
     
     public String getNombre() {

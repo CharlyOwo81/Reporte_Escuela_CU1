@@ -7,20 +7,20 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.conexionBD.ConexionEscuela;
-import persistencia.entidades.DocenteEntity;
+import persistencia.entidades.UsuarioEntity;
 
 /**
  *
  * @author Asiel Apodaca Monge
  */
-public class DocenteDAO implements IDocenteDAO{
+public class UsuarioDAO implements IUsuarioDAO{
 
-    private MongoCollection<DocenteEntity> coleccion;
-    private static final Logger LOG = Logger.getLogger(DocenteDAO.class.getName());
+    private MongoCollection<UsuarioEntity> coleccion;
+    private static final Logger LOG = Logger.getLogger(UsuarioDAO.class.getName());
     
     
-    public DocenteDAO() {
-        this.coleccion = ConexionEscuela.obtenerBaseDeDatos().getCollection("Docentes", DocenteEntity.class);;
+    public UsuarioDAO() {
+        this.coleccion = ConexionEscuela.obtenerBaseDeDatos().getCollection("Docentes", UsuarioEntity.class);;
     }
     
     @Override
@@ -35,7 +35,7 @@ public class DocenteDAO implements IDocenteDAO{
     }
     
     @Override
-    public DocenteEntity obtenerDocente(DocenteEntity de) {
+    public UsuarioEntity obtenerDocente(UsuarioEntity de) {
         try {
             if(de.getId() == null) throw new Exception("El id del docente es nulo.");
             return coleccion.find(Filters.eq("_id", de.getId())).first();
@@ -46,10 +46,10 @@ public class DocenteDAO implements IDocenteDAO{
     }
 
     @Override
-    public DocenteEntity obtenerDocentePorCurp(DocenteEntity de) {
+    public UsuarioEntity obtenerDocentePorCurp(UsuarioEntity de) {
         try {
-            if(de.getCURP() == null) throw new Exception("La curp del docente es nula.");
-            return coleccion.find(Filters.eq("CURP", de.getCURP())).first();
+            if(de.getCurp() == null) throw new Exception("La curp del docente es nula.");
+            return coleccion.find(Filters.eq("CURP", de.getCurp())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
             return null;
@@ -57,12 +57,12 @@ public class DocenteDAO implements IDocenteDAO{
     }
     
     // Para pruebas
-    private List<DocenteEntity> listaDocentesSimulado() {
-        DocenteEntity docente1 = new DocenteEntity("GALJ940519HDFLRN05", "Juan", "García", "López", "1234") ;
-        DocenteEntity docente2 = new DocenteEntity("ROHM000712MDFDRR07", "María", "Rodríguez", "Hernández", "1234") ;
-        DocenteEntity docente3 = new DocenteEntity("PEMC010224HDFRRL00", "Carlos", "Pérez", "Martínez", "1234") ;
+    private List<UsuarioEntity> listaDocentesSimulado() {
+        UsuarioEntity docente1 = new UsuarioEntity("GALJ940519HDFLRN05", "Juan", "García", "López", "DOCENTE", "1234") ;
+        UsuarioEntity docente2 = new UsuarioEntity("ROHM000712MDFDRR07", "María", "Rodríguez", "Hernández", "PREFECTO", "1234") ;
+        UsuarioEntity docente3 = new UsuarioEntity("PEMC010224HDFRRL00", "Carlos", "Pérez", "Martínez", "DIRECTIVO", "1234") ;
         
-        List<DocenteEntity> docentes = new ArrayList<>();
+        List<UsuarioEntity> docentes = new ArrayList<>();
         docentes.add(docente1);
         docentes.add(docente2);
         docentes.add(docente3);

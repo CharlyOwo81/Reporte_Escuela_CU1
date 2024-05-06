@@ -20,7 +20,7 @@ public class ConexionEscuela {
     // Cadena de conexión a la instancia de MongoDB
     private static final String cadenaConexion = "mongodb://localhost:27017";
     // Nombre de la base de datos
-    private static final String nombreBd = "Escuela";
+    private static final String nombreBd = "OficinasDireccion";
     
     // Cliente de MongoDB
     private static MongoClient mongoClient;
