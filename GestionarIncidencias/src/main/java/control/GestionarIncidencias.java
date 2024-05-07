@@ -4,7 +4,9 @@
  */
 package control;
 
+import dto.AlumnoDTO;
 import dto.ReporteDTO;
+import dto.ReporteExpedienteDTO;
 import java.util.List;
 import negocios.bo.IIncidenciasBO;
 import negocios.bo.IncidenciasBO;
@@ -41,6 +43,24 @@ public class GestionarIncidencias {
         incidenciasBO.insertDatosSimulados();
     }
 
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
+        return incidenciasBO.recuperarAlumnosPorGrado(grado) ;
+    }
     
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
+        return incidenciasBO.recuperarAlumnosPorGrupo(grupo) ;
+    }
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
+        return incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+    }
+    
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
+        return incidenciasBO.recuperarReportesAlumno(curp) ;
+    }
+    
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) {
+        return incidenciasBO.convertirReporteAReporteExpediente(reportes) ;
+    }
     
 }

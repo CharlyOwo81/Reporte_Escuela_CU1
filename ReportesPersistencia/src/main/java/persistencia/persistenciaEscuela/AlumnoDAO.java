@@ -56,6 +56,21 @@ public class AlumnoDAO implements IAlumnoDAO{
         }
     }
     
+    @Override
+    public List<AlumnoEntity> recuperarAlumnosPorGrado(String grado) {
+        return coleccion.find(Filters.regex("gradoGrupo", "^" + grado)).into(new ArrayList()) ;
+    }
+
+    @Override
+    public List<AlumnoEntity> recuperarAlumnosPorGrupo(String grupo) {
+        return coleccion.find(Filters.regex("gradoGrupo", grupo + "$")).into(new ArrayList()) ;
+    }
+
+    @Override
+    public List<AlumnoEntity> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
+        return coleccion.find(Filters.eq("gradoGrupo", grado + grupo)).into(new ArrayList()) ;
+    }
+    
     // Para pruebas
     public List<AlumnoEntity> listaAlumnosSimulados() {
         AlumnoEntity alumno1 = new AlumnoEntity ("IUVO040706HSLNLLA2", "Oliver", "Inzunza", "Valle", "3B", "oliver.inzunza244748@potros.itson.edu.mx", "src/main/java/fotos/foto_oliver.jpeg") ;

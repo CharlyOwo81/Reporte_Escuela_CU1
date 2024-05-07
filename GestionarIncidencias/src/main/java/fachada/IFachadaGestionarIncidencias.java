@@ -4,7 +4,9 @@
  */
 package fachada;
 
+import dto.AlumnoDTO;
 import dto.ReporteDTO;
+import dto.ReporteExpedienteDTO;
 import java.util.List;
 
 /**
@@ -19,4 +21,14 @@ public interface IFachadaGestionarIncidencias {
     List<ReporteDTO> recuperarReportes();
     
     public void insertDatosSimulados();
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado);
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo);
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo);
+    
+    public List<ReporteDTO> recuperarReportesAlumno(String curp);
+    
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) ;
 }

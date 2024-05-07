@@ -4,8 +4,10 @@
  */
 package negocios.bo;
 
+import dto.AlumnoDTO;
 import java.util.List;
 import dto.ReporteDTO;
+import dto.ReporteExpedienteDTO ;
 
 /**
  *
@@ -19,4 +21,14 @@ public interface IIncidenciasBO {
     List<ReporteDTO> recuperarReportes();
     
     public void insertDatosSimulados();
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado);
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo);
+    
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo);
+    
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) ;
+    
+    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) ;
 }

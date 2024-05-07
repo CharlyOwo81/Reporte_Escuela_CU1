@@ -33,6 +33,13 @@ public class UsuarioDTO {
         this.apellidoM = apellidoM;
         this.pin = pin;
     }
+    
+    public UsuarioDTO(String curp, String nombre, String apellidoP, String apellidoM) {
+        this.curp = curp;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+    }
 
     public ObjectId getId() {
         return _id;

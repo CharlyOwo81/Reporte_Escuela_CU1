@@ -5,6 +5,7 @@
 
 package persistencia.persistenciaEscuela;
 
+import java.util.List;
 import persistencia.entidades.AlumnoEntity;
 
 /**
@@ -15,4 +16,7 @@ public interface IAlumnoDAO {
     public void insertarAlumnosSimulados();
     public AlumnoEntity obtenerAlumno(AlumnoEntity ae);
     public AlumnoEntity obtenerAlumnoPorCurp(AlumnoEntity ae);
+    public List<AlumnoEntity> recuperarAlumnosPorGrado(String grado) ;
+    public List<AlumnoEntity> recuperarAlumnosPorGrupo(String grupo) ;
+    public List<AlumnoEntity> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) ;
 }

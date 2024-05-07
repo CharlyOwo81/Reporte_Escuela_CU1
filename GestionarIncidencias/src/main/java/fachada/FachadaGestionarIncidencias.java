@@ -6,7 +6,9 @@ package fachada;
 
 import java.util.List;
 import control.GestionarIncidencias;
+import dto.AlumnoDTO;
 import dto.ReporteDTO;
+import dto.ReporteExpedienteDTO;
 
 /**
  *
@@ -38,6 +40,31 @@ public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias
     
     public void insertDatosSimulados() {
         boIncidencias.insertDatosSimulados();
+    }
+    
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
+        return boIncidencias.recuperarAlumnosPorGrado(grado) ;
+    }
+
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
+        return boIncidencias.recuperarAlumnosPorGrupo(grupo) ;
+    }
+
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
+        return boIncidencias.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+    }
+
+    @Override
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
+        return boIncidencias.recuperarReportesAlumno(curp) ;
+    }
+    
+    @Override
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) {
+        return boIncidencias.convertirReportesAReporteExpediente(reportes) ;
     }
     
 }

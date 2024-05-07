@@ -4,6 +4,9 @@
 
 package presentacion.forms;
 
+import presentacion.pdfexpedientes.FrmBuscarExpediente;
+
+
 /**
  *
  * @author Oliver Valle

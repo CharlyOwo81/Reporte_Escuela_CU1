@@ -8,10 +8,14 @@ import java.util.List;
 import dto.AlumnoDTO;
 import dto.UsuarioDTO;
 import dto.ReporteDTO;
+import dto.ReporteExpedienteDTO;
 import fachada.FachadaSistemaMensajeria;
 import fachada.IFachadaSistemaMensajeria;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import org.bson.types.ObjectId;
+import persistencia.entidades.AlumnoEntity;
 import persistencia.entidades.ReporteEntity;
 import persistencia.persistenciaEscuela.AlumnoDAO;
 import persistencia.persistenciaEscuela.UsuarioDAO;
@@ -150,5 +154,162 @@ public class IncidenciasBO implements IIncidenciasBO{
             reportesDto.add(reporteDTO);
         }
         return reportesDto;
+    }
+    
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
+        List<AlumnoEntity> alumnosPorGrado = alumnoDAO.recuperarAlumnosPorGrado(grado) ;
+        
+        List<AlumnoDTO> alumnosPorGradoDTO = new ArrayList() ;
+        
+        if (alumnosPorGrado.isEmpty() || alumnosPorGrado == null) {
+            return null ;
+        }
+        
+        for (AlumnoEntity alumnoObtenido : alumnosPorGrado) {
+
+            AlumnoDTO alumnoDTO = new AlumnoDTO(
+                    alumnoObtenido.getCURP(),
+                    alumnoObtenido.getNombre(),
+                    alumnoObtenido.getApellidoP(),
+                    alumnoObtenido.getApellidoM(),
+                    alumnoObtenido.getGradoGrupo(),
+                    alumnoObtenido.getUrlFoto(),
+                    alumnoObtenido.getEmailTutor()
+            );
+            
+            alumnosPorGradoDTO.add(alumnoDTO);
+        }
+        
+        return alumnosPorGradoDTO ;
+        
+    }
+
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
+        List<AlumnoEntity> alumnosPorGrupo = alumnoDAO.recuperarAlumnosPorGrupo(grupo) ;
+        
+        List<AlumnoDTO> alumnosPorGrupoDTO = new ArrayList() ;
+        
+        if (alumnosPorGrupo.isEmpty() || alumnosPorGrupo == null) {
+            return null ;
+        }
+        
+        for (AlumnoEntity alumnoObtenido : alumnosPorGrupo) {
+
+            AlumnoDTO alumnoDTO = new AlumnoDTO(
+                    alumnoObtenido.getCURP(),
+                    alumnoObtenido.getNombre(),
+                    alumnoObtenido.getApellidoP(),
+                    alumnoObtenido.getApellidoM(),
+                    alumnoObtenido.getGradoGrupo(),
+                    alumnoObtenido.getUrlFoto(),
+                    alumnoObtenido.getEmailTutor()
+            );
+            
+            alumnosPorGrupoDTO.add(alumnoDTO);
+        }
+        
+        return alumnosPorGrupoDTO ;
+    }
+
+    @Override
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
+        List<AlumnoEntity> alumnosPorGradoYGrupo = alumnoDAO.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+        
+        List<AlumnoDTO> alumnosPorGradoYGrupoDTO = new ArrayList() ;
+        
+        if (alumnosPorGradoYGrupo.isEmpty() || alumnosPorGradoYGrupo == null) {
+            return null ;
+        }
+        
+        for (AlumnoEntity alumnoObtenido : alumnosPorGradoYGrupo) {
+
+            AlumnoDTO alumnoDTO = new AlumnoDTO(
+                    alumnoObtenido.getCURP(),
+                    alumnoObtenido.getNombre(),
+                    alumnoObtenido.getApellidoP(),
+                    alumnoObtenido.getApellidoM(),
+                    alumnoObtenido.getGradoGrupo(),
+                    alumnoObtenido.getUrlFoto(),
+                    alumnoObtenido.getEmailTutor()
+            );
+            
+            alumnosPorGradoYGrupoDTO.add(alumnoDTO);
+        }
+        
+        return alumnosPorGradoYGrupoDTO ;
+    }
+    
+    @Override
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
+        List<ReporteEntity> reportesAlumno = reportesDAO.recuperarReportesAlumno(curp);
+        if (reportesAlumno == null && reportesAlumno.isEmpty()) {
+            return null;
+        }
+        
+        List<ReporteDTO> reportesAlumnoDTO = new ArrayList<>();
+        
+        for (ReporteEntity reporteObtenido : reportesAlumno) {
+
+            AlumnoDTO alumnoDto = new AlumnoDTO(
+                    reporteObtenido.getAlumno().getCURP(),
+                    reporteObtenido.getAlumno().getNombre(),
+                    reporteObtenido.getAlumno().getApellidoP(),
+                    reporteObtenido.getAlumno().getApellidoM(),
+                    reporteObtenido.getAlumno().getGradoGrupo(),
+                    reporteObtenido.getAlumno().getUrlFoto(),
+                    reporteObtenido.getAlumno().getEmailTutor()
+            );
+
+            UsuarioDTO docenteDto = new UsuarioDTO(
+                    reporteObtenido.getUsuario().getCurp(),
+                    reporteObtenido.getUsuario().getNombre(),
+                    reporteObtenido.getUsuario().getApellidoP(),
+                    reporteObtenido.getUsuario().getApellidoM()
+            );
+            
+            ReporteDTO reporteDTO = new ReporteDTO(
+                    reporteObtenido.getId().toHexString(),
+                    alumnoDto,
+                    docenteDto,
+                    reporteObtenido.getNivelIncidencia(),
+                    reporteObtenido.getDescripcion(),
+                    reporteObtenido.getMotivo(),
+                    reporteObtenido.getFechaHora(),
+                    reporteObtenido.isNotificado(),
+                    reporteObtenido.isValidado()
+            );
+            
+            reportesAlumnoDTO.add(reporteDTO);
+        }
+        return reportesAlumnoDTO;
+    }
+    
+    @Override
+    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) {
+        List<ReporteExpedienteDTO> reportesExpedientes = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            String nombreAlumno = reporte.getAlumno().getNombre() + " " + reporte.getAlumno().getApellidoP() + " " + reporte.getAlumno().getApellidoM() ;
+            String nombreDocente = reporte.getDocente().getNombre() + " " + reporte.getDocente().getApellidoP() + " " + reporte.getDocente().getApellidoM() ;
+            reportesExpedientes.add(new ReporteExpedienteDTO(
+                    reporte.getAlumno().getCurp(),
+                    nombreAlumno,
+                    nombreDocente,
+                    reporte.getNivelIncidencia().toString(),
+                    reporte.getDescripcion(),
+                    reporte.getMotivo(),
+                    fechaEnFormato(reporte.getFechaHora())
+            )) ;
+        });
+        
+        return reportesExpedientes ;
+    }
+    
+    private String fechaEnFormato(Date date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+        
+        return sdf.format(date);
     }
 }

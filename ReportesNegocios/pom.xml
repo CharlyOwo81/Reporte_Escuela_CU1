@@ -13,12 +13,18 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ReportesDTO</artifactId>
+            <artifactId>SistemaMensajeria</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.itson.bdavanzadas</groupId>
+                    <artifactId>ReportesDTO</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>SistemaMensajeria</artifactId>
+            <artifactId>ReportesDTO</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

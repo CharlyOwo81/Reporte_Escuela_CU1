@@ -97,6 +97,10 @@ public class ReportesDAO implements IReportesDAO {
         return coleccion.find().into(new ArrayList<>());
     }
     
+    @Override
+    public List<ReporteEntity> recuperarReportesAlumno(String curp) {
+        return coleccion.find(Filters.eq("alumno.cURP", curp)).into(new ArrayList()) ;
+    }
     
     // Para pruebas
     private List<ReporteEntity> listaReportesSimulado() {

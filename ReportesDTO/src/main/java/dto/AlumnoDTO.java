@@ -27,6 +27,16 @@ public class AlumnoDTO {
         this.urlFoto = urlFoto;
         this.emailTutor = emailTutor;
     }
+    
+    public AlumnoDTO(String curp, String nombre, String apellidoP, String apellidoM, String gradoGrupo, String urlFoto, String emailTutor) {
+        this.curp = curp;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.gradoGrupo = gradoGrupo;
+        this.urlFoto = urlFoto;
+        this.emailTutor = emailTutor;
+    }
 
     public ObjectId getId() {
         return _id;

@@ -25,4 +25,6 @@ public interface IReportesDAO {
     
     public void insertarReportesSimulados();
     
+    List<ReporteEntity> recuperarReportesAlumno(String curp) ;
+    
 }
