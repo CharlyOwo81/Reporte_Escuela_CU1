@@ -25,6 +25,7 @@ public class UsuarioEntity {
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.pin = pin;
+        this.rol = rol;
     }
     
     public UsuarioEntity(String curp, String nombre, String apellidoP, String apellidoM, String rol, String pin) {
@@ -33,6 +34,7 @@ public class UsuarioEntity {
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
         this.pin = pin;
+        this.rol = rol;
     }
 
     public ObjectId getId() {
