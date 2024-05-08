@@ -13,28 +13,33 @@ import org.bson.types.ObjectId;
 public class UsuarioEntity {
     
     private ObjectId _id ;
-    private String curp, nombre, apellidoP, apellidoM, rol, pin;
+    private String curp;
+    private String nombre;
+    private String apellidoP;
+    private String apellidoM;
+    private String rol;
+    private String pin;
 
     public UsuarioEntity() {
     }
-    
+
     public UsuarioEntity(ObjectId _id, String curp, String nombre, String apellidoP, String apellidoM, String rol, String pin) {
         this._id = _id;
         this.curp = curp;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
-        this.pin = pin;
         this.rol = rol;
+        this.pin = pin;
     }
-    
+
     public UsuarioEntity(String curp, String nombre, String apellidoP, String apellidoM, String rol, String pin) {
         this.curp = curp;
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
-        this.pin = pin;
         this.rol = rol;
+        this.pin = pin;
     }
 
     public ObjectId getId() {
@@ -92,7 +97,5 @@ public class UsuarioEntity {
     public void setPin(String pin) {
         this.pin = pin;
     }
-    
-    
     
 }

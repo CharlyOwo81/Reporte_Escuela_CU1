@@ -5,6 +5,8 @@
 
 package persistencia.pruebas;
 
+import persistencia.entidades.UsuarioEntity;
+import persistencia.persistenciaEscuela.UsuarioDAO;
 import persistencia.persistenciaSistema.ReportesDAO;
 
 /**
@@ -17,11 +19,11 @@ public class Pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ReportesDAO r = new ReportesDAO();
+        UsuarioDAO u = new UsuarioDAO();
+        UsuarioEntity ue = new UsuarioEntity();
+        ue.setCurp("PEMC010224HDFRRL00");
         
-        //r.insertarReportesSimulados();
-        
-        //System.out.println(r.recuperarReportes().getFirst().getId().toHexString());
+        System.out.println(u.obtenerDocentePorCurp(ue).getCurp());
     }
 
 }

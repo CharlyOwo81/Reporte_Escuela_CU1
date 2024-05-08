@@ -13,7 +13,7 @@ import org.bson.types.ObjectId;
 public class UsuarioDTO {
     private ObjectId _id ;
     private String curp, nombre, apellidoP, apellidoM, rol, pin;
-
+    
     public UsuarioDTO() {
     }
     
@@ -23,6 +23,7 @@ public class UsuarioDTO {
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
+        this.rol = rol;
         this.pin = pin;
     }
     
@@ -31,6 +32,7 @@ public class UsuarioDTO {
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
+        this.rol = rol;
         this.pin = pin;
     }
     

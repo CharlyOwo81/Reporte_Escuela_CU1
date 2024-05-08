@@ -5,7 +5,13 @@
 package presentacion.iniciarsesion;
 
 import dto.UsuarioDTO;
+import fachada.FachadaAdminAcceso;
+import fachada.FachadaGestionarIncidencias;
+import fachada.IFachadaGestionarIncidencias;
+import fachada.IadminAcceso;
 import presentacion.forms.FotosManager;
+import presentacion.forms.FrmBandejaEntrada;
+import presentacion.pdfexpedientes.FrmBuscarExpediente;
 
 /**
  *
@@ -13,7 +19,9 @@ import presentacion.forms.FotosManager;
  */
 public class FrmIniciarSesion extends javax.swing.JFrame {
 
+    private IFachadaGestionarIncidencias gestionIncidencias ;
     private FotosManager fotosManager;
+    private IadminAcceso adminAcceso;
     /**
      * Creates new form FrmIniciarSesion
      */
@@ -192,9 +200,28 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
         usuarioDTO.setCurp(txt_curp.getText());
         usuarioDTO.setPin(psw_pin.getText());
         
-        if(true) {
+        usuarioDTO = adminAcceso.iniciarSesion(usuarioDTO);
+        
+        if(usuarioDTO == null) {
             mostrarMensaje();
         } else {
+            switch(usuarioDTO.getRol()) {
+                case "DOCENTE" -> {
+                    // Lógica para implementar caso de uso de registrar incidencias.
+                    // Se recomienda que el formulario de este caso de uso reciba como parámetro el usuarioDTO para registrar
+                    // los datos del usuario en las incidencias
+                }
+                case "PREFECTO" -> {
+                    FrmBandejaEntrada frmBandeja = new FrmBandejaEntrada() ;
+                    frmBandeja.setVisible(true);
+                }
+                case "DIRECTIVO" -> {
+                    FrmBuscarExpediente frmBuscarExpediente = new FrmBuscarExpediente();
+                    frmBuscarExpediente.setVisible(true);
+                }
+                default -> System.out.println("El usuario no tiene rol registrado");
+            }
+            
             this.dispose();
         }
         
@@ -205,9 +232,16 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
     }
     
     private void iniciarForm() {
+        this.gestionIncidencias = new FachadaGestionarIncidencias() ;
+        insertDatosSimulados();
+        this.adminAcceso = new FachadaAdminAcceso();
         lbl_mensajeError.setVisible(false);
         this.fotosManager = new FotosManager() ;
         PEINEM_logo.setIcon(fotosManager.getFoto("src/main/java/presentacion/iniciarsesion/media/PEINEM_logo.png"));
+    }
+    
+    private void insertDatosSimulados() {
+        gestionIncidencias.insertDatosSimulados();
     }
     
     
