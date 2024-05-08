@@ -49,7 +49,7 @@ public class UsuarioDAO implements IUsuarioDAO{
     public UsuarioEntity obtenerDocentePorCurp(UsuarioEntity de) {
         try {
             if(de.getCurp() == null) throw new Exception("La curp del docente es nula.");
-            return coleccion.find(Filters.eq("CURP", de.getCurp())).first();
+            return coleccion.find(Filters.eq("curp", de.getCurp())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
             return null;
