@@ -10,8 +10,6 @@ import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import fachada.IadminAcceso;
 import presentacion.forms.FotosManager;
-import presentacion.forms.FrmBandejaEntrada;
-import presentacion.pdfexpedientes.FrmBuscarExpediente;
 
 /**
  *
@@ -27,6 +25,7 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
      */
     public FrmIniciarSesion() {
         initComponents();
+        setLocationRelativeTo(null);
         iniciarForm();
     }
 
@@ -196,32 +195,30 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
     public void iniciarSesion() {
         if(txt_curp.getText().isBlank() || psw_pin.getText().isEmpty()) mostrarMensaje();
         
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setCurp(txt_curp.getText());
-        usuarioDTO.setPin(psw_pin.getText());
+        UsuarioDTO usuario = new UsuarioDTO();
+        usuario.setCurp(txt_curp.getText());
+        usuario.setPin(psw_pin.getText());
         
-        usuarioDTO = adminAcceso.iniciarSesion(usuarioDTO);
+        usuario = adminAcceso.iniciarSesion(usuario);
         
-        if(usuarioDTO == null) {
+        if(usuario == null) {
             mostrarMensaje();
         } else {
-            switch(usuarioDTO.getRol()) {
+            switch(usuario.getRol()) {
                 case "DOCENTE" -> {
-                    // Lógica para implementar caso de uso de registrar incidencias.
-                    // Se recomienda que el formulario de este caso de uso reciba como parámetro el usuarioDTO para registrar
-                    // los datos del usuario en las incidencias
+                    FrmMenuGeneral frmBuscarEstudiante = new FrmMenuGeneral(usuario);
+                    frmBuscarEstudiante.setVisible(true);
                 }
                 case "PREFECTO" -> {
-                    FrmBandejaEntrada frmBandeja = new FrmBandejaEntrada() ;
+                    FrmMenuGeneral frmBandeja = new FrmMenuGeneral(usuario) ;
                     frmBandeja.setVisible(true);
                 }
                 case "DIRECTIVO" -> {
-                    FrmBuscarExpediente frmBuscarExpediente = new FrmBuscarExpediente();
+                    FrmMenuGeneral frmBuscarExpediente = new FrmMenuGeneral(usuario);
                     frmBuscarExpediente.setVisible(true);
                 }
                 default -> System.out.println("El usuario no tiene rol registrado");
             }
-            
             this.dispose();
         }
         
@@ -242,42 +239,6 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
     
     private void insertDatosSimulados() {
         gestionIncidencias.insertDatosSimulados();
-    }
-    
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmIniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmIniciarSesion().setVisible(true);
-            }
-        });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

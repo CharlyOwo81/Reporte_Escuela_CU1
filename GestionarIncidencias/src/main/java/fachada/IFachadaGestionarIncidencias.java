@@ -16,6 +16,8 @@ import java.util.List;
 public interface IFachadaGestionarIncidencias {
     ReporteDTO validarReporte(ReporteDTO reporteNuevo);
     
+    void crearReporte(ReporteDTO reporteNuevo);
+    
     boolean notificarReporte(ReporteDTO reporteNuevo);
     
     List<ReporteDTO> recuperarReportes();

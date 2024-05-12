@@ -25,6 +25,10 @@ public class GestionarIncidencias {
         incidenciasBO = new IncidenciasBO() ;
     }
     
+    public void crearReporte(ReporteDTO reporteNuevo) {
+            incidenciasBO.crearReporte(reporteNuevo);
+    }
+    
     public ReporteDTO validarReporte(ReporteDTO reporteNuevo) {
         reporteNuevo.setValidado(true);
         return incidenciasBO.validarReporte(reporteNuevo) ;
@@ -62,5 +66,4 @@ public class GestionarIncidencias {
     public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) {
         return incidenciasBO.convertirReporteAReporteExpediente(reportes) ;
     }
-    
 }

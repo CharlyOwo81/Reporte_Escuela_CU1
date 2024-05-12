@@ -16,13 +16,17 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import dto.ReporteDTO;
+import dto.UsuarioDTO;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import persistencia.conexionBD.ConexionMongo;
+import presentacion.iniciarsesion.FrmMenuGeneral;
 
 /**
  *
@@ -31,12 +35,18 @@ import persistencia.conexionBD.ConexionMongo;
 public class FrmBandejaEntrada extends javax.swing.JFrame {
 
     private IFachadaGestionarIncidencias gestionIncidencias ;
+    private UsuarioDTO usuario;
+    private FotosManager fotosManager;
     
     /**
      * Creates new form FrmBandejaEntrada
      */
-    public FrmBandejaEntrada() {
+    public FrmBandejaEntrada(UsuarioDTO usuario) {
         initComponents();
+        setLocationRelativeTo(null);
+        fondoFrame();
+        botonesImagenes();
+        this.usuario=usuario;
         this.gestionIncidencias = new FachadaGestionarIncidencias() ;
         insertDatosSimulados(); // reportes de ejemplo, dado que aún no hay un caso de uso para registrar nuevos reportes.
         refrescarTabla() ;
@@ -48,6 +58,11 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
                 ConexionMongo.cerrarConexion();
             }
         });
+    }
+    
+    private void fondoFrame() {
+        this.fotosManager = new FotosManager();
+        lblFondo.setIcon(fotosManager.getFoto("src/main/java/presentacion/forms/media/bandejaEntrada.png"));
     }
     
     public void insertDatosSimulados() {
@@ -69,7 +84,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
                 if (!reporteSelec.isValidado()) {
                     dispose() ;
                     System.out.println((reporteSelec.getAlumno().getNombre())) ;
-                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
+                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec, usuario) ;
                     frmValidar.setVisible(true);
                 } else {
                     JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
@@ -77,14 +92,9 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
                 
             }
         } ;
-        
         return validarListener ;
     }
-    
-    
-    
-    
-    
+
     public void refrescarTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel() ;
         List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
@@ -128,6 +138,21 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 
     }
     
+    private void botonesImagenes() {
+        this.fotosManager = new FotosManager();
+
+        // Cargar la imagen
+        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/cerrar-sesion.png");
+        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        // Establecer el ImageIcon escalado como icono del botón
+        btnRegresar.setIcon(iconoEscalado);
+        btnRegresar.setVerticalTextPosition(JButton.BOTTOM);
+        btnRegresar.setHorizontalTextPosition(JButton.CENTER);
+        btnRegresar.setText("Regresar");
+    }
+    
     
 //    public void formatearTabla() {
 ////        tblPersonas.getTableHeader().setBackground(new Color(106, 27, 49));
@@ -165,6 +190,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        btnRegresar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaReportes = new javax.swing.JTable();
         lblFondo = new javax.swing.JLabel();
@@ -174,6 +200,13 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 80));
 
         tablaReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,9 +226,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaReportes);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 1130, -1));
-
-        lblFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\omari\\Documents\\GitHub\\Reporte_Escuela_CU1\\ReportesPresentacion\\src\\resources\\bandejaEntrada.png")); // NOI18N
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 1130, -1));
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 570));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,6 +243,12 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+        FrmMenuGeneral frmMenu = new FrmMenuGeneral(usuario);
+        frmMenu.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -321,6 +358,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblFondo;

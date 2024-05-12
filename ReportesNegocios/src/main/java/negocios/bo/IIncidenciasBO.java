@@ -14,6 +14,8 @@ import dto.ReporteExpedienteDTO ;
  * @author Oliver Valle
  */
 public interface IIncidenciasBO {
+    void crearReporte(ReporteDTO reporteNuevo);
+    
     ReporteDTO validarReporte(ReporteDTO reporteNuevo);
     
     boolean notificarReporte(ReporteDTO reporteNuevo);

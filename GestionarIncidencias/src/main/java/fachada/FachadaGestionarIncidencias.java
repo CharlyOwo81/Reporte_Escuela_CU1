@@ -23,6 +23,11 @@ public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias
     }
     
     @Override
+    public void crearReporte(ReporteDTO reporteNuevo) {
+        boIncidencias.crearReporte(reporteNuevo);
+    }
+    
+    @Override
     public ReporteDTO validarReporte(ReporteDTO reporteNuevo) {
         return boIncidencias.validarReporte(reporteNuevo) ;
     }

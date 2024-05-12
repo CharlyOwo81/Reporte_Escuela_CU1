@@ -36,12 +36,10 @@ public class ReportesDAO implements IReportesDAO {
     public ReporteEntity insertarReporte(ReporteEntity reporte) {
         try {
             coleccion.insertOne(reporte);
-            return reporte;
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Ocurri\u00f3 algo al insertar reportes: {0}", e.getMessage());
-        } finally {
-            return null;
-        }
+        } 
+        return null;
     }
     
     @Override

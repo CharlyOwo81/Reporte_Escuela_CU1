@@ -4,10 +4,10 @@
  */
 package presentacion.forms;
 
-import java.util.Calendar;
 import javax.swing.JOptionPane;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 import dto.ReporteDTO;
+import dto.UsuarioDTO;
 import fachada.IFachadaGestionarIncidencias;
 import java.util.Date;
 
@@ -21,28 +21,57 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private IFachadaGestionarIncidencias gestionIncidencias ;
     private ReporteDTO reporte ;
     private FotosManager fotosManager;
+    private UsuarioDTO usuario;
     
     /**
      * Creates new form FrmValidarReporte
      */
-    public FrmValidarReporte(IFachadaGestionarIncidencias gestionIncidencias, ReporteDTO reporte) {
+    public FrmValidarReporte(IFachadaGestionarIncidencias gestionIncidencias, ReporteDTO reporte, UsuarioDTO usuario) {
         initComponents();
+        setLocationRelativeTo(null);
+        fondoFrame();
         this.gestionIncidencias = gestionIncidencias ;
         this.reporte = reporte ;
+        this.usuario=usuario;
         this.fotosManager = new FotosManager() ;
         fotoAlumno.setIcon(fotosManager.getFoto(reporte.getAlumno().getUrlFoto()));
-        txtCURP.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtNombre.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtApellidoPaterno.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtApellidoMaterno.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtProfesor.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtFecha.setBackground(new java.awt.Color(0, 0, 0, 1));
-        txtGrupo.setBackground(new java.awt.Color(0, 0, 0, 1));
-        btnValidar.setBackground(new java.awt.Color(0, 0, 0, 1));
-        btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 1));
+        txtCURP.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtNombre.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtApellidoPaterno.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtApellidoMaterno.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtProfesor.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtFecha.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtGrupo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        
+        //TEXTAREA - MOTIVO
+        panelTxaMotivo.setOpaque(false);
+        panelTxaMotivo.getViewport().setOpaque(false);
+        panelTxaMotivo.setBorder(null);
+        panelTxaMotivo.setViewportBorder(null);
+        txtMotivo.setBorder(null);
+        txtMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+
+        //TEXTAREA - DESCRIPCIÓN
+        panelTxaDescripcion.setOpaque(false);
+        panelTxaDescripcion.getViewport().setOpaque(false);
+        panelTxaDescripcion.setBorder(null);
+        panelTxaDescripcion.setViewportBorder(null);
+        txtDescripcion.setBorder(null);
+        txtDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
+        
+        
+        txtDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        btnValidar.setBackground(new java.awt.Color(0, 0, 0, 0));
+        btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 0));
         setDatos() ;
     }
 
+    
+    private void fondoFrame() {
+        this.fotosManager = new FotosManager();
+        lblFondo.setIcon(fotosManager.getFoto("src/main/java/presentacion/forms/media/validacionModificacionReporte.png"));
+    }
     
     private void enableCampos() {
         txtMotivo.setEnabled(true);
@@ -73,15 +102,14 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtGrupo.setText(reporte.getAlumno().getGradoGrupo());
         txtMotivo.setText(reporte.getMotivo());
         txtDescripcion.setText(reporte.getDescripcion());
-        Date fecha = reporte.getFechaHora() ;
-        int año = fecha.getYear();
+        Date fecha = reporte.getFechaHora();
+        int anio = fecha.getYear() + 1900;
         int mes = fecha.getMonth() + 1;
-        int dia = fecha.getYear();
+        int dia = fecha.getDay();
         
-        String fechaFormato = año + "/" + mes + "/" + dia;
+        String fechaFormato = anio + "/" + mes + "/" + dia;
         txtFecha.setText(fechaFormato);
 
-        
         if (reporte.getNivelIncidencia() == NivelIncidenciaPersistencia.LEVE) {
             checkLeve.setSelected(true);
         } else if(reporte.getNivelIncidencia() == NivelIncidenciaPersistencia.SEVERO) {
@@ -102,9 +130,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         fotoAlumno = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        panelTxaDescripcion = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        panelTxaMotivo = new javax.swing.JScrollPane();
         txtMotivo = new javax.swing.JTextArea();
         checkLeve = new javax.swing.JCheckBox();
         checkSevero = new javax.swing.JCheckBox();
@@ -124,6 +152,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
         setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1210, 660));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,25 +165,27 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtDescripcion.setBackground(new java.awt.Color(255, 255, 255));
         txtDescripcion.setColumns(20);
         txtDescripcion.setForeground(new java.awt.Color(0, 0, 0));
+        txtDescripcion.setLineWrap(true);
         txtDescripcion.setRows(5);
         txtDescripcion.setBorder(null);
         txtDescripcion.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtDescripcion.setEnabled(false);
-        jScrollPane2.setViewportView(txtDescripcion);
+        panelTxaDescripcion.setViewportView(txtDescripcion);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 450, 330, 170));
+        jPanel1.add(panelTxaDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 320, 160));
 
         txtMotivo.setEditable(false);
         txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
         txtMotivo.setColumns(20);
         txtMotivo.setForeground(new java.awt.Color(0, 0, 0));
+        txtMotivo.setLineWrap(true);
         txtMotivo.setRows(5);
         txtMotivo.setBorder(null);
         txtMotivo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtMotivo.setEnabled(false);
-        jScrollPane1.setViewportView(txtMotivo);
+        panelTxaMotivo.setViewportView(txtMotivo);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 450, 330, 170));
+        jPanel1.add(panelTxaMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 330, 160));
 
         checkLeve.setBackground(new java.awt.Color(255, 255, 255));
         checkLeve.setFont(new java.awt.Font("NATS", 0, 24)); // NOI18N
@@ -322,8 +353,6 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 570, 170, 50));
-
-        lblFondo.setIcon(new javax.swing.ImageIcon("C:\\Users\\omari\\Documents\\GitHub\\Reporte_Escuela_CU1\\ReportesPresentacion\\src\\resources\\validacionModificacionReporte.png")); // NOI18N
         jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 660));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1230, -1));
@@ -334,7 +363,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose() ;
-        FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(gestionIncidencias) ;
+        FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(usuario) ;
         bandejaEntrada.setVisible(true);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -348,7 +377,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int resp = JOptionPane.showConfirmDialog(this, "¿Estás seguro de validar este reporte?. Los cambios que hayan realizados se verán reflejados en el sistema.", "Validar Reporte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
-        NivelIncidenciaPersistencia nivelIncidencia ;
+        NivelIncidenciaPersistencia nivelIncidencia;
         if (resp == JOptionPane.YES_OPTION) {
             if (checkLeve.isSelected()) {
                 nivelIncidencia = NivelIncidenciaPersistencia.LEVE ;
@@ -371,7 +400,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             }
             
             dispose() ;
-            FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(gestionIncidencias) ;
+            FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(usuario) ;
             bandejaEntrada.setVisible(true);
         }
     }//GEN-LAST:event_btnValidarActionPerformed
@@ -452,9 +481,9 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkSevero;
     private javax.swing.JLabel fotoAlumno;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblFondo;
+    private javax.swing.JScrollPane panelTxaDescripcion;
+    private javax.swing.JScrollPane panelTxaMotivo;
     private javax.swing.JToggleButton toggleModificar;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;

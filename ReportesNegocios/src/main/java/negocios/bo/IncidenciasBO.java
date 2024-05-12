@@ -17,6 +17,7 @@ import java.util.Date;
 import org.bson.types.ObjectId;
 import persistencia.entidades.AlumnoEntity;
 import persistencia.entidades.ReporteEntity;
+import persistencia.entidades.UsuarioEntity;
 import persistencia.persistenciaEscuela.AlumnoDAO;
 import persistencia.persistenciaEscuela.UsuarioDAO;
 import persistencia.persistenciaSistema.IReportesDAO;
@@ -47,6 +48,41 @@ public class IncidenciasBO implements IIncidenciasBO{
         reportesDAO.insertarReportesSimulados();
         alumnoDAO.insertarAlumnosSimulados();
         usuarioDAO.insertarDocentesSimulados();
+    }
+    
+    @Override
+    public void crearReporte(ReporteDTO reporteNuevo) {
+        UsuarioEntity usuario = new UsuarioEntity(
+                reporteNuevo.getDocente().getCurp(),
+                reporteNuevo.getDocente().getNombre(),
+                reporteNuevo.getDocente().getApellidoP(),
+                reporteNuevo.getDocente().getApellidoM(),
+                reporteNuevo.getDocente().getRol(),
+                reporteNuevo.getDocente().getPin());
+
+        AlumnoEntity alumno = new AlumnoEntity(
+                reporteNuevo.getAlumno().getCurp(),
+                reporteNuevo.getAlumno().getNombre(),
+                reporteNuevo.getAlumno().getApellidoP(),
+                reporteNuevo.getAlumno().getApellidoM(),
+                reporteNuevo.getAlumno().getGradoGrupo(),
+                reporteNuevo.getAlumno().getEmailTutor(),
+                reporteNuevo.getAlumno().getUrlFoto());
+
+        ReporteEntity reporteCreado = new ReporteEntity();
+
+        reporteCreado.setValidado(false);
+        reporteCreado.setNotificado(false);
+
+        reporteCreado.setUsuario(usuario);
+        reporteCreado.setAlumno(alumno);
+
+        reporteCreado.setFechaHora(reporteNuevo.getFechaHora());
+        reporteCreado.setDescripcion(reporteNuevo.getDescripcion());
+        reporteCreado.setMotivo(reporteNuevo.getMotivo());
+        reporteCreado.setNivelIncidencia(reporteNuevo.getNivelIncidencia());
+
+        reportesDAO.insertarReporte(reporteCreado);
     }
     
     @Override

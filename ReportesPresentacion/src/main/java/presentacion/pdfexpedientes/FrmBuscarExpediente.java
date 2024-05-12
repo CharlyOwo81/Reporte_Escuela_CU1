@@ -7,6 +7,7 @@ package presentacion.pdfexpedientes;
 import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
+import dto.UsuarioDTO;
 import fachada.FachadaGenerarReportes;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGenerarReportes;
@@ -25,8 +26,8 @@ import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
-import presentacion.forms.FrmBandejaEntrada;
-import presentacion.forms.FrmValidarReporte;
+import presentacion.forms.FotosManager;
+import presentacion.iniciarsesion.FrmMenuGeneral;
 
 /**
  *
@@ -37,23 +38,27 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
     IFachadaGestionarIncidencias gestionIncidencias ;
     IFachadaGenerarReportes generarReportes ;
     List<AlumnoDTO> alumnos ;
+    private FotosManager fotosManager;
+    private UsuarioDTO usuario;
     /**
      * Creates new form FrmBuscarExpediente
      */
-    public FrmBuscarExpediente() {
+    public FrmBuscarExpediente(UsuarioDTO usuario) {
         initComponents();
+        setLocationRelativeTo(null);
+        fondoFrame();
+        this.usuario=usuario;
         gestionIncidencias = new FachadaGestionarIncidencias() ;
         generarReportes = new FachadaGenerarReportes() ;
         alumnos = new ArrayList() ;
+        btnBuscar.setBackground(new java.awt.Color(0, 0, 0, 0));
+    
     }
-
     
-    
-    
-    
-    
-    
-    
+    private void fondoFrame() {
+        this.fotosManager = new FotosManager();
+        fondoFrame.setIcon(fotosManager.getFoto("src/main/java/presentacion/pdfexpedientes/media/exportacionExpedientesPDF.png"));
+    }
     
     public void refrescarTabla() {
         
@@ -106,9 +111,8 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnRegresar = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
-        lblGrupo = new javax.swing.JLabel();
-        lblGrado = new javax.swing.JLabel();
         comboBoxGrupo = new javax.swing.JComboBox<>();
         comboBoxGrado = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -118,34 +122,38 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnBuscar.setBackground(new java.awt.Color(0, 102, 255));
+        btnRegresar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        btnRegresar.setBorder(null);
+        btnRegresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 90, 90));
+
+        btnBuscar.setBackground(javax.swing.UIManager.getDefaults().getColor("Button.disabledSelectedBackground"));
         btnBuscar.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
+        btnBuscar.setBorder(null);
+        btnBuscar.setBorderPainted(false);
+        btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setFocusPainted(false);
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 120, 40));
-
-        lblGrupo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblGrupo.setForeground(new java.awt.Color(0, 0, 0));
-        lblGrupo.setText("Grupo");
-        getContentPane().add(lblGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 130, -1, -1));
-
-        lblGrado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        lblGrado.setForeground(new java.awt.Color(0, 0, 0));
-        lblGrado.setText("Grado");
-        getContentPane().add(lblGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, -1, -1));
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 200, 170, 60));
 
         comboBoxGrupo.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         comboBoxGrupo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir...", "A", "B", "C", "D", "E", "F" }));
-        getContentPane().add(comboBoxGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 170, 130, 40));
+        comboBoxGrupo.setBorder(null);
+        getContentPane().add(comboBoxGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 210, 200, 40));
 
         comboBoxGrado.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         comboBoxGrado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Elegir...", "1", "2", "3" }));
-        getContentPane().add(comboBoxGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 130, 40));
+        comboBoxGrado.setBorder(null);
+        getContentPane().add(comboBoxGrado, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 160, 40));
 
         tablaExpedientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -160,10 +168,8 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tablaExpedientes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 267, 920, 320));
-
-        fondoFrame.setIcon(new javax.swing.ImageIcon("C:\\Users\\omari\\Documents\\GitHub\\Reporte_Escuela_CU1\\ReportesPresentacion\\src\\resources\\busquedaExpedientes.png")); // NOI18N
-        getContentPane().add(fondoFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 920, 320));
+        getContentPane().add(fondoFrame, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, 660));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,6 +192,12 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(this, "No hay alumnos en este grado o grupo", "No hay alumnos", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed
+        this.dispose();
+        FrmMenuGeneral frmMenu = new FrmMenuGeneral(usuario);
+        frmMenu.setVisible(true);
+    }//GEN-LAST:event_btnRegresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,12 +236,11 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnRegresar;
     private javax.swing.JComboBox<String> comboBoxGrado;
     private javax.swing.JComboBox<String> comboBoxGrupo;
     private javax.swing.JLabel fondoFrame;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblGrado;
-    private javax.swing.JLabel lblGrupo;
     private javax.swing.JTable tablaExpedientes;
     // End of variables declaration//GEN-END:variables
 
