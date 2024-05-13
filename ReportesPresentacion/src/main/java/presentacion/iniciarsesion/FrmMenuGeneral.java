@@ -5,6 +5,7 @@
 package presentacion.iniciarsesion;
 
 import dto.UsuarioDTO;
+import java.awt.Color;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -84,6 +85,7 @@ public class FrmMenuGeneral extends javax.swing.JFrame {
         btnCerrarSesion.setIcon(iconoEscalado);
         btnCerrarSesion.setVerticalTextPosition(JButton.BOTTOM);
         btnCerrarSesion.setHorizontalTextPosition(JButton.CENTER);
+        btnCerrarSesion.setForeground(Color.WHITE);
         btnCerrarSesion.setText("Cerrar sesión");
     }
     /**
@@ -105,6 +107,7 @@ public class FrmMenuGeneral extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1210, 660));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnCerrarSesion.setBackground(new java.awt.Color(137, 21, 71));
         btnCerrarSesion.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,6 +116,7 @@ public class FrmMenuGeneral extends javax.swing.JFrame {
         });
         getContentPane().add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, -1, 80));
 
+        btnExportar.setBackground(new java.awt.Color(229, 130, 62));
         btnExportar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         btnExportar.setBorder(null);
         btnExportar.setBorderPainted(false);
@@ -123,6 +127,7 @@ public class FrmMenuGeneral extends javax.swing.JFrame {
         });
         getContentPane().add(btnExportar, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 190, 260, 390));
 
+        btnValidarModificar.setBackground(new java.awt.Color(229, 130, 62));
         btnValidarModificar.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         btnValidarModificar.setBorder(null);
         btnValidarModificar.setBorderPainted(false);
@@ -133,6 +138,7 @@ public class FrmMenuGeneral extends javax.swing.JFrame {
         });
         getContentPane().add(btnValidarModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 260, 390));
 
+        btnCrear.setBackground(new java.awt.Color(229, 130, 62));
         btnCrear.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         btnCrear.setBorder(null);
         btnCrear.setBorderPainted(false);

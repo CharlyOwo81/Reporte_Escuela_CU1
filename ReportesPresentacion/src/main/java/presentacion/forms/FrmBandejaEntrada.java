@@ -19,6 +19,7 @@ import dto.ReporteDTO;
 import dto.UsuarioDTO;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -142,7 +143,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         this.fotosManager = new FotosManager();
 
         // Cargar la imagen
-        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/cerrar-sesion.png");
+        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/flecha-izquierda.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
@@ -150,6 +151,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         btnRegresar.setIcon(iconoEscalado);
         btnRegresar.setVerticalTextPosition(JButton.BOTTOM);
         btnRegresar.setHorizontalTextPosition(JButton.CENTER);
+        btnRegresar.setForeground(Color.WHITE);
         btnRegresar.setText("Regresar");
     }
     
@@ -201,6 +203,7 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnRegresar.setBackground(new java.awt.Color(137, 21, 71));
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegresarActionPerformed(evt);

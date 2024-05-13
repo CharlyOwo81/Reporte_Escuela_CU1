@@ -12,12 +12,15 @@ import fachada.FachadaGenerarReportes;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGenerarReportes;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Color;
 import java.awt.Component;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -46,6 +49,7 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
     public FrmBuscarExpediente(UsuarioDTO usuario) {
         initComponents();
         setLocationRelativeTo(null);
+        botonesImagenes();
         fondoFrame();
         this.usuario=usuario;
         gestionIncidencias = new FachadaGestionarIncidencias() ;
@@ -58,6 +62,22 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
     private void fondoFrame() {
         this.fotosManager = new FotosManager();
         fondoFrame.setIcon(fotosManager.getFoto("src/main/java/presentacion/pdfexpedientes/media/exportacionExpedientesPDF.png"));
+    }
+    
+    private void botonesImagenes() {
+        this.fotosManager = new FotosManager();
+
+        // Cargar la imagen
+        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/flecha-izquierda.png");
+        Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
+        ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
+
+        // Establecer el ImageIcon escalado como icono del botón
+        btnRegresar.setIcon(iconoEscalado);
+        btnRegresar.setVerticalTextPosition(JButton.BOTTOM);
+        btnRegresar.setHorizontalTextPosition(JButton.CENTER);
+        btnRegresar.setForeground(Color.WHITE);
+        btnRegresar.setText("Regresar");
     }
     
     public void refrescarTabla() {
@@ -122,6 +142,7 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnRegresar.setBackground(new java.awt.Color(137, 21, 71));
         btnRegresar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         btnRegresar.setBorder(null);
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {

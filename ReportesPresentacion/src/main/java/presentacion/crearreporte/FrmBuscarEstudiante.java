@@ -8,6 +8,7 @@ import dto.AlumnoDTO;
 import dto.UsuarioDTO;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -118,6 +119,7 @@ public ActionListener botonValidar() {
 
         panelBuscarEstudiante.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnRegresar.setBackground(new java.awt.Color(137, 21, 71));
         btnRegresar.setFont(new java.awt.Font("Roboto", 0, 16)); // NOI18N
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,7 +197,7 @@ public ActionListener botonValidar() {
         this.fotosManager = new FotosManager();
 
         // Cargar la imagen
-        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/cerrar-sesion.png");
+        ImageIcon iconoOriginal = new ImageIcon("src/main/java/presentacion/botones/flecha-izquierda.png");
         Image imagenEscalada = iconoOriginal.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH);
         ImageIcon iconoEscalado = new ImageIcon(imagenEscalada);
 
@@ -203,6 +205,7 @@ public ActionListener botonValidar() {
         btnRegresar.setIcon(iconoEscalado);
         btnRegresar.setVerticalTextPosition(JButton.BOTTOM);
         btnRegresar.setHorizontalTextPosition(JButton.CENTER);
+        btnRegresar.setForeground(Color.WHITE);
         btnRegresar.setText("Regresar");
     }
     
