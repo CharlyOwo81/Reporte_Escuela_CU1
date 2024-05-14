@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.conexionBD.ConexionEscuela;
 import persistencia.entidades.AlumnoEntity;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
@@ -24,51 +25,64 @@ public class AlumnoDAO implements IAlumnoDAO{
     }
     
     @Override
-    public void insertarAlumnosSimulados() {
+    public void insertarAlumnosSimulados() throws PersistenciaException {
         try {
             if(coleccion.countDocuments() == 0) {
                 coleccion.insertMany(listaAlumnosSimulados());
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Ya hay alumnos insertados", e.getMessage());
+            throw new PersistenciaException("Ya hay alumnos insertados") ;
         }
     }
     
     @Override
-    public AlumnoEntity obtenerAlumno(AlumnoEntity ae) {
+    public AlumnoEntity obtenerAlumno(AlumnoEntity ae) throws PersistenciaException {
         try {
-            if(ae.getId() == null) throw new Exception("El id del alumno es nulo.");
+            if(ae.getId() == null) throw new PersistenciaException("El id del alumno es nulo.");
             return coleccion.find(Filters.eq("_id", ae.getId())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new PersistenciaException("Error al obtener Alumno") ;
         }
     }
 
     @Override
-    public AlumnoEntity obtenerAlumnoPorCurp(AlumnoEntity ae) {
+    public AlumnoEntity obtenerAlumnoPorCurp(AlumnoEntity ae) throws PersistenciaException {
         try {
-            if(ae.getCURP() == null) throw new Exception("La curp del docente es nula.");
+            if(ae.getCURP() == null) throw new PersistenciaException("La curp del docente es nula.");
             return coleccion.find(Filters.eq("CURP", ae.getCURP())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new PersistenciaException("Error al obtener Alumno" );
         }
     }
     
     @Override
-    public List<AlumnoEntity> recuperarAlumnosPorGrado(String grado) {
-        return coleccion.find(Filters.regex("gradoGrupo", "^" + grado)).into(new ArrayList()) ;
+    public List<AlumnoEntity> recuperarAlumnosPorGrado(String grado) throws PersistenciaException {
+        try {
+            return coleccion.find(Filters.regex("gradoGrupo", "^" + grado)).into(new ArrayList()) ;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener Alumnos") ;
+        }
     }
 
     @Override
-    public List<AlumnoEntity> recuperarAlumnosPorGrupo(String grupo) {
-        return coleccion.find(Filters.regex("gradoGrupo", grupo + "$")).into(new ArrayList()) ;
+    public List<AlumnoEntity> recuperarAlumnosPorGrupo(String grupo) throws PersistenciaException {
+        try {
+            return coleccion.find(Filters.regex("gradoGrupo", grupo + "$")).into(new ArrayList()) ;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener Alumnos") ;
+        }
     }
 
     @Override
-    public List<AlumnoEntity> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
-        return coleccion.find(Filters.eq("gradoGrupo", grado + grupo)).into(new ArrayList()) ;
+    public List<AlumnoEntity> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws PersistenciaException {
+        try {
+            return coleccion.find(Filters.eq("gradoGrupo", grado + grupo)).into(new ArrayList()) ;
+        } catch (Exception e) {
+            throw new PersistenciaException("Error al obtener Alumnos") ;
+        }
     }
     
     // Para pruebas

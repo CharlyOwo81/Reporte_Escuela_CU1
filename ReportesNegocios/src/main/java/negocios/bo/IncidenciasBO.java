@@ -4,6 +4,7 @@
  */
 package negocios.bo;
 
+
 import java.util.List;
 import dto.AlumnoDTO;
 import dto.UsuarioDTO;
@@ -14,10 +15,12 @@ import fachada.IFachadaSistemaMensajeria;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import negocios.excepciones.NegociosException;
 import org.bson.types.ObjectId;
 import persistencia.entidades.AlumnoEntity;
 import persistencia.entidades.ReporteEntity;
 import persistencia.entidades.UsuarioEntity;
+import persistencia.excepciones.PersistenciaException;
 import persistencia.persistenciaEscuela.AlumnoDAO;
 import persistencia.persistenciaEscuela.UsuarioDAO;
 import persistencia.persistenciaSistema.IReportesDAO;
@@ -44,14 +47,18 @@ public class IncidenciasBO implements IIncidenciasBO{
     }
     
     @Override
-    public void insertDatosSimulados() {
-        reportesDAO.insertarReportesSimulados();
-        alumnoDAO.insertarAlumnosSimulados();
-        usuarioDAO.insertarDocentesSimulados();
+    public void insertDatosSimulados() throws NegociosException {
+        try {
+            reportesDAO.insertarReportesSimulados();
+            alumnoDAO.insertarAlumnosSimulados();
+            usuarioDAO.insertarDocentesSimulados();
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
     
     @Override
-    public void crearReporte(ReporteDTO reporteNuevo) {
+    public void crearReporte(ReporteDTO reporteNuevo) throws NegociosException {
         UsuarioEntity usuario = new UsuarioEntity(
                 reporteNuevo.getDocente().getCurp(),
                 reporteNuevo.getDocente().getNombre(),
@@ -81,18 +88,26 @@ public class IncidenciasBO implements IIncidenciasBO{
         reporteCreado.setDescripcion(reporteNuevo.getDescripcion());
         reporteCreado.setMotivo(reporteNuevo.getMotivo());
         reporteCreado.setNivelIncidencia(reporteNuevo.getNivelIncidencia());
-
-        reportesDAO.insertarReporte(reporteCreado);
+        
+        try {
+            reportesDAO.insertarReporte(reporteCreado);
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
     
     @Override
-    public ReporteDTO validarReporte(ReporteDTO reporteDto) {
+    public ReporteDTO validarReporte(ReporteDTO reporteDto) throws NegociosException {
         ReporteEntity reporteObtenido = new ReporteEntity();
         
         reporteObtenido.setId(new ObjectId(reporteDto.getId()));
         reporteObtenido.setValidado(reporteDto.isValidado());
         
-        reporteObtenido = reportesDAO.validarReporte(reporteObtenido);
+        try {
+            reporteObtenido = reportesDAO.validarReporte(reporteObtenido);
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
         
         if(reporteObtenido == null) return null;
         AlumnoDTO alumnoObtenido = new AlumnoDTO(
@@ -132,69 +147,78 @@ public class IncidenciasBO implements IIncidenciasBO{
     }
 
     @Override
-    public boolean notificarReporte(ReporteDTO reporteDto) {
+    public boolean notificarReporte(ReporteDTO reporteDto) throws NegociosException {
         // Lógica para hacer notificación 
         if(sistemaMensajeria.enviarMensaje(reporteDto)) { // Si se pudo enviar el mensaje, se cambia el estado de notificación del reporte
             // Lógica para cambiar estádo a notificado
             ReporteEntity reporteEntity = new ReporteEntity();
             reporteEntity.setId(new ObjectId(reporteDto.getId()));
-            return reportesDAO.notificarReporte(reporteEntity); // Retorna verdadero si se pudo cambiar el estado de notificación del reporte
+            try {
+                return reportesDAO.notificarReporte(reporteEntity); // Retorna verdadero si se pudo cambiar el estado de notificación del reporte
+            } catch (PersistenciaException e) {
+                throw new NegociosException(e.getMessage());
+            }
         }
         return false; // No se pudo enviar el mensaje
     }
 
     @Override
-    public List<ReporteDTO> recuperarReportes() {
-        List<ReporteEntity> reportesEntity = reportesDAO.recuperarReportes();
-        if (reportesEntity == null && reportesEntity.isEmpty()) {
-            return null;
-        }
-        
-        List<ReporteDTO> reportesDto = new ArrayList<>();
-        
-        for (ReporteEntity reporteObtenido : reportesEntity) {
+    public List<ReporteDTO> recuperarReportes() throws NegociosException {
+        try {
+            List<ReporteEntity> reportesEntity = reportesDAO.recuperarReportes();
+            if (reportesEntity == null && reportesEntity.isEmpty()) {
+                return null;
+            }
 
-            AlumnoDTO alumnoDto = new AlumnoDTO(
-                    reporteObtenido.getAlumno().getId(),
-                    reporteObtenido.getAlumno().getCURP(),
-                    reporteObtenido.getAlumno().getNombre(),
-                    reporteObtenido.getAlumno().getApellidoP(),
-                    reporteObtenido.getAlumno().getApellidoM(),
-                    reporteObtenido.getAlumno().getGradoGrupo(),
-                    reporteObtenido.getAlumno().getUrlFoto(),
-                    reporteObtenido.getAlumno().getEmailTutor()
-            );
+            List<ReporteDTO> reportesDto = new ArrayList<>();
 
-            UsuarioDTO usuarioDto = new UsuarioDTO(
-                    reporteObtenido.getUsuario().getId(),
-                    reporteObtenido.getUsuario().getCurp(),
-                    reporteObtenido.getUsuario().getNombre(),
-                    reporteObtenido.getUsuario().getApellidoP(),
-                    reporteObtenido.getUsuario().getApellidoM(),
-                    reporteObtenido.getUsuario().getRol(),
-                    reporteObtenido.getUsuario().getPin()
-            );
-            
-            ReporteDTO reporteDTO = new ReporteDTO(
-                    reporteObtenido.getId().toHexString(),
-                    alumnoDto,
-                    usuarioDto,
-                    reporteObtenido.getNivelIncidencia(),
-                    reporteObtenido.getDescripcion(),
-                    reporteObtenido.getMotivo(),
-                    reporteObtenido.getFechaHora(),
-                    reporteObtenido.isNotificado(),
-                    reporteObtenido.isValidado()
-            );
-            
-            reportesDto.add(reporteDTO);
+            for (ReporteEntity reporteObtenido : reportesEntity) {
+
+                AlumnoDTO alumnoDto = new AlumnoDTO(
+                        reporteObtenido.getAlumno().getId(),
+                        reporteObtenido.getAlumno().getCURP(),
+                        reporteObtenido.getAlumno().getNombre(),
+                        reporteObtenido.getAlumno().getApellidoP(),
+                        reporteObtenido.getAlumno().getApellidoM(),
+                        reporteObtenido.getAlumno().getGradoGrupo(),
+                        reporteObtenido.getAlumno().getUrlFoto(),
+                        reporteObtenido.getAlumno().getEmailTutor()
+                );
+
+                UsuarioDTO usuarioDto = new UsuarioDTO(
+                        reporteObtenido.getUsuario().getId(),
+                        reporteObtenido.getUsuario().getCurp(),
+                        reporteObtenido.getUsuario().getNombre(),
+                        reporteObtenido.getUsuario().getApellidoP(),
+                        reporteObtenido.getUsuario().getApellidoM(),
+                        reporteObtenido.getUsuario().getRol(),
+                        reporteObtenido.getUsuario().getPin()
+                );
+
+                ReporteDTO reporteDTO = new ReporteDTO(
+                        reporteObtenido.getId().toHexString(),
+                        alumnoDto,
+                        usuarioDto,
+                        reporteObtenido.getNivelIncidencia(),
+                        reporteObtenido.getDescripcion(),
+                        reporteObtenido.getMotivo(),
+                        reporteObtenido.getFechaHora(),
+                        reporteObtenido.isNotificado(),
+                        reporteObtenido.isValidado()
+                );
+
+                reportesDto.add(reporteDTO);
+            }
+            return reportesDto;
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage());
         }
-        return reportesDto;
     }
     
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
-        List<AlumnoEntity> alumnosPorGrado = alumnoDAO.recuperarAlumnosPorGrado(grado) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) throws NegociosException {
+        try {
+            List<AlumnoEntity> alumnosPorGrado = alumnoDAO.recuperarAlumnosPorGrado(grado) ;
         
         List<AlumnoDTO> alumnosPorGradoDTO = new ArrayList() ;
         
@@ -218,11 +242,14 @@ public class IncidenciasBO implements IIncidenciasBO{
         }
         
         return alumnosPorGradoDTO ;
-        
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
 
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) throws NegociosException {
+        try{
         List<AlumnoEntity> alumnosPorGrupo = alumnoDAO.recuperarAlumnosPorGrupo(grupo) ;
         
         List<AlumnoDTO> alumnosPorGrupoDTO = new ArrayList() ;
@@ -247,10 +274,14 @@ public class IncidenciasBO implements IIncidenciasBO{
         }
         
         return alumnosPorGrupoDTO ;
+        } catch(PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
 
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws NegociosException {
+        try {
         List<AlumnoEntity> alumnosPorGradoYGrupo = alumnoDAO.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
         
         List<AlumnoDTO> alumnosPorGradoYGrupoDTO = new ArrayList() ;
@@ -275,10 +306,14 @@ public class IncidenciasBO implements IIncidenciasBO{
         }
         
         return alumnosPorGradoYGrupoDTO ;
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
     
     @Override
-    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) throws NegociosException {
+        try {
         List<ReporteEntity> reportesAlumno = reportesDAO.recuperarReportesAlumno(curp);
         if (reportesAlumno == null && reportesAlumno.isEmpty()) {
             return null;
@@ -320,10 +355,13 @@ public class IncidenciasBO implements IIncidenciasBO{
             reportesAlumnoDTO.add(reporteDTO);
         }
         return reportesAlumnoDTO;
+        } catch (PersistenciaException e) {
+            throw new NegociosException(e.getMessage()) ;
+        }
     }
     
     @Override
-    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) {
+    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) throws NegociosException {
         List<ReporteExpedienteDTO> reportesExpedientes = new ArrayList() ;
         
         reportes.forEach(reporte -> {

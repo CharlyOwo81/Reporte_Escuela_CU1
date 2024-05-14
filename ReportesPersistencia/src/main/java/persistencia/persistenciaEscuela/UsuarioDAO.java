@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import persistencia.conexionBD.ConexionEscuela;
 import persistencia.entidades.UsuarioEntity;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
@@ -24,35 +25,36 @@ public class UsuarioDAO implements IUsuarioDAO{
     }
     
     @Override
-    public void insertarDocentesSimulados() {
+    public void insertarDocentesSimulados() throws PersistenciaException {
         try {
             if(coleccion.countDocuments() == 0) {
                 coleccion.insertMany(listaDocentesSimulado());
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Ya hay docentes insertados", e.getMessage());
+            throw new PersistenciaException("Ya hay docentes insertados") ;
         }
     }
     
     @Override
-    public UsuarioEntity obtenerDocente(UsuarioEntity de) {
+    public UsuarioEntity obtenerDocente(UsuarioEntity de) throws PersistenciaException {
         try {
             if(de.getId() == null) throw new Exception("El id del docente es nulo.");
             return coleccion.find(Filters.eq("_id", de.getId())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new PersistenciaException("Error al obtener Docente") ;
         }
     }
 
     @Override
-    public UsuarioEntity obtenerDocentePorCurp(UsuarioEntity de) {
+    public UsuarioEntity obtenerDocentePorCurp(UsuarioEntity de) throws PersistenciaException {
         try {
             if(de.getCurp() == null) throw new Exception("La curp del docente es nula.");
             return coleccion.find(Filters.eq("curp", de.getCurp())).first();
         } catch (Exception e) {
             LOG.log(Level.SEVERE, e.getMessage());
-            return null;
+            throw new PersistenciaException("Error al obtener Docente") ;
         }
     }
     

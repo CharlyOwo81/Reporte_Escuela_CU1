@@ -8,6 +8,7 @@ import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.FachadaGenerarReportes;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGenerarReportes;
@@ -112,11 +113,14 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
         ActionListener validarListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                List<ReporteDTO> reportesAlumno = gestionIncidencias.recuperarReportesAlumno(alumnos.get(tablaExpedientes.getSelectedRow()).getCurp()) ;
+                try {
+                    List<ReporteDTO> reportesAlumno = gestionIncidencias.recuperarReportesAlumno(alumnos.get(tablaExpedientes.getSelectedRow()).getCurp()) ;
                 List<ReporteExpedienteDTO> reportesExpedientesAlumno = gestionIncidencias.convertirReportesAReporteExpediente(reportesAlumno) ;
                 
                 generarReportes.generarReporte(reportesExpedientesAlumno);
-                
+                } catch (SubsistemaException ex) {
+                    JOptionPane.showConfirmDialog(new JFrame(), ex.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+                }
             }
         } ;
         
@@ -196,7 +200,8 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if(comboBoxGrado.getSelectedIndex() == 0 && comboBoxGrupo.getSelectedIndex() == 0) {
+        try {
+            if(comboBoxGrado.getSelectedIndex() == 0 && comboBoxGrupo.getSelectedIndex() == 0) {
             JOptionPane.showConfirmDialog(new JFrame(), "Elige un filtro", "Elige un filtro", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
             return ;
         } else if (comboBoxGrado.getSelectedIndex() != 0 && comboBoxGrupo.getSelectedIndex() == 0){
@@ -211,6 +216,9 @@ public class FrmBuscarExpediente extends javax.swing.JFrame {
             refrescarTabla() ;
         } else {
             JOptionPane.showConfirmDialog(this, "No hay alumnos en este grado o grupo", "No hay alumnos", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+        }
+        } catch (SubsistemaException e) {
+            JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
 

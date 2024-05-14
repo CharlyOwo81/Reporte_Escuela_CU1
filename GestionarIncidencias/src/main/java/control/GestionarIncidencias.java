@@ -7,9 +7,11 @@ package control;
 import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
+import excepciones.SubsistemaException;
 import java.util.List;
 import negocios.bo.IIncidenciasBO;
 import negocios.bo.IncidenciasBO;
+import negocios.excepciones.NegociosException;
 
 
 
@@ -18,52 +20,91 @@ import negocios.bo.IncidenciasBO;
  * @author Oliver Valle
  */
 public class GestionarIncidencias {
-
     private IIncidenciasBO incidenciasBO ;
     
     public GestionarIncidencias() {
         incidenciasBO = new IncidenciasBO() ;
     }
     
-    public void crearReporte(ReporteDTO reporteNuevo) {
+    public void crearReporte(ReporteDTO reporteNuevo) throws SubsistemaException{
+        try {
             incidenciasBO.crearReporte(reporteNuevo);
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public ReporteDTO validarReporte(ReporteDTO reporteNuevo) {
-        reporteNuevo.setValidado(true);
-        return incidenciasBO.validarReporte(reporteNuevo) ;
+    public ReporteDTO validarReporte(ReporteDTO reporteNuevo) throws SubsistemaException{
+        try {
+            reporteNuevo.setValidado(true);
+            return incidenciasBO.validarReporte(reporteNuevo) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
 
-    public boolean notificarReporte(ReporteDTO reporteNuevo) {
-        reporteNuevo.setNotificado(true);
-        return incidenciasBO.notificarReporte(reporteNuevo) ;
+    public boolean notificarReporte(ReporteDTO reporteNuevo) throws SubsistemaException{
+        try {
+            reporteNuevo.setNotificado(true);
+            return incidenciasBO.notificarReporte(reporteNuevo) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
 
-    public List<ReporteDTO> recuperarReportes() {
-        return incidenciasBO.recuperarReportes() ;
+    public List<ReporteDTO> recuperarReportes() throws SubsistemaException{
+        try {
+            return incidenciasBO.recuperarReportes() ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public void insertDatosSimulados() {
-        incidenciasBO.insertDatosSimulados();
+    public void insertDatosSimulados() throws SubsistemaException{
+        try {
+            incidenciasBO.insertDatosSimulados();
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
 
-    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
-        return incidenciasBO.recuperarAlumnosPorGrado(grado) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) throws SubsistemaException{
+        try {
+            return incidenciasBO.recuperarAlumnosPorGrado(grado) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
-        return incidenciasBO.recuperarAlumnosPorGrupo(grupo) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) throws SubsistemaException{
+        try {
+            return incidenciasBO.recuperarAlumnosPorGrupo(grupo) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
-        return incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws SubsistemaException{
+        try {
+            return incidenciasBO.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
-        return incidenciasBO.recuperarReportesAlumno(curp) ;
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) throws SubsistemaException{
+        try {
+            return incidenciasBO.recuperarReportesAlumno(curp) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
     
-    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) {
-        return incidenciasBO.convertirReporteAReporteExpediente(reportes) ;
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) throws SubsistemaException{
+        try {
+            return incidenciasBO.convertirReporteAReporteExpediente(reportes) ;
+        } catch (NegociosException e) {
+            throw new SubsistemaException(e.getMessage()) ;
+        }
     }
 }

@@ -6,6 +6,7 @@ package persistencia.persistenciaSistema;
 
 import java.util.List;
 import persistencia.entidades.ReporteEntity;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
@@ -13,18 +14,18 @@ import persistencia.entidades.ReporteEntity;
  */
 public interface IReportesDAO {
     
-    ReporteEntity insertarReporte(ReporteEntity reporte);
+    ReporteEntity insertarReporte(ReporteEntity reporte) throws PersistenciaException ;
     
-    ReporteEntity validarReporte(ReporteEntity reporte);
+    ReporteEntity validarReporte(ReporteEntity reporte) throws PersistenciaException ;
     
-    ReporteEntity modificarReporte(ReporteEntity reporte);
+    ReporteEntity modificarReporte(ReporteEntity reporte) throws PersistenciaException ;
     
-    boolean notificarReporte(ReporteEntity reporte);
+    boolean notificarReporte(ReporteEntity reporte) throws PersistenciaException ;
     
-    List<ReporteEntity> recuperarReportes();
+    List<ReporteEntity> recuperarReportes() throws PersistenciaException ;
     
-    public void insertarReportesSimulados();
+    public void insertarReportesSimulados() throws PersistenciaException ;
     
-    List<ReporteEntity> recuperarReportesAlumno(String curp) ;
+    List<ReporteEntity> recuperarReportesAlumno(String curp) throws PersistenciaException ;
     
 }

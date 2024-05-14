@@ -17,6 +17,7 @@ import persistencia.entidades.AlumnoEntity;
 import persistencia.entidades.UsuarioEntity;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 import persistencia.entidades.ReporteEntity;
+import persistencia.excepciones.PersistenciaException;
 
 /**
  *
@@ -33,53 +34,55 @@ public class ReportesDAO implements IReportesDAO {
     }
     
     @Override
-    public ReporteEntity insertarReporte(ReporteEntity reporte) {
+    public ReporteEntity insertarReporte(ReporteEntity reporte) throws PersistenciaException {
         try {
             coleccion.insertOne(reporte);
+            return null ;
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Ocurri\u00f3 algo al insertar reportes: {0}", e.getMessage());
+            throw new PersistenciaException("Error al insertar reportes") ;
         } 
-        return null;
     }
     
     @Override
-    public void insertarReportesSimulados() {
+    public void insertarReportesSimulados() throws PersistenciaException {
         try {
             if(coleccion.countDocuments() == 0) {
                 coleccion.insertMany(listaReportesSimulado());
             }
         } catch (Exception e) {
             LOG.log(Level.WARNING, "Ya hay reportes insertados", e.getMessage());
+            throw new PersistenciaException("Ya hay reportes insertados") ;
         }
     }
     
     @Override
-    public ReporteEntity validarReporte(ReporteEntity reporte) {
+    public ReporteEntity validarReporte(ReporteEntity reporte) throws PersistenciaException {
         ReporteEntity reporteBuscado = coleccion.find(Filters.eq("_id", reporte.getId())).first();
         if(reporteBuscado == null) return null;
         try {
             coleccion.updateOne(Filters.eq("_id", reporteBuscado.getId()), Updates.set("validado", reporte.isValidado()));
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "No se pudo actualizar el estado de validado: {0}", e.getMessage());
-            return null;
+            throw new PersistenciaException("No s epudo actualizar el estado de validado") ;
         }
         return coleccion.find(Filters.eq("_id", reporteBuscado.getId())).first();
     }
 
     @Override
-    public ReporteEntity modificarReporte(ReporteEntity reporte) {
+    public ReporteEntity modificarReporte(ReporteEntity reporte) throws PersistenciaException {
         try {
             coleccion.replaceOne(Filters.eq("_id", reporte.getId()), reporte);
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "No se pudo modificar el reporte", e.getMessage());
-            return null;
+            throw new PersistenciaException("No se pudo modificar el reporte") ;
         }
         
         return coleccion.find(Filters.eq("_id", reporte.getId())).first();
     }
 
     @Override
-    public boolean notificarReporte(ReporteEntity reporte) {
+    public boolean notificarReporte(ReporteEntity reporte) throws PersistenciaException {
         try {
             coleccion.updateOne(Filters.eq("_id", reporte.getId()), Updates.set("notificado", true));
         } catch (Exception e) {
@@ -91,13 +94,21 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
-    public List<ReporteEntity> recuperarReportes() {
-        return coleccion.find().into(new ArrayList<>());
+    public List<ReporteEntity> recuperarReportes() throws PersistenciaException {
+        try {
+            return coleccion.find().into(new ArrayList<>());
+        } catch (Exception e) {
+            throw new PersistenciaException("Hubo un error al recuperar reportes") ;
+        }
     }
     
     @Override
-    public List<ReporteEntity> recuperarReportesAlumno(String curp) {
-        return coleccion.find(Filters.eq("alumno.cURP", curp)).into(new ArrayList()) ;
+    public List<ReporteEntity> recuperarReportesAlumno(String curp) throws PersistenciaException {
+        try {
+            return coleccion.find(Filters.eq("alumno.cURP", curp)).into(new ArrayList()) ;
+        } catch (Exception e) {
+            throw new PersistenciaException("Hubo un error al recuperar reportes") ;
+        }
     }
     
     // Para pruebas

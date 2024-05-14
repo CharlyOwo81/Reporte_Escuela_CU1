@@ -6,6 +6,7 @@ package presentacion.crearreporte;
 
 import dto.AlumnoDTO;
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import java.awt.Color;
@@ -175,7 +176,8 @@ public ActionListener botonValidar() {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        if(comboBoxGrado.getSelectedIndex() == 0 && comboBoxGrupo.getSelectedIndex() == 0) {
+        try {
+            if(comboBoxGrado.getSelectedIndex() == 0 && comboBoxGrupo.getSelectedIndex() == 0) {
             JOptionPane.showConfirmDialog(new JFrame(), "Elige un filtro", "Elige un filtro", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
             return ;
         } else if (comboBoxGrado.getSelectedIndex() != 0 && comboBoxGrupo.getSelectedIndex() == 0){
@@ -191,6 +193,10 @@ public ActionListener botonValidar() {
         } else {
             JOptionPane.showConfirmDialog(this, "No hay alumnos en este grado o grupo", "No hay alumnos", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
         }
+        } catch (SubsistemaException e) {
+            JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+        }
+        
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void botonesImagenes() {

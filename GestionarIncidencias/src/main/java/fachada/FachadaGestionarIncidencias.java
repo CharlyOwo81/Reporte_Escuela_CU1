@@ -9,6 +9,8 @@ import control.GestionarIncidencias;
 import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
+import excepciones.SubsistemaException;
+import negocios.excepciones.NegociosException;
 
 /**
  *
@@ -23,53 +25,93 @@ public class FachadaGestionarIncidencias implements IFachadaGestionarIncidencias
     }
     
     @Override
-    public void crearReporte(ReporteDTO reporteNuevo) {
-        boIncidencias.crearReporte(reporteNuevo);
+    public void crearReporte(ReporteDTO reporteNuevo) throws SubsistemaException {
+        try {
+            boIncidencias.crearReporte(reporteNuevo);
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
     
     @Override
-    public ReporteDTO validarReporte(ReporteDTO reporteNuevo) {
-        return boIncidencias.validarReporte(reporteNuevo) ;
+    public ReporteDTO validarReporte(ReporteDTO reporteNuevo) throws SubsistemaException {
+        try {
+            return boIncidencias.validarReporte(reporteNuevo) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
 
     @Override
-    public boolean notificarReporte(ReporteDTO reporteNuevo) {
-        return boIncidencias.notificarReporte(reporteNuevo) ;
+    public boolean notificarReporte(ReporteDTO reporteNuevo) throws SubsistemaException {
+        try {
+            return boIncidencias.notificarReporte(reporteNuevo) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
 
     @Override
-    public List<ReporteDTO> recuperarReportes() {
-        return boIncidencias.recuperarReportes() ;
+    public List<ReporteDTO> recuperarReportes() throws SubsistemaException {
+        try {
+            return boIncidencias.recuperarReportes() ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
     
     
-    public void insertDatosSimulados() {
-        boIncidencias.insertDatosSimulados();
+    public void insertDatosSimulados() throws SubsistemaException {
+        try {
+            boIncidencias.insertDatosSimulados();
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
     
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) {
-        return boIncidencias.recuperarAlumnosPorGrado(grado) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) throws SubsistemaException {
+        try {
+            return boIncidencias.recuperarAlumnosPorGrado(grado) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
 
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) {
-        return boIncidencias.recuperarAlumnosPorGrupo(grupo) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) throws SubsistemaException {
+        try {
+            return boIncidencias.recuperarAlumnosPorGrupo(grupo) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
 
     @Override
-    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) {
-        return boIncidencias.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws SubsistemaException {
+        try {
+            return boIncidencias.recuperarAlumnosPorGradoYGrupo(grado, grupo) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
 
     @Override
-    public List<ReporteDTO> recuperarReportesAlumno(String curp) {
-        return boIncidencias.recuperarReportesAlumno(curp) ;
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) throws SubsistemaException {
+        try {
+            return boIncidencias.recuperarReportesAlumno(curp) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
     
     @Override
-    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) {
-        return boIncidencias.convertirReportesAReporteExpediente(reportes) ;
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) throws SubsistemaException {
+        try {
+            return boIncidencias.convertirReportesAReporteExpediente(reportes) ;
+        } catch (SubsistemaException e) {
+            throw e;
+        }
     }
     
 }

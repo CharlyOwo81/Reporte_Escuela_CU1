@@ -8,29 +8,30 @@ import dto.AlumnoDTO;
 import java.util.List;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO ;
+import negocios.excepciones.NegociosException;
 
 /**
  *
  * @author Oliver Valle
  */
 public interface IIncidenciasBO {
-    void crearReporte(ReporteDTO reporteNuevo);
+    void crearReporte(ReporteDTO reporteNuevo) throws NegociosException;
     
-    ReporteDTO validarReporte(ReporteDTO reporteNuevo);
+    ReporteDTO validarReporte(ReporteDTO reporteNuevo) throws NegociosException;
     
-    boolean notificarReporte(ReporteDTO reporteNuevo);
+    boolean notificarReporte(ReporteDTO reporteNuevo) throws NegociosException;
     
-    List<ReporteDTO> recuperarReportes();
+    List<ReporteDTO> recuperarReportes() throws NegociosException;
     
-    public void insertDatosSimulados();
+    public void insertDatosSimulados() throws NegociosException;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado);
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) throws NegociosException;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo);
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) throws NegociosException;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo);
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws NegociosException;
     
-    public List<ReporteDTO> recuperarReportesAlumno(String curp) ;
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) throws NegociosException;
     
-    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) ;
+    public List<ReporteExpedienteDTO> convertirReporteAReporteExpediente(List<ReporteDTO> reportes) throws NegociosException;
 }

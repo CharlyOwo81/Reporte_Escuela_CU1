@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 import dto.ReporteDTO;
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import java.time.LocalDateTime;
@@ -358,12 +359,16 @@ public class FrmCrearReporte extends javax.swing.JFrame {
             IFachadaGestionarIncidencias fachadaGestionarIncidencias = 
                     new FachadaGestionarIncidencias();
             
-            fachadaGestionarIncidencias.crearReporte(reporteNuevo);
-
-            JOptionPane.showConfirmDialog(this, "¡Se ha enviado el Reporte!", "Reporte Creado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ; 
-            dispose();
-            FrmBuscarEstudiante frmBuscar = new FrmBuscarEstudiante(usuario) ;
-            frmBuscar.setVisible(true);
+            try {
+                fachadaGestionarIncidencias.crearReporte(reporteNuevo);
+                JOptionPane.showConfirmDialog(this, "¡Se ha enviado el Reporte!", "Reporte Creado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ; 
+                dispose();
+                FrmBuscarEstudiante frmBuscar = new FrmBuscarEstudiante(usuario) ;
+                frmBuscar.setVisible(true);
+            } catch (SubsistemaException e) {
+                JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ; 
+            }
+            
         }
         
     }//GEN-LAST:event_btnCrearActionPerformed

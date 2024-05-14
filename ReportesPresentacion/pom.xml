@@ -15,6 +15,12 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>ReportesNegocios</artifactId>
             <version>${project.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.itson.bdavanzadas</groupId>
+                    <artifactId>SistemaMensajeria</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.netbeans.external</groupId>
@@ -27,11 +33,6 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>GestionarIncidencias</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
             <groupId>org.bdabanzadas</groupId>
             <artifactId>GenerarReportes</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -41,11 +42,21 @@
             <artifactId>AdministrarAccesos</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>GestionarIncidencias</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>SistemaMensajeria</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>presentacion.iniciarsesion.FrmIniciarSesion</exec.mainClass>
+        <exec.mainClass>presentacion.main.ReportePresentacionMain</exec.mainClass>
     </properties>
 </project>

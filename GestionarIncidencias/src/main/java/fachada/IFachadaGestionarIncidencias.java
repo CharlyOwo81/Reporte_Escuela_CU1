@@ -7,6 +7,7 @@ package fachada;
 import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
+import excepciones.SubsistemaException;
 import java.util.List;
 
 /**
@@ -14,23 +15,23 @@ import java.util.List;
  * @author Oliver Valle
  */
 public interface IFachadaGestionarIncidencias {
-    ReporteDTO validarReporte(ReporteDTO reporteNuevo);
+    ReporteDTO validarReporte(ReporteDTO reporteNuevo) throws SubsistemaException ;
     
-    void crearReporte(ReporteDTO reporteNuevo);
+    void crearReporte(ReporteDTO reporteNuevo) throws SubsistemaException ;
     
-    boolean notificarReporte(ReporteDTO reporteNuevo);
+    boolean notificarReporte(ReporteDTO reporteNuevo) throws SubsistemaException ;
     
-    List<ReporteDTO> recuperarReportes();
+    List<ReporteDTO> recuperarReportes() throws SubsistemaException ;
     
-    public void insertDatosSimulados();
+    public void insertDatosSimulados() throws SubsistemaException ;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado);
+    public List<AlumnoDTO> recuperarAlumnosPorGrado(String grado) throws SubsistemaException ;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo);
+    public List<AlumnoDTO> recuperarAlumnosPorGrupo(String grupo) throws SubsistemaException ;
     
-    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo);
+    public List<AlumnoDTO> recuperarAlumnosPorGradoYGrupo(String grado, String grupo) throws SubsistemaException ;
     
-    public List<ReporteDTO> recuperarReportesAlumno(String curp);
+    public List<ReporteDTO> recuperarReportesAlumno(String curp) throws SubsistemaException ;
     
-    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) ;
+    public List<ReporteExpedienteDTO> convertirReportesAReporteExpediente(List<ReporteDTO> reportes) throws SubsistemaException ;
 }

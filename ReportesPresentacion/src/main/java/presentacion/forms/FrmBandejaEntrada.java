@@ -17,6 +17,7 @@ import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import dto.ReporteDTO;
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import java.awt.Color;
@@ -67,7 +68,11 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
     }
     
     public void insertDatosSimulados() {
-        gestionIncidencias.insertDatosSimulados();
+        try {
+            gestionIncidencias.insertDatosSimulados();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+        }
     }
     
     public FrmBandejaEntrada(IFachadaGestionarIncidencias gestionIncidencias) {
@@ -81,7 +86,8 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         ActionListener validarListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
+                try {
+                    ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
                 if (!reporteSelec.isValidado()) {
                     dispose() ;
                     System.out.println((reporteSelec.getAlumno().getNombre())) ;
@@ -90,14 +96,17 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
                 } else {
                     JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
                 }
-                
+                } catch (SubsistemaException ex) {
+                    JOptionPane.showConfirmDialog(new JFrame(), ex.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+                }
             }
         } ;
         return validarListener ;
     }
 
     public void refrescarTabla() {
-        DefaultTableModel modeloTabla = new DefaultTableModel() ;
+        try {
+            DefaultTableModel modeloTabla = new DefaultTableModel() ;
         List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
         Object[] datosTabla = new Object[9];
         modeloTabla.addColumn("CURP");
@@ -136,7 +145,12 @@ public class FrmBandejaEntrada extends javax.swing.JFrame {
         tablaReportes.setRowHeight(30);
         tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
         tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
-
+        } catch (SubsistemaException e) {
+            JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+            dispose() ;
+            FrmMenuGeneral frm = new FrmMenuGeneral(usuario) ;
+            frm.setVisible(true);
+        }
     }
     
     private void botonesImagenes() {

@@ -9,6 +9,7 @@ import fachada.FachadaAdminAcceso;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import fachada.IadminAcceso;
+import javax.swing.JOptionPane;
 import presentacion.forms.FotosManager;
 
 /**
@@ -238,7 +239,11 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
     }
     
     private void insertDatosSimulados() {
-        gestionIncidencias.insertDatosSimulados();
+        try {
+            gestionIncidencias.insertDatosSimulados();
+        } catch (Exception e) {
+            JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

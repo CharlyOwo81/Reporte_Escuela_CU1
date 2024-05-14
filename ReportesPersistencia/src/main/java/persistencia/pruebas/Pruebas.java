@@ -19,11 +19,11 @@ public class Pruebas {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        UsuarioDAO u = new UsuarioDAO();
-        UsuarioEntity ue = new UsuarioEntity();
-        ue.setCurp("PEMC010224HDFRRL00");
-        
-        System.out.println(u.obtenerDocentePorCurp(ue).getCurp());
+//        UsuarioDAO u = new UsuarioDAO();
+//        UsuarioEntity ue = new UsuarioEntity();
+//        ue.setCurp("PEMC010224HDFRRL00");
+//        
+//        System.out.println(u.obtenerDocentePorCurp(ue).getCurp());
     }
 
 }

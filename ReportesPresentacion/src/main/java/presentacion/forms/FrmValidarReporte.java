@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import persistencia.entidades.NivelIncidenciaPersistencia;
 import dto.ReporteDTO;
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.IFachadaGestionarIncidencias;
 import java.util.Date;
 
@@ -390,18 +391,23 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             ReporteDTO reporteNuevo = new ReporteDTO() ;
             reporteNuevo.setId(reporte.getId());
             reporteNuevo.setValidado(reporte.isValidado());
-            if(gestionIncidencias.notificarReporte(reporte)) {
-                reporteNuevo.setNotificado(true);
-                gestionIncidencias.validarReporte(reporteNuevo) ;
-                JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
-                
-            } else {
-                JOptionPane.showConfirmDialog(this, "Hubo un error al validar el reporte", "Reporte no validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ;
+            try {
+                if (gestionIncidencias.notificarReporte(reporte)) {
+                    reporteNuevo.setNotificado(true);
+                    gestionIncidencias.validarReporte(reporteNuevo);
+                    JOptionPane.showConfirmDialog(this, "¡Se ha validado el Reporte!", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    JOptionPane.showConfirmDialog(this, "Hubo un error al validar el reporte", "Reporte no validado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                dispose();
+                FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(usuario);
+                bandejaEntrada.setVisible(true);
+            } catch (SubsistemaException e) {
+                JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
             }
             
-            dispose() ;
-            FrmBandejaEntrada bandejaEntrada = new FrmBandejaEntrada(usuario) ;
-            bandejaEntrada.setVisible(true);
         }
     }//GEN-LAST:event_btnValidarActionPerformed
 
