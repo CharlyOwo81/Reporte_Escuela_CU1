@@ -10,7 +10,9 @@ import dto.ReporteDTO;
 import dto.UsuarioDTO;
 import excepciones.SubsistemaException;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Color;
 import java.util.Date;
+import javax.swing.BorderFactory;
 
 /**
  *
@@ -49,20 +51,17 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         panelTxaMotivo.getViewport().setOpaque(false);
         panelTxaMotivo.setBorder(null);
         panelTxaMotivo.setViewportBorder(null);
-        txaMotivo.setBorder(null);
-        txaMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txaMotivo.setBackground(Color.WHITE); // Establece el fondo en blanco
+        txaMotivo.setOpaque(true); // Establece la opacidad del JTextArea
 
         //TEXTAREA - DESCRIPCIÓN
         panelTxaDescripcion.setOpaque(false);
         panelTxaDescripcion.getViewport().setOpaque(false);
         panelTxaDescripcion.setBorder(null);
         panelTxaDescripcion.setViewportBorder(null);
-        txtDescripcion.setBorder(null);
-        txtDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txtDescripcion.setBackground(Color.WHITE); // Establece el fondo en blanco
+        txtDescripcion.setOpaque(true); // Establece la opacidad del JTextArea
         
-        
-        txtDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
-        txaMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
         btnValidar.setBackground(new java.awt.Color(0, 0, 0, 0));
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 0));
         setDatos() ;

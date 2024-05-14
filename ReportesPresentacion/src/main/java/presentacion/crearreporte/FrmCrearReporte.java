@@ -13,6 +13,7 @@ import dto.UsuarioDTO;
 import excepciones.SubsistemaException;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
+import java.awt.Color;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -60,16 +61,16 @@ public class FrmCrearReporte extends javax.swing.JFrame {
         panelTxaMotivo.getViewport().setOpaque(false);
         panelTxaMotivo.setBorder(null);
         panelTxaMotivo.setViewportBorder(null);
-        txaMotivo.setBorder(null);
-        txaMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txaMotivo.setBackground(Color.WHITE); // Establece el fondo en blanco
+        txaMotivo.setOpaque(true); // Establece la opacidad del JTextArea
 
         //TEXTAREA - DESCRIPCIÓN
         panelTxaDescripcion.setOpaque(false);
         panelTxaDescripcion.getViewport().setOpaque(false);
         panelTxaDescripcion.setBorder(null);
         panelTxaDescripcion.setViewportBorder(null);
-        txaDescripcion.setBorder(null);
-        txaDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txaDescripcion.setBackground(Color.WHITE); // Establece el fondo en blanco
+        txaDescripcion.setOpaque(true); // Establece la opacidad del JTextArea
         
         btnCrear.setBackground(new java.awt.Color(0, 0, 0, 0));
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 0));
