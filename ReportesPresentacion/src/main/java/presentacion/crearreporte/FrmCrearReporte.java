@@ -325,41 +325,39 @@ public class FrmCrearReporte extends javax.swing.JFrame {
     private void btnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearActionPerformed
         int resp = JOptionPane.showConfirmDialog(this, "¿Estás seguro de enviar este reporte?. Los cambios que hayan realizados se verán reflejados en el sistema.", "Crear Reporte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
         if (resp == JOptionPane.YES_OPTION) {
-            // Validar que los JTextArea no estén vacíos
-            if (txaDescripcion.getText().trim().isEmpty() || txaMotivo.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Campos vacíos", JOptionPane.WARNING_MESSAGE);
-            }
-
-            // Validar que se haya seleccionado un nivel de incidencia
-            if (!checkLeve.isSelected() && !checkSevero.isSelected() && !checkGrave.isSelected()) {
-                JOptionPane.showMessageDialog(this, "Por favor, selecciona un nivel de incidencia.", "Nivel de incidencia no seleccionado", JOptionPane.WARNING_MESSAGE);
-            }
-        }
-        
-        NivelIncidenciaPersistencia nivelIncidencia;
-        if (resp == JOptionPane.YES_OPTION) {
-            if (checkLeve.isSelected()) {
-                nivelIncidencia = NivelIncidenciaPersistencia.LEVE ;
-            } else if(checkSevero.isSelected()) {
-                nivelIncidencia = NivelIncidenciaPersistencia.SEVERO ;
-            } else {
-                nivelIncidencia = NivelIncidenciaPersistencia.GRAVE ;
-            }
+            NivelIncidenciaPersistencia nivelIncidencia;
+            if (resp == JOptionPane.YES_OPTION) {
+                if (checkLeve.isSelected()) {
+                    nivelIncidencia = NivelIncidenciaPersistencia.LEVE ;
+                } else if(checkSevero.isSelected()) {
+                    nivelIncidencia = NivelIncidenciaPersistencia.SEVERO ;
+                } else {
+                    nivelIncidencia = NivelIncidenciaPersistencia.GRAVE ;
+                }
             
-           ReporteDTO reporteNuevo = new ReporteDTO(
-                   alum,
-                   usuario,
-                   nivelIncidencia,
-                   txaDescripcion.getText(),
-                   txaMotivo.getText(),
-                   new Date(),
-                   false,
-                   false);
+               ReporteDTO reporteNuevo = new ReporteDTO(
+                       alum,
+                       usuario,
+                       nivelIncidencia,
+                       txaDescripcion.getText(),
+                       txaMotivo.getText(),
+                       new Date(),
+                       false,
+                       false);
            
-            IFachadaGestionarIncidencias fachadaGestionarIncidencias = 
-                    new FachadaGestionarIncidencias();
+                IFachadaGestionarIncidencias fachadaGestionarIncidencias = 
+                        new FachadaGestionarIncidencias();
             
             try {
+                //Validar que los JTextArea no estén vacíos
+                if (txaDescripcion.getText().trim().isEmpty() && txaMotivo.getText().trim().isEmpty()) {
+                   throw new SubsistemaException("Campos vacíos");
+                }
+
+                //Validar que se haya seleccionado un nivel de incidencia
+                if (!checkLeve.isSelected() && !checkSevero.isSelected() && !checkGrave.isSelected()) {
+                    throw new SubsistemaException("Nivel de Severidad vacío");
+                }
                 fachadaGestionarIncidencias.crearReporte(reporteNuevo);
                 JOptionPane.showConfirmDialog(this, "¡Se ha enviado el Reporte!", "Reporte Creado", JOptionPane.CLOSED_OPTION, JOptionPane.INFORMATION_MESSAGE) ; 
                 dispose();
@@ -369,6 +367,9 @@ public class FrmCrearReporte extends javax.swing.JFrame {
                 JOptionPane.showConfirmDialog(this, e.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ; 
             }
             
+
+
+        } 
         }
         
     }//GEN-LAST:event_btnCrearActionPerformed

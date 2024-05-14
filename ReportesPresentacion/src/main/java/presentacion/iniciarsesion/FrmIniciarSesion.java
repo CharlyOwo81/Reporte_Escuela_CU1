@@ -5,10 +5,13 @@
 package presentacion.iniciarsesion;
 
 import dto.UsuarioDTO;
+import excepciones.SubsistemaException;
 import fachada.FachadaAdminAcceso;
 import fachada.FachadaGestionarIncidencias;
 import fachada.IFachadaGestionarIncidencias;
 import fachada.IadminAcceso;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import presentacion.forms.FotosManager;
 
@@ -194,33 +197,39 @@ public class FrmIniciarSesion extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_iniciarSesionActionPerformed
 
     public void iniciarSesion() {
-        if(txt_curp.getText().isBlank() || psw_pin.getText().isEmpty()) mostrarMensaje();
-        
-        UsuarioDTO usuario = new UsuarioDTO();
-        usuario.setCurp(txt_curp.getText());
-        usuario.setPin(psw_pin.getText());
-        
-        usuario = adminAcceso.iniciarSesion(usuario);
-        
-        if(usuario == null) {
-            mostrarMensaje();
-        } else {
-            switch(usuario.getRol()) {
-                case "DOCENTE" -> {
-                    FrmMenuGeneral frmBuscarEstudiante = new FrmMenuGeneral(usuario);
-                    frmBuscarEstudiante.setVisible(true);
+        try {
+            if(txt_curp.getText().isBlank() || psw_pin.getText().isEmpty()) mostrarMensaje();
+            
+            UsuarioDTO usuario = new UsuarioDTO();
+            usuario.setCurp(txt_curp.getText());
+            usuario.setPin(psw_pin.getText());
+            
+            usuario = adminAcceso.iniciarSesion(usuario);
+            
+            if(usuario == null) {
+                mostrarMensaje();
+            } else {
+                switch(usuario.getRol()) {
+                    case "DOCENTE" -> {
+                        FrmMenuGeneral frmBuscarEstudiante = new FrmMenuGeneral(usuario);
+                        frmBuscarEstudiante.setVisible(true);
+                    }
+                    case "PREFECTO" -> {
+                        FrmMenuGeneral frmBandeja = new FrmMenuGeneral(usuario) ;
+                        frmBandeja.setVisible(true);
+                    }
+                    case "DIRECTIVO" -> {
+                        FrmMenuGeneral frmBuscarExpediente = new FrmMenuGeneral(usuario);
+                        frmBuscarExpediente.setVisible(true);
+                    }
+                    default -> System.out.println("El usuario no tiene rol registrado");
                 }
-                case "PREFECTO" -> {
-                    FrmMenuGeneral frmBandeja = new FrmMenuGeneral(usuario) ;
-                    frmBandeja.setVisible(true);
-                }
-                case "DIRECTIVO" -> {
-                    FrmMenuGeneral frmBuscarExpediente = new FrmMenuGeneral(usuario);
-                    frmBuscarExpediente.setVisible(true);
-                }
-                default -> System.out.println("El usuario no tiene rol registrado");
+                this.dispose();
             }
-            this.dispose();
+        } catch (SubsistemaException ex) {
+            Logger.getLogger(FrmIniciarSesion.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showConfirmDialog(this, ex.getMessage(), "Error", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+
         }
         
     }

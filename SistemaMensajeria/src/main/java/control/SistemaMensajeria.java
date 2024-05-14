@@ -52,10 +52,12 @@ public class SistemaMensajeria {
             message.setFrom(new InternetAddress("armenta.gamaliel.cbtis37@gmail.com"));
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(reporteDto.getAlumno().getEmailTutor()));
             message.setSubject("Notificación de Incidencia" + LocalDate.now());
-            message.setText("Buen día. Se notifica por este medio que el alumno"
-                    + reporteDto.getAlumno().getNombre() + " " + reporteDto.getAlumno().getApellidoP() + " " + reporteDto.getAlumno().getApellidoM()
-                    + "presenta el siguiente reporte: "
-                    + reporteDto.getMotivo() + ". El reporte cuenta con el estatus de : " + reporteDto.getNivelIncidencia().toString());
+            message.setText("Buen día. Se notifica por este medio que el alumno "
+                    + reporteDto.getAlumno().getNombre() + " " 
+                    + reporteDto.getAlumno().getApellidoP() + " " 
+                    + reporteDto.getAlumno().getApellidoM() + " presenta el siguiente reporte: "
+                    + reporteDto.getMotivo() + ". El reporte cuenta con el estatus de severidad: " 
+                    + reporteDto.getNivelIncidencia().toString());
 
             // Enviar el correo
             Transport transport = session.getTransport("smtp");

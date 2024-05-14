@@ -49,8 +49,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         panelTxaMotivo.getViewport().setOpaque(false);
         panelTxaMotivo.setBorder(null);
         panelTxaMotivo.setViewportBorder(null);
-        txtMotivo.setBorder(null);
-        txtMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txaMotivo.setBorder(null);
+        txaMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
 
         //TEXTAREA - DESCRIPCIÓN
         panelTxaDescripcion.setOpaque(false);
@@ -62,7 +62,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         
         
         txtDescripcion.setBackground(new java.awt.Color(0, 0, 0, 0));
-        txtMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
+        txaMotivo.setBackground(new java.awt.Color(0, 0, 0, 0));
         btnValidar.setBackground(new java.awt.Color(0, 0, 0, 0));
         btnCancelar.setBackground(new java.awt.Color(0, 0, 0, 0));
         setDatos() ;
@@ -75,8 +75,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     }
     
     private void enableCampos() {
-        txtMotivo.setEnabled(true);
-        txtMotivo.setEditable(true);
+        txaMotivo.setEnabled(true);
+        txaMotivo.setEditable(true);
         txtDescripcion.setEnabled(true);
         txtDescripcion.setEditable(true);
         checkLeve.setEnabled(true);
@@ -85,8 +85,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     }
     
     private void disableCampos() {
-        txtMotivo.setEnabled(false);
-        txtMotivo.setEditable(false);
+        txaMotivo.setEnabled(false);
+        txaMotivo.setEditable(false);
         txtDescripcion.setEnabled(false);
         txtDescripcion.setEditable(false);
         checkLeve.setEnabled(false);
@@ -101,7 +101,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtCURP.setText(reporte.getAlumno().getCurp());
         txtProfesor.setText(reporte.getDocente().getNombre() + " " + reporte.getDocente().getApellidoP() + " " + reporte.getDocente().getApellidoM());
         txtGrupo.setText(reporte.getAlumno().getGradoGrupo());
-        txtMotivo.setText(reporte.getMotivo());
+        txaMotivo.setText(reporte.getMotivo());
         txtDescripcion.setText(reporte.getDescripcion());
         Date fecha = reporte.getFechaHora();
         int anio = fecha.getYear() + 1900;
@@ -134,7 +134,7 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         panelTxaDescripcion = new javax.swing.JScrollPane();
         txtDescripcion = new javax.swing.JTextArea();
         panelTxaMotivo = new javax.swing.JScrollPane();
-        txtMotivo = new javax.swing.JTextArea();
+        txaMotivo = new javax.swing.JTextArea();
         checkLeve = new javax.swing.JCheckBox();
         checkSevero = new javax.swing.JCheckBox();
         checkGrave = new javax.swing.JCheckBox();
@@ -153,7 +153,6 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Validación de Reporte");
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1210, 660));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -175,16 +174,13 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
         jPanel1.add(panelTxaDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, 320, 160));
 
-        txtMotivo.setEditable(false);
-        txtMotivo.setBackground(new java.awt.Color(255, 255, 255));
-        txtMotivo.setColumns(20);
-        txtMotivo.setForeground(new java.awt.Color(0, 0, 0));
-        txtMotivo.setLineWrap(true);
-        txtMotivo.setRows(5);
-        txtMotivo.setBorder(null);
-        txtMotivo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
-        txtMotivo.setEnabled(false);
-        panelTxaMotivo.setViewportView(txtMotivo);
+        panelTxaMotivo.setBorder(null);
+
+        txaMotivo.setColumns(20);
+        txaMotivo.setLineWrap(true);
+        txaMotivo.setRows(5);
+        txaMotivo.setEnabled(false);
+        panelTxaMotivo.setViewportView(txaMotivo);
 
         jPanel1.add(panelTxaMotivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 460, 330, 160));
 
@@ -378,6 +374,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
 
     private void btnValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidarActionPerformed
         int resp = JOptionPane.showConfirmDialog(this, "¿Estás seguro de validar este reporte?. Los cambios que hayan realizados se verán reflejados en el sistema.", "Validar Reporte", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) ;
+      
+        //Validación del reporte
         NivelIncidenciaPersistencia nivelIncidencia;
         if (resp == JOptionPane.YES_OPTION) {
             if (checkLeve.isSelected()) {
@@ -392,6 +390,16 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             reporteNuevo.setId(reporte.getId());
             reporteNuevo.setValidado(reporte.isValidado());
             try {
+                //Validar que los JTextArea no estén vacíos
+                if (txtDescripcion.getText().trim().isEmpty() && txaMotivo.getText().trim().isEmpty()) {
+                    throw new SubsistemaException("Campos vacíos");
+                }
+
+                //Validar que se haya seleccionado un nivel de incidencia
+                if (!checkLeve.isSelected() && !checkSevero.isSelected() && !checkGrave.isSelected()) {
+                    throw new SubsistemaException("Nivel de Severidad vacío");
+                }
+                
                 if (gestionIncidencias.notificarReporte(reporte)) {
                     reporteNuevo.setNotificado(true);
                     gestionIncidencias.validarReporte(reporteNuevo);
@@ -491,13 +499,13 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private javax.swing.JScrollPane panelTxaDescripcion;
     private javax.swing.JScrollPane panelTxaMotivo;
     private javax.swing.JToggleButton toggleModificar;
+    private javax.swing.JTextArea txaMotivo;
     private javax.swing.JTextField txtApellidoMaterno;
     private javax.swing.JTextField txtApellidoPaterno;
     private javax.swing.JTextField txtCURP;
     private javax.swing.JTextArea txtDescripcion;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtGrupo;
-    private javax.swing.JTextArea txtMotivo;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtProfesor;
     // End of variables declaration//GEN-END:variables
