@@ -10,7 +10,6 @@ import dto.AlumnoDTO;
 import dto.ReporteDTO;
 import dto.ReporteExpedienteDTO;
 import excepciones.SubsistemaException;
-import negocios.excepciones.NegociosException;
 
 /**
  *
