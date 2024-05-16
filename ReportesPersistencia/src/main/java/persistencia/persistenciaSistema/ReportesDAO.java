@@ -7,6 +7,8 @@ package persistencia.persistenciaSistema;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Updates;
+import static com.mongodb.client.model.Updates.combine;
+import static com.mongodb.client.model.Updates.set;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -60,11 +62,16 @@ public class ReportesDAO implements IReportesDAO {
     public ReporteEntity validarReporte(ReporteEntity reporte) throws PersistenciaException {
         ReporteEntity reporteBuscado = coleccion.find(Filters.eq("_id", reporte.getId())).first();
         if(reporteBuscado == null) return null;
+        
         try {
-            coleccion.updateOne(Filters.eq("_id", reporteBuscado.getId()), Updates.set("validado", reporte.isValidado()));
+            coleccion.updateOne(Filters.eq("_id", reporte.getId()), Updates.combine(
+                    Updates.set("nivelIncidencia", reporte.getNivelIncidencia().toString()),
+                    Updates.set("descripcion", reporte.getDescripcion()),
+                    Updates.set("motivo", reporte.getMotivo())
+            ));
         } catch (Exception e) {
             LOG.log(Level.SEVERE, "No se pudo actualizar el estado de validado: {0}", e.getMessage());
-            throw new PersistenciaException("No s epudo actualizar el estado de validado") ;
+            throw new PersistenciaException("No se pudo actualizar el estado de validado") ;
         }
         return coleccion.find(Filters.eq("_id", reporteBuscado.getId())).first();
     }

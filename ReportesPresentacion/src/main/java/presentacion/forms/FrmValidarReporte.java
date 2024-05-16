@@ -294,6 +294,11 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         txtGrupo.setBorder(null);
         txtGrupo.setDisabledTextColor(new java.awt.Color(0, 0, 0));
         txtGrupo.setEnabled(false);
+        txtGrupo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGrupoActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtGrupo, new org.netbeans.lib.awtextra.AbsoluteConstraints(990, 190, 90, 40));
 
         toggleModificar.setBackground(new java.awt.Color(243, 222, 44));
@@ -377,6 +382,12 @@ public class FrmValidarReporte extends javax.swing.JFrame {
         //Validación del reporte
         NivelIncidenciaPersistencia nivelIncidencia;
         if (resp == JOptionPane.YES_OPTION) {
+            ReporteDTO reporteNuevo = new ReporteDTO() ;
+            reporteNuevo.setId(reporte.getId());
+            reporteNuevo.setMotivo(txaMotivo.getText());
+            reporteNuevo.setDescripcion(txtDescripcion.getText());
+            reporteNuevo.setValidado(reporte.isValidado());
+            
             if (checkLeve.isSelected()) {
                 nivelIncidencia = NivelIncidenciaPersistencia.LEVE ;
             } else if(checkSevero.isSelected()) {
@@ -384,10 +395,8 @@ public class FrmValidarReporte extends javax.swing.JFrame {
             } else {
                 nivelIncidencia = NivelIncidenciaPersistencia.GRAVE ;
             }
+            reporteNuevo.setNivelIncidencia(nivelIncidencia);
             
-            ReporteDTO reporteNuevo = new ReporteDTO() ;
-            reporteNuevo.setId(reporte.getId());
-            reporteNuevo.setValidado(reporte.isValidado());
             try {
                 //Validar que los JTextArea no estén vacíos
                 if (txtDescripcion.getText().trim().isEmpty() && txaMotivo.getText().trim().isEmpty()) {
@@ -450,6 +459,10 @@ public class FrmValidarReporte extends javax.swing.JFrame {
     private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtFechaActionPerformed
+
+    private void txtGrupoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGrupoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGrupoActionPerformed
 
 //    /**
 //     * @param args the command line arguments

@@ -102,6 +102,10 @@ public class IncidenciasBO implements IIncidenciasBO{
         
         reporteObtenido.setId(new ObjectId(reporteDto.getId()));
         reporteObtenido.setValidado(reporteDto.isValidado());
+        reporteObtenido.setDescripcion(reporteDto.getDescripcion());
+        reporteObtenido.setMotivo(reporteDto.getMotivo());
+        reporteObtenido.setNivelIncidencia(reporteDto.getNivelIncidencia());
+        
         
         try {
             reporteObtenido = reportesDAO.validarReporte(reporteObtenido);
